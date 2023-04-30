@@ -1,0 +1,26 @@
+<header id="header">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-center">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/FoodAlchemy1.png" alt="FoodAlchemy" width="200" height="120" class="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="#">HOME</a>
+          <a class="nav-link" href="#">RECIPES</a>
+          <a class="nav-link" href="#">ABOUT US</a>
+          <a class="nav-link disabled">Disabled</a>
+        </div>
+      </div>
+      <form class="d-flex" role="search" [formGroup]="form" (ngSubmit)="onSubmit">
+        <input class="form-control me-2" type="search" placeholder="Search for recipes" size=40 formControlName="title" (input)="onSearchInput()">
+        <button class="btn btn-outline-success" type="submit" [disabled]="ButtonDisabled">Search</button>
+      </form>
+    </div>
+    Login/SignUp:&nbsp;&nbsp;<a routerLink="/login"><i class="bi bi-person-circle"></i></a>
+  </nav>
+</header>

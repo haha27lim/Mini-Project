@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <table>
+        <tr>
+            <td>Recipe:</td>
+            <td><input type="text" size="30" (input)="onSearchInput()" formControlName="title"
+                    placeholder="Search for a recipe..."></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right">
+                <button type="submit" [disabled]="ButtonDisabled">Search</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Cuisine:</td>
+            <td>
+                <select formControlName="cuisine">
+                    <option *ngFor="let c of cuisines" [value]="c">
+                        {{c | titlecase}}
+                    </option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</form>

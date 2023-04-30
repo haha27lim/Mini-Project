@@ -1,0 +1,30 @@
+<div class="overlay">
+   <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="con">
+         <header class="head-form">
+            <h2>Log In</h2>
+            <p>login here using your username and password</p>
+         </header>
+         <br>
+         <div class="field-set">
+            <span class="input-item">
+               <i class="bi bi-person-circle"></i>
+            </span>
+            <input class="form-input" type="email" formControlName="email" placeholder="@UserName" required>
+            <br>
+            <span class="input-item">
+               <i class="bi bi-key-fill"></i>
+            </span>
+            <input class="form-input" type="password" formControlName="password" placeholder="Password" required>
+            <br>
+            <button class="log-in" type="submit"> Log In </button>
+         </div>
+         <div class="other">
+            <button class="btn submits frgt-pass" type="button" routerLink="/forgotpassword">Forgot Password</button>
+            <button class="btn submits sign-up" type="button" routerLink="/signup">Sign Up
+               <i class="bi bi-person-fill-add" aria-hidden="true"></i>
+            </button>
+         </div>
+      </div>
+   </form>
+</div>

@@ -1,0 +1,50 @@
+<section>
+    <div class="banner">
+        <h1>FOOD that brings people together.</h1>
+    </div>
+</section>
+
+<div class="card-container">
+    <div class="card u-clearfix">
+      <div class="card-body1">
+        <span class="card-number card-circle subtle">01</span>
+        <span class="card-author subtle">John Smith</span>
+        <h2 class="card-title">New Brunch Recipe</h2>
+        <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
+        <div class="card-read">Read</div>
+        <span class="card-tag card-circle subtle">C</span>
+      </div>
+      <img src="https://webknox.com/recipeImages/662584-556x370.jpg" alt="" class="card-media" />
+    </div>
+    <div class="card-shadow"></div>
+  </div>
+
+<br>
+
+<div class="container">
+    <h2 class="text-center mb-5">Popular Picks</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let recipe of recipes" class="col">
+        <div class="pcard h-100">
+          <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+          <div class="pcard-body">
+            <h5 class="pcard-title">{{recipe.title}}</h5>
+            <p class="pcard-text">
+              Ready in {{recipe.readyInMinutes}}{{' '}}
+              minutes - {{recipe.servings}}{{' '}}
+              Servings
+            </p>
+            <div class="pcard-button">
+              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe)">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  
+  
+
+

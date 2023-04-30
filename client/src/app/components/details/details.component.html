@@ -1,0 +1,20 @@
+<h2>Recipe Information for {{ recId }}</h2>
+
+<div>
+    <h2>{{ recipe.title }}</h2>
+    <ul>
+      <li>Ready in minutes: {{ recipe.readyInMinutes }}</li>
+      <li>Servings: {{ recipe.servings }}</li>
+      <li>Cuisines: {{ recipe.cuisines.join(', ') }}</li>
+      <li>Dish types: {{ recipe.dishTypes.join(', ') }}</li>
+      <li>Diets: {{ recipe.diets.join(', ') }}</li>
+      <li>Extended ingredients:
+        <ul>
+          <li *ngFor="let ingredient of recipe.extendedIngredients">
+            {{ ingredient.originalName }} - {{ ingredient.amount }} {{ ingredient.unitShort }}
+          </li>
+        </ul>
+      </li>
+      <li>Instructions: {{ recipe.instructions }}</li>
+    </ul>
+  </div>
