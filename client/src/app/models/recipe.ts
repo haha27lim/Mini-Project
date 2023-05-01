@@ -16,5 +16,5 @@ export interface Recipe {
 export interface ExtendedIngredients {
     originalName: string;
     amount: number;
-    unitShort: string;
+    unit: string;
 }

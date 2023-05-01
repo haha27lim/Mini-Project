@@ -34,11 +34,9 @@ public class RecipeController {
     private FoodService foodSvc;
 
 	@GetMapping(path = "/search")
-	public ResponseEntity<String> getGenSearch(@RequestParam(name="query", required = true) String title,
-        @RequestParam boolean recipeinfo) {
+	public ResponseEntity<String> getGenSearch(@RequestParam(name="query", required = true) String title) {
 
-		JsonArray result = null;
-		List<Recipe> recipes = foodSvc.searchGenRecipes(title, recipeinfo);
+		List<Recipe> recipes = foodSvc.searchGenRecipes(title);
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
 		if (recipes != null) {
@@ -47,7 +45,7 @@ public class RecipeController {
 			}
 		}
 	
-		result = arrBuilder.build();
+		JsonArray result = arrBuilder.build();
 		return ResponseEntity
 			.status(HttpStatus.OK)
 			.contentType(MediaType.APPLICATION_JSON)
@@ -60,7 +58,6 @@ public class RecipeController {
 
         logger.log(Level.INFO, "cuisine=%s, query=%s".formatted(cuisine, title));
 
-		JsonArray result = null;
 		List<Recipe> recipes = foodSvc.searchRecipes(cuisine, title, recipeinfo);
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
@@ -70,7 +67,7 @@ public class RecipeController {
 			}
 		}
 	
-		result = arrBuilder.build();
+		JsonArray result = arrBuilder.build();
 		return ResponseEntity
 			.status(HttpStatus.OK)
 			.contentType(MediaType.APPLICATION_JSON)
@@ -80,7 +77,6 @@ public class RecipeController {
 	@GetMapping(path = "/random")
 	public ResponseEntity<String> getRandom(@RequestParam int number) {
 
-		JsonArray result = null;
 		List<Recipe> recipes = foodSvc.getRandomRecipes(number);
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
@@ -90,25 +86,31 @@ public class RecipeController {
 			}
 		}
 	
-		result = arrBuilder.build();
+		JsonArray result = arrBuilder.build();
 		System.out.println("result: " + result);
 		return ResponseEntity
 			.status(HttpStatus.OK)
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(result.toString());
 	}
-	
+
+
 	@GetMapping(path = "/recipes/{id}")
     public ResponseEntity<String> getRecipeById(@PathVariable int id) throws IOException {
 
-        Recipe r = foodSvc.getRecipeById(id);
-        if (r == null) {
-            return ResponseEntity.notFound().build();
-        } else {
-            JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
-            arrBuilder.add(r.toJSON());
-            JsonArray result = arrBuilder.build();
-            return ResponseEntity.ok(result.toString());
-        }
-    }
+		Recipe recipes = foodSvc.getRecipeById(id);
+
+		if (recipes != null) {
+			return ResponseEntity
+			.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(recipes.toJSON().toString());
+		} else {
+			String message = String.format("Recipe with ID %d not found", id);
+			return ResponseEntity
+				.status(HttpStatus.NOT_FOUND)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body("{ \"message\": \"" + message + "\" }");
+		}
+	}
 }

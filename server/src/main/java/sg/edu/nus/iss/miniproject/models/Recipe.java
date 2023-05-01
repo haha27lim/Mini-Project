@@ -1,9 +1,12 @@
 package sg.edu.nus.iss.miniproject.models;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import jakarta.json.Json;
+import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
@@ -35,7 +38,7 @@ public class Recipe {
     public static class ExtendedIngredients {
         private String originalName;
         private double amount;
-        private String unitShort;
+        private String unit;
     }
 
     public JsonObject toJSON() {
@@ -44,7 +47,7 @@ public class Recipe {
             JsonObjectBuilder ingredientBuilder = Json.createObjectBuilder()
                     .add("originalName", ingredient.getOriginalName())
                     .add("amount", ingredient.getAmount())
-                    .add("unitShort", ingredient.getUnitShort());
+                    .add("unit", ingredient.getUnit());
             ingredientsArrayBuilder.add(ingredientBuilder.build());
         }
 
@@ -54,9 +57,9 @@ public class Recipe {
             .add("readyInMinutes", getReadyInMinutes())
             .add("servings", getServings())
             .add("image", getImage())
-            .add("sourceUrl", getSourceUrl())
-            .add("spoonacularSourceUrl", getSpoonacularSourceUrl())
-            .add("instructions", getInstructions())
+            .add("sourceUrl", getSourceUrl() != null ? getSourceUrl() : "")
+            .add("spoonacularSourceUrl", getSpoonacularSourceUrl() != null ? getSpoonacularSourceUrl() : "")
+            .add("instructions", getInstructions() != null ? getInstructions() : "")
             .add("dishTypes", Json.createArrayBuilder(getDishTypes()))
             .add("cuisines", Json.createArrayBuilder(getCuisines()))
             .add("diets", Json.createArrayBuilder(getDiets()))
@@ -68,40 +71,64 @@ public class Recipe {
         Recipe recipe = new Recipe();
         recipe.setId(obj.getInt("id"));
         recipe.setTitle(obj.getString("title"));
-        recipe.setReadyInMinutes(obj.getInt("readyInMinutes"));
-        recipe.setServings(obj.getInt("servings"));
+        int readyInMinutes = obj.getJsonNumber("readyInMinutes") != null ? obj.getJsonNumber("readyInMinutes").intValue() : 0;
+        recipe.setReadyInMinutes(readyInMinutes);
+        int servings = obj.getJsonNumber("servings") != null ? obj.getJsonNumber("servings").intValue() : 0;
+        recipe.setServings(servings);
         recipe.setImage(obj.getString("image"));
-        recipe.setSourceUrl(obj.getString("sourceUrl"));
-        recipe.setSpoonacularSourceUrl(obj.getString("spoonacularSourceUrl"));
-        recipe.setInstructions(obj.getString("instructions"));
-        List<String> dishTypes = obj.getJsonArray("dishTypes").getValuesAs(JsonString.class)
-            .stream()
-            .map(JsonString::getString)
-            .collect(Collectors.toList());
+        JsonString sourceUrlJson = obj.getJsonString("sourceUrl");
+        if (sourceUrlJson != null) {
+            recipe.setSourceUrl(sourceUrlJson.getString());
+        }
+        JsonString spoonacularSourceUrlJson = obj.getJsonString("spoonacularSourceUrl");
+        if (spoonacularSourceUrlJson != null) {
+            recipe.setSpoonacularSourceUrl(spoonacularSourceUrlJson.getString());
+        }
+        JsonString instructionsJson = obj.getJsonString("instructions");
+        if (instructionsJson != null) {
+            recipe.setInstructions(instructionsJson.getString());
+        }
+        List<String> dishTypes = new ArrayList<>();
+        JsonArray dishTypesJsonArray = obj.getJsonArray("dishTypes");
+        if (dishTypesJsonArray != null) {
+            dishTypes = dishTypesJsonArray.getValuesAs(JsonString.class)
+                    .stream()
+                    .map(JsonString::getString)
+                    .collect(Collectors.toList());
+        }
         recipe.setDishTypes(dishTypes);
-        List<String> cuisines = obj.getJsonArray("cuisines").getValuesAs(JsonString.class)
-            .stream()
-            .map(JsonString::getString)
-            .collect(Collectors.toList());
+        JsonArray cuisinesJson = obj.getJsonArray("cuisines");
+        List<String> cuisines = cuisinesJson != null
+                ? cuisinesJson.getValuesAs(JsonString.class)
+                        .stream()
+                        .map(JsonString::getString)
+                        .collect(Collectors.toList())
+                : new ArrayList<>();
         recipe.setCuisines(cuisines);
-        List<String> diets = obj.getJsonArray("diets").getValuesAs(JsonString.class)
-            .stream()
-            .map(JsonString::getString)
-            .collect(Collectors.toList());
+
+        JsonArray dietsJson = obj.getJsonArray("diets");
+        List<String> diets = dietsJson != null
+                ? dietsJson.getValuesAs(JsonString.class)
+                        .stream()
+                        .map(JsonString::getString)
+                        .collect(Collectors.toList())
+                : new ArrayList<>();
         recipe.setDiets(diets);
 
-        List<ExtendedIngredients> extendedIngredients = obj.getJsonArray("extendedIngredients")
+        if (obj.containsKey("extendedIngredients")) {
+            List<ExtendedIngredients> extendedIngredients = obj.getJsonArray("extendedIngredients")
                 .getValuesAs(JsonObject.class).stream()
                 .map(jsonIngredient -> {
                     String originalName = jsonIngredient.getString("originalName");
-                    double amount = jsonIngredient.getJsonObject("measures").getJsonObject("metric")
-                            .getJsonNumber("amount").doubleValue();
-                    String unitShort = jsonIngredient.getJsonObject("measures").getJsonObject("metric")
-                            .getString("unitShort");
-                    return new ExtendedIngredients(originalName, amount, unitShort);
+                    double amount = jsonIngredient.getJsonNumber("amount").doubleValue();
+                    String unit = jsonIngredient.getString("unit");
+                    return new ExtendedIngredients(originalName, amount, unit);
                 })
                 .collect(Collectors.toList());
-        recipe.setExtendedIngredients(extendedIngredients);
+            recipe.setExtendedIngredients(extendedIngredients);
+        } else {
+            recipe.setExtendedIngredients(Collections.emptyList());
+        }
 
         return recipe;
     }

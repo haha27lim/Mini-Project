@@ -16,7 +16,7 @@
           <a class="nav-link disabled">Disabled</a>
         </div>
       </div>
-      <form class="d-flex" role="search" [formGroup]="form" (ngSubmit)="onSubmit">
+      <form class="d-flex" role="search" [formGroup]="form" (ngSubmit)="onSubmit()">
         <input class="form-control me-2" type="search" placeholder="Search for recipes" size=40 formControlName="title" (input)="onSearchInput()">
         <button class="btn btn-outline-success" type="submit" [disabled]="ButtonDisabled">Search</button>
       </form>

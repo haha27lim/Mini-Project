@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CUISINES } from '../constants';
 import { Subscription } from 'rxjs';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe';
@@ -11,7 +9,7 @@ import { Recipe } from '../models/recipe';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
 
   recipes: Recipe[] = []
   title!: string
@@ -23,7 +21,6 @@ export class HomeComponent {
   ngOnInit() {
     this.queryParams$ = this.activatedRoute.queryParams.subscribe(
       async (queryParams) => {
-        this.title = queryParams['query'];
         try {
           this.recipes = await this.recipeSvc.getRandom(9); // load 9 random recipes
           console.log('Recipes:', this.recipes);
@@ -34,9 +31,9 @@ export class HomeComponent {
     );
   }      
 
-  showRecipeDetails(recipe: Recipe) {
+  showRecipeDetails(id: number) {
     if (this.recipes.length > 0) {
-      this.router.navigate(['/details', recipe.id]);
+      this.router.navigate(['/details', id]);
     }
   }
   

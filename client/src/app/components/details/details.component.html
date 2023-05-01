@@ -1,20 +1,135 @@
-<h2>Recipe Information for {{ recId }}</h2>
+<div class="banner bg-img" style="background-image: url('../../assets/Dining.jpg')">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="banner-text text-center">
+                    <h2>Recipe</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div>
-    <h2>{{ recipe.title }}</h2>
-    <ul>
-      <li>Ready in minutes: {{ recipe.readyInMinutes }}</li>
-      <li>Servings: {{ recipe.servings }}</li>
-      <li>Cuisines: {{ recipe.cuisines.join(', ') }}</li>
-      <li>Dish types: {{ recipe.dishTypes.join(', ') }}</li>
-      <li>Diets: {{ recipe.diets.join(', ') }}</li>
-      <li>Extended ingredients:
-        <ul>
-          <li *ngFor="let ingredient of recipe.extendedIngredients">
-            {{ ingredient.originalName }} - {{ ingredient.amount }} {{ ingredient.unitShort }}
-          </li>
-        </ul>
-      </li>
-      <li>Instructions: {{ recipe.instructions }}</li>
-    </ul>
+<div class="overlay container">
+    <h2 class="recipe-header">Recipe Information</h2>
+  <div class="overlay container">
+    <div class="row">
+        <div class="col-12">
+            <div>
+              <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image" class="center">
+            </div>
+        </div>
+    </div>
   </div>
+</div>
+  
+  <div class="receipe-content-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <div class="receipe-headline my-5">
+            <h2>{{ recipe.title }}</h2>
+            <div class="receipe-duration">
+              <h6>Ready in minutes: {{ recipe.readyInMinutes }}</h6>
+              <h6>Servings: {{ recipe.servings }}</h6>
+              <h6>Cuisines:</h6>
+              <ul>
+                <li *ngFor="let cuisine of recipe.cuisines ? recipe.cuisines : ['(null)']">{{ cuisine }}</li>
+              </ul>
+              <h6>Dish types:</h6>
+              <ul>
+                <li *ngFor="let dishType of recipe.dishTypes">{{ dishType }}</li>
+              </ul>
+              <h6>Diets:</h6>
+              <ul>
+                <li *ngFor="let diet of recipe.diets ? recipe.diets : ['(null)']">{{ diet }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="overlay container">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+        <h4>Instructions:</h4>
+        <div class="single-preparation-step d-flex">
+          <p [innerHTML]="recipe.instructions">{{ recipe.instructions }}</p>
+        </div>
+      </div>
+  
+      <div class="col-12 col-lg-4">
+        <div class="ingredients">
+          <h4>Ingredients: </h4>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Ingredient</th>
+                <th>Amount</th>
+                <th>Unit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ingredient of recipe.extendedIngredients">
+                <td>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input">
+                    <label class="custom-control-label"></label>
+                  </div>
+                </td>
+                <td>{{ ingredient.originalName }}</td>
+                <td>{{ ingredient.amount }}</td>
+                <td>{{ ingredient.unit }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+              <div class="section-heading text-left">
+                  <h3>Leave a comment</h3>
+              </div>
+          </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12">
+          <div class="contact-form-area">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><label for="name">Name</label></td>
+                    <td><input type="text" id="name" formControlName="name" placeholder="Enter your name"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="email">Email</label></td>
+                    <td><input type="email"id="email" formControlName="email" placeholder="Enter your email"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="subject">Subject</label></td>
+                    <td><input type="text" id="subject" formControlName="subject" placeholder="Enter the subject"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="message">Message</label></td>
+                    <td><textarea rows="5" formControlName="message" placeholder="Enter your message"></textarea></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="submit" class="btn btn-primary">Post Comments</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+<br>

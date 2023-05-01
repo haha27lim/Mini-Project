@@ -7,15 +7,17 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SearchComponent } from './components/search/search.component';
 import { DetailsComponent } from './components/details/details.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
   { path:'home', component: HomeComponent },
+  { path:'searchresult', component: SearchResultsComponent },
   { path:'login', component: LoginComponent },
   { path:'forgotpassword', component: ForgotPasswordComponent },
   { path:'signup', component: SignUpComponent },
   { path:'search', component: SearchComponent },
-  { path:'details/:recId', component: DetailsComponent},
+  { path:'details/:id', component: DetailsComponent},
   { path: '**', component: NotFoundComponent } 
 ];
 

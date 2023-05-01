@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Recipe } from 'src/app/models/recipe';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  recipes: Recipe[] = []
   form!: FormGroup
   ButtonDisabled: boolean = true;
 
@@ -24,7 +26,8 @@ export class NavbarComponent implements OnInit {
   }
 
   onSubmit() {
-    const title = this.form.value.title.trim();
+    const title = this.form?.value['title']
+    this.router.navigate(['/searchresult'], {queryParams: {query: title}});
   }
 
   private createForm(): FormGroup {

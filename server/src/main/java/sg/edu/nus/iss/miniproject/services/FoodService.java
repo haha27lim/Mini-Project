@@ -31,12 +31,11 @@ public class FoodService {
 	@Value("${apikey}")
     private String API_KEY;
 
-    public List<Recipe> searchGenRecipes(String query, boolean recipeinfo) {
+    public List<Recipe> searchGenRecipes(String query) {
 
 		String url = UriComponentsBuilder
 						.fromUriString(BASE_URL + COMPLEX_SEARCH)
 						.queryParam("query", query.replaceAll(" ", "+"))
-                        .queryParam("addRecipeInformation", recipeinfo)
                         .queryParam("apiKey", API_KEY)
 						.toUriString();
 
@@ -54,7 +53,6 @@ public class FoodService {
             return Collections.emptyList();
         }
 
-		 // Get the response payload as a string
 		String payload = resp.getBody();
 		System.out.println("Payload: " + payload);
 
@@ -96,7 +94,6 @@ public class FoodService {
             return Collections.emptyList();
         }
 
-		 // Get the response payload as a string
 		String payload = resp.getBody();
 		System.out.println("Payload: " + payload);
 
@@ -135,7 +132,6 @@ public class FoodService {
             return Collections.emptyList();
         }
 
-		 // Get the response payload as a string
 		String payload = resp.getBody();
 		System.out.println("Payload: " + payload);
 
@@ -172,13 +168,12 @@ public class FoodService {
             ex.printStackTrace();
         }
 
-        // Get the response payload as a string
         String payload = resp.getBody();
         System.out.println("Payload: " + payload);
 
         JsonReader reader = Json.createReader(new StringReader(payload));
-        JsonObject obj = reader.readObject();
-        Recipe recipe = Recipe.toRecipe(obj);
+        JsonObject recResp = reader.readObject();
+        Recipe recipe = Recipe.toRecipe(recResp);
 
         return recipe;
     }

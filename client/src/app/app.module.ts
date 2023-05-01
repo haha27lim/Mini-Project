@@ -16,6 +16,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SearchComponent } from './components/search/search.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { DetailsComponent } from './components/details/details.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { DetailsComponent } from './components/details/details.component';
     NotFoundComponent,
     SignUpComponent,
     SearchComponent,
-    DetailsComponent
+    DetailsComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
