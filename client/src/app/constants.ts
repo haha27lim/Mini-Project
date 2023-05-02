@@ -5,4 +5,8 @@ export const CUISINES = [
     "mexican", "middle eastern", "nordic", "southern", "spanish", "thai", "vietnamese"
 ]
 
-export const GETRECIPE_API = "https://api.spoonacular.com/recipes/{id}/information"
+
+export const DIETS = [
+    "none", "vegetarian", "vegan", "gluten free", "ketogenic", "lacto-vegetarian", "ovo-vegetarian", 
+    "pescetarian", "paleo", "primal", "low FODMAP", "whole30"
+]

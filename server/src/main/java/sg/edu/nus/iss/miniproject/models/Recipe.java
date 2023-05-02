@@ -11,6 +11,7 @@ import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonString;
+import jakarta.json.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -84,9 +85,11 @@ public class Recipe {
         if (spoonacularSourceUrlJson != null) {
             recipe.setSpoonacularSourceUrl(spoonacularSourceUrlJson.getString());
         }
-        JsonString instructionsJson = obj.getJsonString("instructions");
-        if (instructionsJson != null) {
-            recipe.setInstructions(instructionsJson.getString());
+        JsonValue instructionsJson = obj.get("instructions");
+        if (instructionsJson != null && !JsonValue.NULL.equals(instructionsJson)) {
+            JsonString instructionsString = (JsonString) instructionsJson;
+            String instructions = instructionsString.getString();
+            recipe.setInstructions(instructions);
         }
         List<String> dishTypes = new ArrayList<>();
         JsonArray dishTypesJsonArray = obj.getJsonArray("dishTypes");

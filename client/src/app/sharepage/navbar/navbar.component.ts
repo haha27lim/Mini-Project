@@ -26,8 +26,9 @@ export class NavbarComponent implements OnInit {
   }
 
   onSubmit() {
-    const title = this.form?.value['title']
-    this.router.navigate(['/searchresult'], {queryParams: {query: title}});
+    const title = this.form?.value['title'];
+    const addRecipeInformation = true;
+    this.router.navigate(['/searchresult'], {queryParams: {query: title, addRecipeInformation}});
   }
 
   private createForm(): FormGroup {

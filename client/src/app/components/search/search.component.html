@@ -1,25 +1,45 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <table>
-        <tr>
-            <td>Recipe:</td>
-            <td><input type="text" size="30" (input)="onSearchInput()" formControlName="title"
-                    placeholder="Search for a recipe..."></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td align="right">
-                <button type="submit" [disabled]="ButtonDisabled">Search</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Cuisine:</td>
-            <td>
-                <select formControlName="cuisine">
-                    <option *ngFor="let c of cuisines" [value]="c">
-                        {{c | titlecase}}
-                    </option>
-                </select>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="overlay">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="search-form">
+        <h2>Recipe Search</h2>
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="title">Recipe:</label>
+            <input type="text" size="30" formControlName="title" id="title" class="form-control" placeholder="Search for a recipe...">
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="form-group col-md-4">
+          <label for="cuisine">Cuisine:</label>
+          <select formControlName="cuisine" id="cuisine" class="form-control mr-2">
+            <option value="">-- Select a cuisine --</option>
+            <option *ngFor="let c of cuisines" [value]="c">
+              {{ c | titlecase }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="diet">Diet:</label>
+          <select formControlName="diet" id="diet" class="form-control">
+            <option value="">-- Select a diet --</option>
+            <option *ngFor="let d of diets" [value]="d">
+              {{ d | titlecase }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="excludeIngredients">Exclude Ingredients:</label>
+            <input type="text" size="30" formControlName="excludeIngredients" placeholder="Enter comma-separated list" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

@@ -31,11 +31,12 @@ public class FoodService {
 	@Value("${apikey}")
     private String API_KEY;
 
-    public List<Recipe> searchGenRecipes(String query) {
+    public List<Recipe> searchGenRecipes(String query, boolean recipeinfo) {
 
 		String url = UriComponentsBuilder
 						.fromUriString(BASE_URL + COMPLEX_SEARCH)
 						.queryParam("query", query.replaceAll(" ", "+"))
+                        .queryParam("addRecipeInformation", recipeinfo)
                         .queryParam("apiKey", API_KEY)
 						.toUriString();
 
@@ -70,15 +71,22 @@ public class FoodService {
                 .toList();
 	}
 
-	public List<Recipe> searchRecipes(String query, String cuisine, boolean recipeinfo) {
+	public List<Recipe> searchRecipes(String query, String cuisine, String diet, String excludeIngredients, boolean recipeinfo) {
 
-		String url = UriComponentsBuilder
-						.fromUriString(BASE_URL + COMPLEX_SEARCH)
-						.queryParam("query", query.replaceAll(" ", "+"))
-                        .queryParam("cuisine", cuisine)
-                        .queryParam("addRecipeInformation", recipeinfo)
-                        .queryParam("apiKey", API_KEY)
-						.toUriString();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(BASE_URL + COMPLEX_SEARCH)
+                .queryParam("query", query.replaceAll(" ", "+"))
+                .queryParam("cuisine", cuisine)
+                .queryParam("addRecipeInformation", recipeinfo)
+                .queryParam("apiKey", API_KEY);
+
+        if (diet != null) {
+            builder.queryParam("diet", diet);
+        }
+        if (excludeIngredients != null) {
+            builder.queryParam("excludeIngredients", excludeIngredients);
+        }
+
+        String url = builder.toUriString();
 
         RequestEntity<Void> req = RequestEntity.get(url)
                 .accept(MediaType.APPLICATION_JSON)

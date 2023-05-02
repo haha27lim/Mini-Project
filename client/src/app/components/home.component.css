@@ -227,9 +227,8 @@ html {
   font-weight: bold;
   font-size: 1.25rem;
   line-height: 1.2;
-  font-family: 'Times New Roman', Times, serif;
-  font-style: italic;
-  color: orangered;
+  font-family: "Oxygen", sans-serif;
+  color: #050505;
   padding-left: 10px;
 }
 

@@ -8,6 +8,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SearchComponent } from './components/search/search.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { AdvancedSearchResultsComponent } from './components/advanced-search-results/advanced-search-results.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path:'forgotpassword', component: ForgotPasswordComponent },
   { path:'signup', component: SignUpComponent },
   { path:'search', component: SearchComponent },
+  { path:'advsearchresult/:cuisine', component: AdvancedSearchResultsComponent },
   { path:'details/:id', component: DetailsComponent},
   { path: '**', component: NotFoundComponent } 
 ];

@@ -34,9 +34,10 @@ public class RecipeController {
     private FoodService foodSvc;
 
 	@GetMapping(path = "/search")
-	public ResponseEntity<String> getGenSearch(@RequestParam(name="query", required = true) String title) {
+	public ResponseEntity<String> getGenSearch(@RequestParam(name="query", required = true) String title,
+		@RequestParam boolean recipeinfo) {
 
-		List<Recipe> recipes = foodSvc.searchGenRecipes(title);
+		List<Recipe> recipes = foodSvc.searchGenRecipes(title, recipeinfo);
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
 		if (recipes != null) {
@@ -54,11 +55,13 @@ public class RecipeController {
 
 	@GetMapping(path = "/search/{cuisine}")
 	public ResponseEntity<String> getSearch(@PathVariable String cuisine, @RequestParam(name="query", required = true) String title,
-        @RequestParam boolean recipeinfo) {
+		@RequestParam(name = "diet", required = false) String diet, @RequestParam(name = "excludeIngredients", required = false) 
+		String excludeIngredients, @RequestParam boolean recipeinfo) {
 
-        logger.log(Level.INFO, "cuisine=%s, query=%s".formatted(cuisine, title));
+		logger.log(Level.INFO, "cuisine=%s, query=%s, diet=%s, excludeIngredients=%s"
+				.formatted(cuisine, title, diet, excludeIngredients));
 
-		List<Recipe> recipes = foodSvc.searchRecipes(cuisine, title, recipeinfo);
+		List<Recipe> recipes = foodSvc.searchRecipes(title, cuisine, diet, excludeIngredients, recipeinfo);
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
 		if (recipes != null) {

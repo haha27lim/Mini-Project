@@ -17,34 +17,55 @@ export class RecipeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getGenSearch(title: string): Promise<Recipe[]> {
+  getGenSearch(title: string, recipeinfo: boolean): Promise<Recipe[]> {
     const params = new HttpParams()
-              .set('query', title)
-
-    // send GET request to API with query parameters and headers
+      .set('query', title)
+      .set('recipeinfo', recipeinfo.toString());
+  
     return lastValueFrom(this.httpClient
-        .get<Recipe[]>(this.SEARCH_URI, {params: params})).then(
-          (recipes) => {
-            console.log('Found recipes:', recipes);
-            return recipes;
-          },
-          (error) => {
-            console.error(`Error loading recipes: `, error);
-            throw error;
-          }
-        );
+      .get<Recipe[]>(this.SEARCH_URI, {params: params})).then(
+        (recipes) => {
+          console.log('Found recipes:', recipes);
+          return recipes;
+        },
+        (error) => {
+          console.error(`Error loading recipes: `, error);
+          throw error;
+        }
+      );
   }
+  
 
-  getSearch(cuisine: string, title: string, recipeinfo: boolean): Promise<Recipe[]> {
-    const params = new HttpParams()
-              .set('cuisine', cuisine)
-              .set('query', title)
-              .set('addRecipeInformation', recipeinfo.toString());
+  getSearch(cuisine: string, title: string, addRecipeInformation: boolean, diet?: string, excludeIngredients?: string): Promise<Recipe[]> {
+    let params = new HttpParams()
+      .set('query', title)
+      .set('recipeinfo', addRecipeInformation.toString());
 
-    // send GET request to API with query parameters and headers
+    if (cuisine !== undefined && cuisine !== null) {
+      params = params.set('cuisine', cuisine);
+    }
+    if (diet !== undefined && diet !== null && diet !== "none") {
+      params = params.set('diet', diet);
+    }
+    if (excludeIngredients) {
+      params = params.set('excludeIngredients', excludeIngredients);
+    }
+
     return lastValueFrom(this.httpClient
-        .get<Recipe[]>(`${this.SEARCH_URI}/${CUISINES}`, {params: params}))
-  }
+      .get<Recipe[]>(`${this.SEARCH_URI}/${cuisine}`, { params: params })).then(
+        (recipes) => {
+          console.log('Found recipes:', recipes);
+          return recipes;
+        },
+        (error) => {
+          console.error(`Error loading recipes: `, error);
+          throw error;
+        }
+      );
+  
+}
+
+
 
   getRandom(number: number, id?: number): Promise<Recipe[]> {
     const params = new HttpParams()
@@ -55,21 +76,20 @@ export class RecipeService {
       params.set('id', id.toString());
     }
 
-    // send GET request to API with query parameters and headers
     return lastValueFrom(this.httpClient
         .get<Recipe[]>(this.RANDOM_URI, {params: params}))
   }
 
 
   getRecipeById(id: number): Promise<Recipe> {
-    // send GET request to API with query parameters and headers
+
     return lastValueFrom(this.httpClient.get<Recipe>(`${this.DETAILS_URI}/${id}`)).then(
       (recipe: Recipe) => {
-        console.log(`Recipe with ID ${id} loaded successfully: `, recipe);
+        console.log(`Recipe with id ${id} loaded successfully: `, recipe);
         return recipe;
       },
       (error) => {
-        console.error(`Error loading recipe with ID ${id}: `, error);
+        console.error(`Error loading recipe with id ${id}: `, error);
         throw error;
       }
     );
