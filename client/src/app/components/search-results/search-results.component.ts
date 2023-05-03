@@ -23,7 +23,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       async (queryParams) => {
         this.title = queryParams['query']
         console.log("Getting results for.. " + this.title)
-        this.recipeSvc.getGenSearch(this.title, true)
+        this.recipeSvc.getGenSearch(this.title, true, 20)
           .then(recipes => {
             this.recipes = recipes;
           })

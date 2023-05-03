@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TYPES } from 'src/app/constants';
 import { Recipe } from 'src/app/models/recipe';
 
 @Component({
@@ -13,6 +14,7 @@ export class NavbarComponent implements OnInit {
   recipes: Recipe[] = []
   form!: FormGroup
   ButtonDisabled: boolean = true;
+  types = TYPES
 
   constructor(private fb: FormBuilder, private router: Router) {}
 

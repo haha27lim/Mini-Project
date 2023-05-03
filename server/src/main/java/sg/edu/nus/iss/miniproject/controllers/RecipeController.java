@@ -35,9 +35,9 @@ public class RecipeController {
 
 	@GetMapping(path = "/search")
 	public ResponseEntity<String> getGenSearch(@RequestParam(name="query", required = true) String title,
-		@RequestParam boolean recipeinfo) {
+		@RequestParam boolean recipeinfo, @RequestParam int number) {
 
-		List<Recipe> recipes = foodSvc.searchGenRecipes(title, recipeinfo);
+		List<Recipe> recipes = foodSvc.searchGenRecipes(title, recipeinfo, number);
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
 		if (recipes != null) {
@@ -56,12 +56,12 @@ public class RecipeController {
 	@GetMapping(path = "/search/{cuisine}")
 	public ResponseEntity<String> getSearch(@PathVariable String cuisine, @RequestParam(name="query", required = true) String title,
 		@RequestParam(name = "diet", required = false) String diet, @RequestParam(name = "excludeIngredients", required = false) 
-		String excludeIngredients, @RequestParam boolean recipeinfo) {
+		String excludeIngredients, @RequestParam boolean recipeinfo, @RequestParam int number) {
 
 		logger.log(Level.INFO, "cuisine=%s, query=%s, diet=%s, excludeIngredients=%s"
 				.formatted(cuisine, title, diet, excludeIngredients));
 
-		List<Recipe> recipes = foodSvc.searchRecipes(title, cuisine, diet, excludeIngredients, recipeinfo);
+		List<Recipe> recipes = foodSvc.searchRecipes(title, cuisine, diet, excludeIngredients, recipeinfo, number);
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
 		if (recipes != null) {
@@ -115,5 +115,25 @@ public class RecipeController {
 				.contentType(MediaType.APPLICATION_JSON)
 				.body("{ \"message\": \"" + message + "\" }");
 		}
+	}
+
+	@GetMapping(path = "/list/{type}")
+	public ResponseEntity<String> getTypeSearch(@PathVariable String type, @RequestParam boolean recipeinfo,
+	 @RequestParam int number) throws IOException {
+
+		List<Recipe> recipes = foodSvc.searchRecipesType(type, recipeinfo, number);
+
+		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
+		if (recipes != null) {
+			for (Recipe rv : recipes) {
+				arrBuilder.add(rv.toJSON());
+			}
+		}
+	
+		JsonArray result = arrBuilder.build();
+		return ResponseEntity
+			.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(result.toString());
 	}
 }

@@ -1,57 +1,67 @@
 <div class="banner bg-img" style="background-image: url('../../assets/Dining.jpg')">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12">
-                <div class="banner-text text-center">
-                    <h2>Recipe</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="container h-100">
+      <div class="row h-100 align-items-center">
+          <div class="col-12">
+              <div class="banner-text text-center">
+                  <h2>Recipe</h2>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
 <div class="overlay container">
-    <h2 class="recipe-header">Recipe Information</h2>
-  <div class="overlay container">
-    <div class="row">
-        <div class="col-12">
-            <div>
-              <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image" class="center">
-            </div>
-        </div>
+  <h2 class="recipe-header">Recipe Information</h2>
+  <div class="row">
+    <div class="col-md-5 float-md-right">
+      <div>
+        <img [src]="recipe.image" class="card-img-top" alt="image">
+      </div>
+    </div>
+    <div class="col-md-7 recipe-content-area">
+      <h2>{{ recipe.title }}</h2>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td>Ready in minutes</td>
+            <td>{{ recipe.readyInMinutes }}</td>
+          </tr>
+          <tr>
+            <td>Servings</td>
+            <td>{{ recipe.servings }}</td>
+          </tr>
+          <tr>
+            <td>Cuisines</td>
+            <td>
+              <ul>
+                <li *ngFor="let cuisine of recipe.cuisines ? recipe.cuisines : ['(null)']">{{ cuisine | titlecase }}</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Dish types</td>
+            <td>
+              <ul>
+                <li *ngFor="let dishType of recipe.dishTypes">{{ dishType | titlecase }}</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Diets</td>
+            <td>
+              <ul>
+                <li *ngFor="let diet of recipe.diets ? recipe.diets : ['(null)']">{{ diet | titlecase }}</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-  
-  <div class="receipe-content-area">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-8">
-          <div class="receipe-headline my-5">
-            <h2>{{ recipe.title }}</h2>
-            <div class="receipe-duration">
-              <h6>Ready in minutes: {{ recipe.readyInMinutes }}</h6>
-              <h6>Servings: {{ recipe.servings }}</h6>
-              <h6>Cuisines:</h6>
-              <ul>
-                <li *ngFor="let cuisine of recipe.cuisines ? recipe.cuisines : ['(null)']">{{ cuisine }}</li>
-              </ul>
-              <h6>Dish types:</h6>
-              <ul>
-                <li *ngFor="let dishType of recipe.dishTypes">{{ dishType }}</li>
-              </ul>
-              <h6>Diets:</h6>
-              <ul>
-                <li *ngFor="let diet of recipe.diets ? recipe.diets : ['(null)']">{{ diet }}</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
 
+<br>
+  
   <div class="overlay container">
     <div class="row">
       <div class="col-12 col-lg-8">

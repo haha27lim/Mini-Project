@@ -12,15 +12,16 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class AdvancedSearchResultsComponent implements OnInit, OnDestroy {
   
-  title!: string;
-  queryParams$!: Subscription;
-  recipes: Recipe[] = [];
-  cuisine!: string;
-  addRecipeInformation!: boolean;
-  diet?: string;
-  excludeIngredients?: string;
-  cuisines = CUISINES;
-  diets = DIETS;
+  title!: string
+  queryParams$!: Subscription
+  recipes: Recipe[] = []
+  cuisine!: string
+  addRecipeInformation!: boolean
+  number!: number
+  diet?: string
+  excludeIngredients?: string
+  cuisines = CUISINES
+  diets = DIETS
 
   constructor(private activatedRoute: ActivatedRoute, private recipeSvc: RecipeService, 
     private router: Router) {}
@@ -30,6 +31,7 @@ export class AdvancedSearchResultsComponent implements OnInit, OnDestroy {
       this.title = params['query'];
       this.cuisine = params['cuisine'];
       this.addRecipeInformation = params['addRecipeInformation'] === 'true';
+      this.number = params['number'];
       this.diet = params['diet'];
       this.excludeIngredients = params['excludeIngredients'];
       this.getSearch();
@@ -37,7 +39,8 @@ export class AdvancedSearchResultsComponent implements OnInit, OnDestroy {
   }
 
   getSearch(): void {
-    this.recipeSvc.getSearch(this.cuisine, this.title, this.addRecipeInformation, this.diet, this.excludeIngredients)
+    this.recipeSvc.getSearch(this.cuisine, this.title, this.addRecipeInformation, 20,
+       this.diet, this.excludeIngredients)
       .then(recipes => this.recipes = recipes);
   }
   

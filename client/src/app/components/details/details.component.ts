@@ -19,8 +19,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
   recipe!: Recipe;
   form!: FormGroup;
 
-  // recipes: Recipe[] = [];
-
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
     private recipeSvc: RecipeService, private fb: FormBuilder) {}
 

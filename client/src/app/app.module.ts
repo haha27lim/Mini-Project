@@ -18,6 +18,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { DetailsComponent } from './components/details/details.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AdvancedSearchResultsComponent } from './components/advanced-search-results/advanced-search-results.component';
+import { TypelistComponent } from './components/typelist/typelist.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AdvancedSearchResultsComponent } from './components/advanced-search-res
     SearchComponent,
     DetailsComponent,
     SearchResultsComponent,
-    AdvancedSearchResultsComponent
+    AdvancedSearchResultsComponent,
+    TypelistComponent
   ],
   imports: [
     BrowserModule,

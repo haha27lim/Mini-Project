@@ -19,17 +19,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute ) {}
 
   ngOnInit() {
-    this.queryParams$ = this.activatedRoute.queryParams.subscribe(
-      async (queryParams) => {
-        try {
-          this.recipes = await this.recipeSvc.getRandom(9); // load 9 random recipes
-          console.log('Recipes:', this.recipes);
-        } catch (err) {
-          console.log(err);
+    const popular = localStorage.getItem('popular');
+    if (popular) {
+      this.recipes = JSON.parse(popular);
+    } else {
+      this.queryParams$ = this.activatedRoute.queryParams.subscribe(
+        async (queryParams) => {
+          try {
+            this.recipes = await this.recipeSvc.getRandom(9);
+            console.log('Recipes:', this.recipes);
+            localStorage.setItem('popular', JSON.stringify(this.recipes));
+          } catch (err) {
+            console.log(err);
+          }
         }
-      }
-    );
-  }      
+      );
+    }
+  }        
 
   showRecipeDetails(id: number) {
     if (this.recipes.length > 0) {

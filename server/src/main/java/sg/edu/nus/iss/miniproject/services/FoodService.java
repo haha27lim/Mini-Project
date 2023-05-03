@@ -31,12 +31,13 @@ public class FoodService {
 	@Value("${apikey}")
     private String API_KEY;
 
-    public List<Recipe> searchGenRecipes(String query, boolean recipeinfo) {
+    public List<Recipe> searchGenRecipes(String query, boolean recipeinfo, int number) {
 
 		String url = UriComponentsBuilder
 						.fromUriString(BASE_URL + COMPLEX_SEARCH)
 						.queryParam("query", query.replaceAll(" ", "+"))
                         .queryParam("addRecipeInformation", recipeinfo)
+                        .queryParam("number", number)
                         .queryParam("apiKey", API_KEY)
 						.toUriString();
 
@@ -71,12 +72,14 @@ public class FoodService {
                 .toList();
 	}
 
-	public List<Recipe> searchRecipes(String query, String cuisine, String diet, String excludeIngredients, boolean recipeinfo) {
+	public List<Recipe> searchRecipes(String query, String cuisine, String diet, String excludeIngredients,
+     boolean recipeinfo, int number) {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(BASE_URL + COMPLEX_SEARCH)
                 .queryParam("query", query.replaceAll(" ", "+"))
                 .queryParam("cuisine", cuisine)
                 .queryParam("addRecipeInformation", recipeinfo)
+                .queryParam("number", number)
                 .queryParam("apiKey", API_KEY);
 
         if (diet != null) {
@@ -185,4 +188,49 @@ public class FoodService {
 
         return recipe;
     }
+
+    public List<Recipe> searchRecipesType(String type, boolean recipeinfo, int number) throws IOException {
+
+		String url = UriComponentsBuilder
+						.fromUriString(BASE_URL + COMPLEX_SEARCH)
+                        .queryParam("type", type)
+                        .queryParam("addRecipeInformation", recipeinfo)
+                        .queryParam("number", number)
+                        .queryParam("apiKey", API_KEY)
+						.toUriString();
+
+        RequestEntity<Void> req = RequestEntity.get(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .build();
+				
+        RestTemplate template = new RestTemplate();
+		ResponseEntity<String> resp = null;
+
+        try {
+            resp = template.exchange(req, String.class);
+        } catch (RestClientException ex) {
+            ex.printStackTrace();
+            return Collections.emptyList();
+        }
+
+		String payload = resp.getBody();
+		System.out.println("Payload: " + payload);
+
+		
+		JsonReader reader = Json.createReader(new StringReader(payload));
+		JsonObject recResp = reader.readObject();
+		if (recResp.isNull("results")) {
+			return new LinkedList<Recipe>();
+		}
+		JsonArray jsonArr = recResp.getJsonArray("results");
+
+        return jsonArr.stream()
+                .map(v -> v.asJsonObject())
+                .map(Recipe::toRecipe)
+                .toList();
+	}
+
+
+
+
 }

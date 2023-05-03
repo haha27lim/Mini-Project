@@ -74,3 +74,14 @@ img {
     font-family: 'Playfair Display', serif;
     opacity: .95;
 }
+
+.recipe-content-area .receipe-headline {
+    margin-left: 20px;
+  }
+
+  .recipe-content-area {
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+  
