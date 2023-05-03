@@ -104,22 +104,23 @@ public class Recipe {
                     .collect(Collectors.toList());
         }
         recipe.setDishTypes(dishTypes);
-        JsonArray cuisinesJson = obj.getJsonArray("cuisines");
-        List<String> cuisines = cuisinesJson != null
-                ? cuisinesJson.getValuesAs(JsonString.class)
-                        .stream()
-                        .map(JsonString::getString)
-                        .collect(Collectors.toList())
-                : new ArrayList<>();
+        List<String> cuisines = new ArrayList<>();
+        JsonArray cuisinesJsonArray = obj.getJsonArray("cuisines");
+        if (cuisinesJsonArray != null) {
+            cuisines = cuisinesJsonArray.getValuesAs(JsonString.class)
+                    .stream()
+                    .map(JsonString::getString)
+                    .collect(Collectors.toList());
+        }
         recipe.setCuisines(cuisines);
-
-        JsonArray dietsJson = obj.getJsonArray("diets");
-        List<String> diets = dietsJson != null
-                ? dietsJson.getValuesAs(JsonString.class)
-                        .stream()
-                        .map(JsonString::getString)
-                        .collect(Collectors.toList())
-                : new ArrayList<>();
+        List<String> diets = new ArrayList<>();
+        JsonArray dietsJsonArray = obj.getJsonArray("diets");
+        if (dietsJsonArray != null) {
+            diets = dietsJsonArray.getValuesAs(JsonString.class)
+                    .stream()
+                    .map(JsonString::getString)
+                    .collect(Collectors.toList());
+        }
         recipe.setDiets(diets);
 
         if (obj.containsKey("extendedIngredients")) {

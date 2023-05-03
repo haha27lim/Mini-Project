@@ -1,7 +1,7 @@
 <header id="header">
   <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-center">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" [routerLink]="['/home']">
         <img src="../../assets/FoodAlchemy1.png" alt="FoodAlchemy" width="200" height="100" class="logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -12,15 +12,22 @@
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" [routerLink]="['/home']">HOME</a>
           <li ngbDropdown class="nav-item">
-            <a class="nav-link" href="#" ngbDropdownToggle>RECIPES</a>
+            <a class="nav-link active" href="#" ngbDropdownToggle>RECIPES</a>
             <ul ngbDropdownMenu class="dropdown-menu">
               <li *ngFor="let type of types" ngbDropdownItem>
-                <a style="text-decoration:none" class="dropdown-link" [routerLink]="['/list', type]">{{ type | titlecase }}</a>
+                <a style="text-decoration:none" class="dropdown-link" [routerLink]="['/listtype', type]">{{ type | titlecase }}</a>
               </li>
             </ul>
-          </li>          
-          <a class="nav-link" [routerLink]="['/search']">ADVANCED Search</a>
-          <a class="nav-link disabled">Disabled</a>
+          </li>
+          <li ngbDropdown class="nav-item">
+            <a class="nav-link active" href="#" ngbDropdownToggle>CUISINES</a>
+            <ul ngbDropdownMenu class="dropdown-menu">
+              <li *ngFor="let cuisine of cuisines" ngbDropdownItem>
+                <a style="text-decoration:none" class="dropdown-link" [routerLink]="['/listcuisine', cuisine]">{{ cuisine | titlecase }}</a>
+              </li>
+            </ul>
+          </li>       
+          <a class="nav-link active" [routerLink]="['/search']">ADVANCED Search</a>
         </div>
       </div>
       <form class="d-flex" role="search" [formGroup]="form" (ngSubmit)="onSubmit()">

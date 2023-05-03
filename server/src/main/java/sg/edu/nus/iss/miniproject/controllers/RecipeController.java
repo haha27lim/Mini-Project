@@ -121,11 +121,31 @@ public class RecipeController {
 		}
 	}
 
-	@GetMapping(path = "/list/{type}")
+	@GetMapping(path = "/list/type/{type}")
 	public ResponseEntity<String> getTypeSearch(@PathVariable String type, @RequestParam boolean recipeinfo,
 	 @RequestParam int number) throws IOException {
 
 		List<Recipe> recipes = foodSvc.searchRecipesType(type, recipeinfo, number);
+
+		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
+		if (recipes != null) {
+			for (Recipe rv : recipes) {
+				arrBuilder.add(rv.toJSON());
+			}
+		}
+	
+		JsonArray result = arrBuilder.build();
+		return ResponseEntity
+			.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(result.toString());
+	}
+
+	@GetMapping(path = "/list/cuisine/{cuisine}")
+	public ResponseEntity<String> getTypeCuisine(@PathVariable String cuisine, @RequestParam boolean recipeinfo,
+	 @RequestParam int number) throws IOException {
+
+		List<Recipe> recipes = foodSvc.searchRecipesCuisine(cuisine, recipeinfo, number);
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
 		if (recipes != null) {

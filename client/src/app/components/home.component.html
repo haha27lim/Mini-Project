@@ -74,8 +74,10 @@
     <h2 class="text-center mb-5">Our Vegetarian Picks</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div *ngFor="let recipe of vegRecipes" class="col">
-        <a class="pcard h-100" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">
-          <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+        <div class="pcard h-100">
+          <a [routerLink]="['/details', recipe.id]">
+            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+          </a>
           <div class="pcard-body">
             <h5 class="pcard-title">{{recipe.title}}</h5>
             <p class="pcard-text">
@@ -87,7 +89,7 @@
               <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </div>  

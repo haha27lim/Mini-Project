@@ -34,16 +34,11 @@ export class AdvancedSearchResultsComponent implements OnInit, OnDestroy {
       this.number = params['number'];
       this.diet = params['diet'];
       this.excludeIngredients = params['excludeIngredients'];
-      this.getSearch();
+      this.recipeSvc.getSearch(this.cuisine, this.title, this.addRecipeInformation, 32,
+        this.diet, this.excludeIngredients)
+       .then(recipes => this.recipes = recipes);
     });
   }
-
-  getSearch(): void {
-    this.recipeSvc.getSearch(this.cuisine, this.title, this.addRecipeInformation, 20,
-       this.diet, this.excludeIngredients)
-      .then(recipes => this.recipes = recipes);
-  }
-  
   
 
   showRecipeDetails(id: number) {

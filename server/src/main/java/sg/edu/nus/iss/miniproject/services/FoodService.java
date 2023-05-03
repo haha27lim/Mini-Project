@@ -268,7 +268,46 @@ public class FoodService {
                 .toList();
 	}
 
+    public List<Recipe> searchRecipesCuisine(String cuisine, boolean recipeinfo, int number) throws IOException {
 
+		String url = UriComponentsBuilder
+						.fromUriString(BASE_URL + COMPLEX_SEARCH)
+                        .queryParam("cuisine", cuisine)
+                        .queryParam("addRecipeInformation", recipeinfo)
+                        .queryParam("number", number)
+                        .queryParam("apiKey", API_KEY)
+						.toUriString();
+
+        RequestEntity<Void> req = RequestEntity.get(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .build();
+				
+        RestTemplate template = new RestTemplate();
+		ResponseEntity<String> resp = null;
+
+        try {
+            resp = template.exchange(req, String.class);
+        } catch (RestClientException ex) {
+            ex.printStackTrace();
+            return Collections.emptyList();
+        }
+
+		String payload = resp.getBody();
+		System.out.println("Payload: " + payload);
+
+		
+		JsonReader reader = Json.createReader(new StringReader(payload));
+		JsonObject recResp = reader.readObject();
+		if (recResp.isNull("results")) {
+			return new LinkedList<Recipe>();
+		}
+		JsonArray jsonArr = recResp.getJsonArray("results");
+
+        return jsonArr.stream()
+                .map(v -> v.asJsonObject())
+                .map(Recipe::toRecipe)
+                .toList();
+	}
 
 
 }

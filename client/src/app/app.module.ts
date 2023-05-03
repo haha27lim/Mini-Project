@@ -19,6 +19,7 @@ import { DetailsComponent } from './components/details/details.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AdvancedSearchResultsComponent } from './components/advanced-search-results/advanced-search-results.component';
 import { TypelistComponent } from './components/typelist/typelist.component';
+import { CuisinelistComponent } from './components/cuisinelist/cuisinelist.component';
 
 
 
@@ -36,7 +37,8 @@ import { TypelistComponent } from './components/typelist/typelist.component';
     DetailsComponent,
     SearchResultsComponent,
     AdvancedSearchResultsComponent,
-    TypelistComponent
+    TypelistComponent,
+    CuisinelistComponent
   ],
   imports: [
     BrowserModule,

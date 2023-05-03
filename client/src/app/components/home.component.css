@@ -21,24 +21,6 @@
     text-align: center;
   }
   
-/* .container {
-    display: flex;
-    flex-direction: row;
-  }
-
-.container img {
-    border-radius: 2rem;
-    height: 200px;
-    width: 200px;
-  }
-
-.container.text-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  } */
-  
 h2 {
     font-size: 40px;
     font-weight: 600;
@@ -234,6 +216,7 @@ html {
   font-family: 'Quattrocento', serif;
   color: #050505;
   padding-left: 10px;
+  text-align: center;
 }
 
 .btn-primary {
@@ -251,16 +234,14 @@ html {
 
 .pcard-text {
   padding-left: 10px;
+  text-align: center;
+  color: darkblue;
 }
 
 a {
-
   background-color: white;
   color: darkblue;
-  border: 2px solid green;
-  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  
 }
 

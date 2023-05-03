@@ -10,6 +10,7 @@ import { DetailsComponent } from './components/details/details.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AdvancedSearchResultsComponent } from './components/advanced-search-results/advanced-search-results.component';
 import { TypelistComponent } from './components/typelist/typelist.component';
+import { CuisinelistComponent } from './components/cuisinelist/cuisinelist.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'forgotpassword', component: ForgotPasswordComponent },
   { path:'signup', component: SignUpComponent },
-  { path:'list/:type', component: TypelistComponent },
+  { path:'listtype/:type', component: TypelistComponent },
+  { path:'listcuisine/:cuisine', component: CuisinelistComponent },
   { path:'search', component: SearchComponent },
   { path:'advsearchresult/:cuisine', component: AdvancedSearchResultsComponent },
   { path:'details/:id', component: DetailsComponent},

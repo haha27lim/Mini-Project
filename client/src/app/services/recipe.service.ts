@@ -1,10 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, catchError, firstValueFrom, lastValueFrom, map, tap } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { Recipe } from '../models/recipe';
-import { CUISINES } from '../constants';
-
-const API_KEY = "5f470da37d954bc0921f9dc9b4b2ae14";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +11,8 @@ export class RecipeService {
   private SEARCH_URI: string = "/api/search";
   private RANDOM_URI: string = "/api/random";
   private DETAILS_URI: string = "/api/recipes";
-  private LIST_URI: string = '/api/list/';
+  private LIST_TYPE_URI: string = '/api/list/type';
+  private LIST_CUISINE_URI: string = '/api/list/cuisine';
 
 
   constructor(private httpClient: HttpClient) { }
@@ -99,10 +97,17 @@ export class RecipeService {
       .set('number', number.toString())
       .set('type', type);
 
-    return lastValueFrom(this.httpClient.get<Recipe[]>(`${this.LIST_URI}/${type}`, { params: params }))
+    return lastValueFrom(this.httpClient.get<Recipe[]>(`${this.LIST_TYPE_URI}/${type}`, { params: params }))
   }
 
+  getRecipesCuisine(cuisine: string, addRecipeInformation: boolean, number: number): Promise<Recipe[]> {
+    let params = new HttpParams()
+      .set('recipeinfo', addRecipeInformation.toString())
+      .set('number', number.toString())
+      .set('cuisine', cuisine);
 
+    return lastValueFrom(this.httpClient.get<Recipe[]>(`${this.LIST_CUISINE_URI}/${cuisine}`, { params: params }))
+  }
 
 
 }

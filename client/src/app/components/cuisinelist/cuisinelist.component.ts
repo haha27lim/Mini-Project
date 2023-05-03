@@ -4,26 +4,25 @@ import { Subscription } from 'rxjs';
 import { Recipe } from 'src/app/models/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
-
 @Component({
-  selector: 'app-typelist',
-  templateUrl: './typelist.component.html',
-  styleUrls: ['./typelist.component.css']
+  selector: 'app-cuisinelist',
+  templateUrl: './cuisinelist.component.html',
+  styleUrls: ['./cuisinelist.component.css']
 })
-export class TypelistComponent implements OnInit, OnDestroy{
+export class CuisinelistComponent implements OnInit, OnDestroy{
 
   param$!: Subscription
   recipes: Recipe[] = []
-  type: string = '';
+  cuisine: string = '';
 
   constructor(private activatedRoute: ActivatedRoute, private recipeSvc: RecipeService, 
     private router: Router) {}
-  
+
   ngOnInit(): void {
     this.param$ = this.activatedRoute.params.subscribe(async (params) => {
-      const type = params['type'];
-      this.type = type;
-      const recipes = await this.recipeSvc.getRecipesType(type, true, 32);
+      const cuisine = params['cuisine'];
+      this.cuisine = cuisine;
+      const recipes = await this.recipeSvc.getRecipesCuisine(cuisine, true, 32);
       this.recipes = recipes;
     });
   }
