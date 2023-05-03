@@ -78,9 +78,14 @@ public class RecipeController {
 	}
 
 	@GetMapping(path = "/random")
-	public ResponseEntity<String> getRandom(@RequestParam int number) {
+	public ResponseEntity<String> getRandom(@RequestParam int number, @RequestParam(required = false) String tags) {
 
-		List<Recipe> recipes = foodSvc.getRandomRecipes(number);
+		List<Recipe> recipes;
+		if (tags != null && !tags.isEmpty()) {
+			recipes = foodSvc.getRandomRecipesTags(number, tags);
+		} else {
+			recipes = foodSvc.getRandomRecipes(number);
+		}
 
 		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
 		if (recipes != null) {
@@ -96,7 +101,6 @@ public class RecipeController {
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(result.toString());
 	}
-
 
 	@GetMapping(path = "/recipes/{id}")
     public ResponseEntity<String> getRecipeById(@PathVariable int id) throws IOException {

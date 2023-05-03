@@ -159,6 +159,44 @@ public class FoodService {
                 .toList();
     }
 
+    public List<Recipe> getRandomRecipesTags(int number, String tags) {
+        String url = UriComponentsBuilder
+                        .fromUriString(BASE_URL + RANDOM)
+                        .queryParam("number", number)
+                        .queryParam("tags", tags)
+                        .queryParam("apiKey", API_KEY)
+                        .toUriString();
+
+        RequestEntity<Void> req = RequestEntity.get(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .build();
+				
+        RestTemplate template = new RestTemplate();
+		ResponseEntity<String> resp = null;
+
+        try {
+            resp = template.exchange(req, String.class);
+        } catch (RestClientException ex) {
+            ex.printStackTrace();
+            return Collections.emptyList();
+        }
+
+		String payload = resp.getBody();
+		System.out.println("Payload: " + payload);
+
+        JsonReader reader = Json.createReader(new StringReader(payload));
+		JsonObject recResp = reader.readObject();
+		if (recResp.isNull("recipes")) {
+			return new LinkedList<Recipe>();
+		}
+		JsonArray jsonArr = recResp.getJsonArray("recipes");
+        System.out.println("Unknown: " + jsonArr);
+        return jsonArr.stream()
+                .map(v -> v.asJsonObject())
+                .map(Recipe::toRecipe)
+                .toList();
+    }
+
     public Recipe getRecipeById(int id) throws IOException {
         String url = UriComponentsBuilder
                 .fromUriString(BASE_URL + "/{id}/information")

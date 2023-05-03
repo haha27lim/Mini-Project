@@ -21,6 +21,7 @@ import { AdvancedSearchResultsComponent } from './components/advanced-search-res
 import { TypelistComponent } from './components/typelist/typelist.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

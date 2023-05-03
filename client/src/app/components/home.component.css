@@ -1,3 +1,7 @@
+/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
+@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
+/* End Fonts */
+
 .banner {
     background-image: url('../../assets/bannerimg.jpg');
     height: 600px;
@@ -227,7 +231,7 @@ html {
   font-weight: bold;
   font-size: 1.25rem;
   line-height: 1.2;
-  font-family: "Oxygen", sans-serif;
+  font-family: 'Quattrocento', serif;
   color: #050505;
   padding-left: 10px;
 }
@@ -247,5 +251,16 @@ html {
 
 .pcard-text {
   padding-left: 10px;
+}
+
+a {
+
+  background-color: white;
+  color: darkblue;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  
 }
 

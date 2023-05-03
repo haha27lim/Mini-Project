@@ -76,7 +76,11 @@ public class Recipe {
         recipe.setReadyInMinutes(readyInMinutes);
         int servings = obj.getJsonNumber("servings") != null ? obj.getJsonNumber("servings").intValue() : 0;
         recipe.setServings(servings);
-        recipe.setImage(obj.getString("image"));
+        JsonString imageJson = obj.getJsonString("image");
+        if (imageJson != null) {
+            String image = imageJson.getString();
+            recipe.setImage(image);
+        }
         JsonString sourceUrlJson = obj.getJsonString("sourceUrl");
         if (sourceUrlJson != null) {
             recipe.setSourceUrl(sourceUrlJson.getString());

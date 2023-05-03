@@ -21,11 +21,60 @@
 
 <br>
 
-<div class="container">
-    <h2 class="text-center mb-5">Popular Picks</h2>
+
+<h2 class="text-center mb-5">Popular Picks</h2>
+<ngb-carousel *ngIf="popularRecipes">
+  <ng-template ngbSlide>
+    <div class="row">
+      <div *ngFor="let recipe of popularRecipes.slice(0, 3)" class="col">
+        <a class="pcard h-100" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">
+          <img [src]="recipe?.image" class="card-img-top" alt="{{recipe?.title}} image" (click)="showRecipeDetails(recipe.id)">
+          <div class="pcard-body">
+            <h5 class="pcard-title">{{recipe.title}}</h5>
+            <p class="pcard-text">
+              Ready in {{recipe.readyInMinutes}}{{' '}}
+              minutes - {{recipe.servings}}{{' '}}
+              Servings
+            </p>
+            <div class="pcard-button">
+              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="row">
+      <div *ngFor="let recipe of popularRecipes.slice(3, 6)" class="col">
+        <a class="pcard h-100" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">
+          <img [src]="recipe?.image" class="card-img-top" alt="{{recipe?.title}} image" (click)="showRecipeDetails(recipe.id)">
+          <div class="pcard-body">
+            <h5 class="pcard-title">{{recipe.title}}</h5>
+            <p class="pcard-text">
+              Ready in {{recipe.readyInMinutes}}{{' '}}
+              minutes - {{recipe.servings}}{{' '}}
+              Servings
+            </p>
+            <div class="pcard-button">
+              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+
+
+  <br>
+  
+  <div class="container">
+    <h2 class="text-center mb-5">Our Vegetarian Picks</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div *ngFor="let recipe of recipes" class="col">
-        <div class="pcard h-100">
+      <div *ngFor="let recipe of vegRecipes" class="col">
+        <a class="pcard h-100" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">
           <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
           <div class="pcard-body">
             <h5 class="pcard-title">{{recipe.title}}</h5>
@@ -38,13 +87,9 @@
               <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
-  </div>
+  </div>  
 
   <br>
-  
-  
-
-

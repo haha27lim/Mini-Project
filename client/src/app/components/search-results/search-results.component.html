@@ -4,7 +4,9 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div *ngFor="let recipe of recipes" class="col">
         <div class="pcard h-100">
-          <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+          <a [routerLink]="['/details', recipe.id]">
+            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+          </a>
           <div class="pcard-body">
             <h5 class="pcard-title">{{recipe.title}}</h5>
             <p class="pcard-text">

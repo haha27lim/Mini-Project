@@ -67,9 +67,13 @@ export class RecipeService {
       );
   }
 
-  getRandom(number: number): Promise<Recipe[]> {
-    const params = new HttpParams()
+  getRandom(number: number, tags?: string): Promise<Recipe[]> {
+    let params = new HttpParams()
               .set('number', number.toString())
+
+    if (tags) {
+      params = params.set('tags', tags);
+    }
 
     return lastValueFrom(this.httpClient
         .get<Recipe[]>(this.RANDOM_URI, {params: params}))
