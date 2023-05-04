@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   cuisines = CUISINES
   diets = DIETS
 
+
   constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
@@ -45,4 +46,6 @@ export class NavbarComponent implements OnInit {
       title: this.fb.control<string>('', [Validators.required, Validators.minLength(2)])
     })
   }
+
+
 }

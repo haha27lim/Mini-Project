@@ -14,6 +14,7 @@ import { CuisinelistComponent } from './components/cuisinelist/cuisinelist.compo
 import { DietlistComponent } from './components/dietlist/dietlist.component';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
 import { IngredientsSearchResultComponent } from './components/ingredients-search-result/ingredients-search-result.component';
+import { RecipelistComponent } from './components/recipelist/recipelist.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'forgotpassword', component: ForgotPasswordComponent },
   { path:'signup', component: SignUpComponent },
+  { path:'recipelist', component: RecipelistComponent },
   { path:'listtype/:type', component: TypelistComponent },
   { path:'listcuisine/:cuisine', component: CuisinelistComponent },
   { path:'listdiet/:diet', component: DietlistComponent },

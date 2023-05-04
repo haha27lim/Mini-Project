@@ -1,0 +1,132 @@
+<h1 class="text-center mb-5">RECIPES</h1>
+
+<div class="container">
+    <div class="circles-container">
+      <div class="circle">
+        <a [routerLink]="['/listdiet', vegetarian]"><img class="circular-image" src="../../assets/vegetarian.jpg" alt="vegetarian"></a>
+        <p class="caption">Vegetarian</p>
+      </div>
+      <div class="circle">
+        <a [routerLink]="['/listtype', appetizer]"><img class="circular-image" src="../../assets/Recipebanner.jpg" alt="pork knuckle"></a>
+        <p class="caption">Appetizer</p>
+      </div>
+      <div class="circle">
+        <a [routerLink]="['/listcuisine', vietnamese]"><img class="circular-image" src="../../assets/dimsum.jpg" alt="thai stuffs"></a>
+        <p class="caption">Vietnamese</p>
+      </div>
+      <div class="circle">
+        <a [routerLink]="['/listcuisine', european]"><img class="circular-image" src="../../assets/pork knuckle.jpg" alt="european"></a>
+        <p class="caption">European</p>
+      </div>
+    </div> 
+  </div>
+
+ <br> 
+
+<h2 class="text-center mb-5">Main Course Recipes</h2>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div *ngFor="let recipe of maincourseRecipes" class="col">
+        <div class="pcard h-100">
+          <a [routerLink]="['/details', recipe.id]">
+            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+          </a>          
+          <div class="pcard-body">
+            <h5 class="pcard-title">{{recipe.title}}</h5>
+            <p class="pcard-text">
+              Ready in {{recipe.readyInMinutes}}{{' '}}
+              minutes - {{recipe.servings}}{{' '}}
+              Servings
+            </p>
+            <div class="pcard-button">
+              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+<h2 class="text-center mb-5">Soup Recipes</h2>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div *ngFor="let recipe of soupRecipes" class="col">
+        <div class="pcard h-100">
+          <a [routerLink]="['/details', recipe.id]">
+            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+          </a>          
+          <div class="pcard-body">
+            <h5 class="pcard-title">{{recipe.title}}</h5>
+            <p class="pcard-text">
+              Ready in {{recipe.readyInMinutes}}{{' '}}
+              minutes - {{recipe.servings}}{{' '}}
+              Servings
+            </p>
+            <div class="pcard-button">
+              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+<h2 class="text-center mb-5">Breakfast Recipes</h2>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div *ngFor="let recipe of breakfastRecipes" class="col">
+        <div class="pcard h-100">
+          <a [routerLink]="['/details', recipe.id]">
+            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+          </a>          
+          <div class="pcard-body">
+            <h5 class="pcard-title">{{recipe.title}}</h5>
+            <p class="pcard-text">
+              Ready in {{recipe.readyInMinutes}}{{' '}}
+              minutes - {{recipe.servings}}{{' '}}
+              Servings
+            </p>
+            <div class="pcard-button">
+              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <h2 class="text-center mb-5">Dessert Recipes</h2>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div *ngFor="let recipe of dessertRecipes" class="col">
+        <div class="pcard h-100">
+          <a [routerLink]="['/details', recipe.id]">
+            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+          </a>          
+          <div class="pcard-body">
+            <h5 class="pcard-title">{{recipe.title}}</h5>
+            <p class="pcard-text">
+              Ready in {{recipe.readyInMinutes}}{{' '}}
+              minutes - {{recipe.servings}}{{' '}}
+              Servings
+            </p>
+            <div class="pcard-button">
+              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>

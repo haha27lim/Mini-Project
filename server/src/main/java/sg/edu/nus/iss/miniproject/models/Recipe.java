@@ -57,7 +57,7 @@ public class Recipe {
             .add("title", getTitle())
             .add("readyInMinutes", getReadyInMinutes())
             .add("servings", getServings())
-            .add("image", getImage())
+            .add("image", getImage() != null ? getImage() : "")
             .add("sourceUrl", getSourceUrl() != null ? getSourceUrl() : "")
             .add("spoonacularSourceUrl", getSpoonacularSourceUrl() != null ? getSpoonacularSourceUrl() : "")
             .add("instructions", getInstructions() != null ? getInstructions() : "")

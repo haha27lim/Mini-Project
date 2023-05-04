@@ -12,7 +12,7 @@ export const DIETS = [
 ]
 
 export const TYPES = [
-    "main course", "breakfast", "soup", "side dish", "dessert", "soup", "bread", 
+    "main course", "breakfast", "soup", "side dish", "dessert", "bread", 
     "marinade", "fingerfood", "snack", "appetizer", "salad", "sauce", "beverage",
     "drink"
 ]

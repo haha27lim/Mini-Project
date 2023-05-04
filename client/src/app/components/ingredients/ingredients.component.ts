@@ -23,7 +23,7 @@ export class IngredientsComponent implements OnInit{
   onSubmit() {
     const ingredients = this.form?.value['ingredients']
     console.log('>>>ingredients: ', ingredients)
-    this.router.navigate(['/dishbyingredients/ingredientssearchresult'], { queryParams: { ingredients } });
+    this.router.navigate(['/dishbyingredients/ingredientssearchresult'], { queryParams: { ingredients: ingredients } });
   }
 
   private createForm(): FormGroup {

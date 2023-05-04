@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonObject;
-import jakarta.json.stream.JsonCollectors;
 import sg.edu.nus.iss.miniproject.models.Recipe;
 import sg.edu.nus.iss.miniproject.models.RecipeIngredient;
 import sg.edu.nus.iss.miniproject.services.FoodService;
@@ -22,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

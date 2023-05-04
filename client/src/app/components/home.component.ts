@@ -11,12 +11,14 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./home.component.css'],
   providers: [NgbCarouselConfig]
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
 
   popularRecipes: Recipe[] = []
   vegRecipes: Recipe[] = []
-  title!: string
-  queryParams$!: Subscription
+  italian = 'italian'
+  german = 'german'
+  chinese = 'chinese'
+  japanese = 'japanese'
 
   constructor(private router: Router, private recipeSvc: RecipeService,
     private activatedRoute: ActivatedRoute, private config: NgbCarouselConfig ) {
@@ -27,6 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // cache to local storage because random on homepage
     const popular = localStorage.getItem('popular')
     if (popular) {
       this.popularRecipes = JSON.parse(popular)
@@ -57,13 +60,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   showRecipeDetails(id: number) {
     if (this.popularRecipes.length > 0 || this.vegRecipes.length > 0) {
       this.router.navigate(['/details', id])
-    }
-  }
-  
-
-  ngOnDestroy(): void {
-    if (this.queryParams$) {
-      this.queryParams$.unsubscribe()
     }
   }
 

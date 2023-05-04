@@ -23,6 +23,7 @@ import { CuisinelistComponent } from './components/cuisinelist/cuisinelist.compo
 import { DietlistComponent } from './components/dietlist/dietlist.component';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
 import { IngredientsSearchResultComponent } from './components/ingredients-search-result/ingredients-search-result.component';
+import { RecipelistComponent } from './components/recipelist/recipelist.component';
 
 
 
@@ -44,7 +45,8 @@ import { IngredientsSearchResultComponent } from './components/ingredients-searc
     CuisinelistComponent,
     DietlistComponent,
     IngredientsComponent,
-    IngredientsSearchResultComponent
+    IngredientsSearchResultComponent,
+    RecipelistComponent
   ],
   imports: [
     BrowserModule,

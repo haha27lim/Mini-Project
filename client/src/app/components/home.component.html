@@ -21,6 +21,28 @@
 
 <br>
 
+<div class="container">
+  <div class="circles-container">
+    <div class="circle">
+      <a [routerLink]="['/listcuisine', italian]"><img class="circular-image" src="../../assets/pasta.jpg" alt="italian pasta"></a>
+      <p class="caption">Italian</p>
+    </div>
+    <div class="circle">
+      <a [routerLink]="['/listcuisine', german]"><img class="circular-image" src="../../assets/pork knuckle.jpg" alt="pork knuckle"></a>
+      <p class="caption">German</p>
+    </div>
+    <div class="circle">
+      <a [routerLink]="['/listcuisine', chinese]"><img class="circular-image" src="../../assets/dimsum.jpg" alt="chinese fried stuffs"></a>
+      <p class="caption">Chinese</p>
+    </div>
+    <div class="circle">
+      <a [routerLink]="['/listcuisine', japanese]"><img class="circular-image" src="../../assets/japan bento.jpg" alt="japan bento"></a>
+      <p class="caption">Japanese</p>
+    </div>
+  </div> 
+</div>
+
+<br>
 
 <h2 class="text-center mb-5">Popular Picks</h2>
 <ngb-carousel *ngIf="popularRecipes">
@@ -65,8 +87,6 @@
     </div>
   </ng-template>
 </ngb-carousel>
-
-
 
   <br>
   

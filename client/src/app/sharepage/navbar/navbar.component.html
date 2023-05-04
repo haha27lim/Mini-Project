@@ -12,7 +12,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" [routerLink]="['/home']">HOME</a>
           <li ngbDropdown class="nav-item">
-            <a class="nav-link active" href="#" ngbDropdownToggle>RECIPES</a>
+            <a class="nav-link active" [routerLink]="['/recipelist']" ngbDropdownToggle>RECIPES</a>
             <ul ngbDropdownMenu class="dropdown-menu">
               <li *ngFor="let type of types" ngbDropdownItem>
                 <a style="text-decoration:none" class="dropdown-link" [routerLink]="['/listtype', type]">{{ type | titlecase }}</a>
