@@ -1,0 +1,21 @@
+<div class="overlay">
+<form class="overlay" [formGroup]="form" (ngSubmit)="onSubmit()" >
+    <div class="wrapper">
+      <div class="search">
+        <h2 class="title">Make the most of your fridge: meals ideas for your ingredients.</h2>
+        <blockquote>Simple ingredients prepared in a simple way – that’s the best way to take your everyday cooking to a higher level<br>
+          <cite>- Jose Andres</cite>
+        </blockquote>
+        <br>
+        <span>List the ingredients you found: </span>
+        <div class="search-box">
+          <input type="text" size=50 class="search-control form-control" formControlName="ingredients" placeholder="Enter comma-separated list of ingredients">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Suggest Recipes for Me</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<router-outlet></router-outlet>

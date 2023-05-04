@@ -20,14 +20,23 @@
             </ul>
           </li>
           <li ngbDropdown class="nav-item">
-            <a class="nav-link active" href="#" ngbDropdownToggle>CUISINES</a>
+            <button type="button" class="nav-link active" ngbDropdownToggle>CUISINES</button>
             <ul ngbDropdownMenu class="dropdown-menu">
               <li *ngFor="let cuisine of cuisines" ngbDropdownItem>
                 <a style="text-decoration:none" class="dropdown-link" [routerLink]="['/listcuisine', cuisine]">{{ cuisine | titlecase }}</a>
               </li>
             </ul>
-          </li>       
-          <a class="nav-link active" [routerLink]="['/search']">ADVANCED Search</a>
+          </li>
+          <li ngbDropdown class="nav-item">
+            <button type="button" class="nav-link active" ngbDropdownToggle>DIETS</button>
+            <ul ngbDropdownMenu class="dropdown-menu">
+              <li *ngFor="let diet of diets" ngbDropdownItem>
+                <a style="text-decoration:none" class="dropdown-link" [routerLink]="['/listdiet', diet]">{{ diet | titlecase }}</a>
+              </li>
+            </ul>
+          </li>    
+          <a class="nav-link active" [routerLink]="['/search']">ADVANCEDSearch</a>
+          <a class="nav-link active" [routerLink]="['/dishbyingredients']">INGREDIENTGenius</a>
         </div>
       </div>
       <form class="d-flex" role="search" [formGroup]="form" (ngSubmit)="onSubmit()">

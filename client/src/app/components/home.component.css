@@ -4,7 +4,7 @@
 
 .banner {
     background-image: url('../../assets/bannerimg.jpg');
-    height: 600px;
+    height: 400px;
     background-position: center;
     background-size: cover;
     max-width: 100%;
@@ -15,7 +15,7 @@
     font-size: 40px;
     font-weight: bold;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 65%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -170,7 +170,7 @@ html {
   }
 
   .card {
-    padding: 20px;
+    padding: 10px 20px;
   }
 
   .card-title {
@@ -245,3 +245,29 @@ a {
   text-decoration: none;
 }
 
+@media screen and (max-width: 767px) {
+  .pcard {
+    padding: 20px;
+  }
+
+  .pcard-title {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .pcard-description {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .pcard-media {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  .pcard-shadow {
+    display: none;
+  }
+}

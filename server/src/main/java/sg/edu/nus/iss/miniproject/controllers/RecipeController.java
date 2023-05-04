@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
+import jakarta.json.stream.JsonCollectors;
 import sg.edu.nus.iss.miniproject.models.Recipe;
+import sg.edu.nus.iss.miniproject.models.RecipeIngredient;
 import sg.edu.nus.iss.miniproject.services.FoodService;
 
 import java.io.IOException;
@@ -19,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -142,7 +146,7 @@ public class RecipeController {
 	}
 
 	@GetMapping(path = "/list/cuisine/{cuisine}")
-	public ResponseEntity<String> getTypeCuisine(@PathVariable String cuisine, @RequestParam boolean recipeinfo,
+	public ResponseEntity<String> getCuisineSearch(@PathVariable String cuisine, @RequestParam boolean recipeinfo,
 	 @RequestParam int number) throws IOException {
 
 		List<Recipe> recipes = foodSvc.searchRecipesCuisine(cuisine, recipeinfo, number);
@@ -160,4 +164,38 @@ public class RecipeController {
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(result.toString());
 	}
+
+	@GetMapping(path = "/list/diet/{diet}")
+	public ResponseEntity<String> getDietSearch(@PathVariable String diet, @RequestParam boolean recipeinfo,
+	 @RequestParam int number) throws IOException {
+
+		List<Recipe> recipes = foodSvc.searchRecipesDiet(diet, recipeinfo, number);
+
+		JsonArrayBuilder arrBuilder = Json.createArrayBuilder();
+		if (recipes != null) {
+			for (Recipe rv : recipes) {
+				arrBuilder.add(rv.toJSON());
+			}
+		}
+	
+		JsonArray result = arrBuilder.build();
+		return ResponseEntity
+			.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(result.toString());
+	}
+
+	@GetMapping(path = "/list/ingredients")
+	public ResponseEntity<String> getIngredientsSearch(@RequestParam String ingredients,
+			@RequestParam int ranking, @RequestParam int number) throws IOException {
+		List<RecipeIngredient> recipeIngredients = foodSvc.searchRecipesIngredients(ingredients, ranking, number);
+		String result = foodSvc.toJsonArray(recipeIngredients);
+
+		return ResponseEntity
+			.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(result);
+	}
+
+
 }

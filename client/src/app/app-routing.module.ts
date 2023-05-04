@@ -11,6 +11,9 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { AdvancedSearchResultsComponent } from './components/advanced-search-results/advanced-search-results.component';
 import { TypelistComponent } from './components/typelist/typelist.component';
 import { CuisinelistComponent } from './components/cuisinelist/cuisinelist.component';
+import { DietlistComponent } from './components/dietlist/dietlist.component';
+import { IngredientsComponent } from './components/ingredients/ingredients.component';
+import { IngredientsSearchResultComponent } from './components/ingredients-search-result/ingredients-search-result.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -21,8 +24,13 @@ const routes: Routes = [
   { path:'signup', component: SignUpComponent },
   { path:'listtype/:type', component: TypelistComponent },
   { path:'listcuisine/:cuisine', component: CuisinelistComponent },
+  { path:'listdiet/:diet', component: DietlistComponent },
   { path:'search', component: SearchComponent },
   { path:'advsearchresult/:cuisine', component: AdvancedSearchResultsComponent },
+  { path:'dishbyingredients', component: IngredientsComponent,
+    children: [
+      { path:'ingredientssearchresult', component: IngredientsSearchResultComponent }
+    ]},
   { path:'details/:id', component: DetailsComponent},
   { path: '**', component: NotFoundComponent } 
 ];

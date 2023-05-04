@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 import { CUISINES, TYPES } from 'src/app/constants';
 import { Recipe } from 'src/app/models/recipe';
 
+const DIETS = [
+  "vegetarian", "vegan", "gluten free", "ketogenic", "lacto-vegetarian", "ovo-vegetarian", 
+  "pescetarian", "paleo", "primal", "low FODMAP", "whole30"
+]
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -16,6 +21,7 @@ export class NavbarComponent implements OnInit {
   ButtonDisabled: boolean = true;
   types = TYPES
   cuisines = CUISINES
+  diets = DIETS
 
   constructor(private fb: FormBuilder, private router: Router) {}
 

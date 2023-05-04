@@ -20,6 +20,9 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { AdvancedSearchResultsComponent } from './components/advanced-search-results/advanced-search-results.component';
 import { TypelistComponent } from './components/typelist/typelist.component';
 import { CuisinelistComponent } from './components/cuisinelist/cuisinelist.component';
+import { DietlistComponent } from './components/dietlist/dietlist.component';
+import { IngredientsComponent } from './components/ingredients/ingredients.component';
+import { IngredientsSearchResultComponent } from './components/ingredients-search-result/ingredients-search-result.component';
 
 
 
@@ -38,7 +41,10 @@ import { CuisinelistComponent } from './components/cuisinelist/cuisinelist.compo
     SearchResultsComponent,
     AdvancedSearchResultsComponent,
     TypelistComponent,
-    CuisinelistComponent
+    CuisinelistComponent,
+    DietlistComponent,
+    IngredientsComponent,
+    IngredientsSearchResultComponent
   ],
   imports: [
     BrowserModule,

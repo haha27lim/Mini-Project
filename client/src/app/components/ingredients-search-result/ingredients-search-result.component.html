@@ -1,0 +1,33 @@
+<div class="overlay">
+<div class="container my-5">
+    <h2 class="text-center mb-5">Search Result</h2>
+    <table class="table table-bordered table-hover">
+      <ng-container *ngIf="recipeIngredient.length > 0; else noResults">
+        <tr class="cardstitle" *ngFor="let recipe of recipeIngredient">
+          <td><img [src]="recipe.image" alt="{{ recipe.title }}" width="100%"></td>
+          <td>
+            <h5><strong>{{ recipe.title }}</strong></h5>
+            <p><strong>Ingredients you have:</strong> {{recipe.usedIngredientCount}}</p>
+            <p><strong>Ingredients could use: </strong></p>
+            <ul>
+              <li *ngFor="let usedIng of recipe.usedIngredients">{{ usedIng.originalName }}</li>
+            </ul>
+            <p><strong>Likes:</strong> {{recipe.likes}}</p>
+            <br>
+            <p><strong>Ingredients you missed:</strong> {{recipe.missedIngredientCount}}</p>
+            <p><strong>Missed Ingredients: </strong></p>
+            <ul>
+              <li *ngFor="let missIng of recipe.missedIngredients">{{ missIng.originalName }}</li>
+            </ul>
+          </td>
+          <td><button class="recipe" class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</button></td>
+        </tr>
+      </ng-container>
+      <ng-template #noResults>
+        <tr>
+          <td colspan="2" class="text-center">Your search produces no result.</td>
+        </tr>
+      </ng-template>
+    </table>
+  </div>
+</div>

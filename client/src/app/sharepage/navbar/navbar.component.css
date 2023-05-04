@@ -1,6 +1,7 @@
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
+/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
+@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
+/* End Fonts */
+
 .logo {
     margin-left: 80px;
   }
@@ -13,6 +14,7 @@
 
 .navbar {
     background-color: #ffe4e1 !important;
+    font-family: 'Poppins', sans-serif;
   }
 
 i {

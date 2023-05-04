@@ -5,24 +5,24 @@ import { Recipe } from 'src/app/models/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
-  selector: 'app-cuisinelist',
-  templateUrl: './cuisinelist.component.html',
-  styleUrls: ['./cuisinelist.component.css']
+  selector: 'app-dietlist',
+  templateUrl: './dietlist.component.html',
+  styleUrls: ['./dietlist.component.css']
 })
-export class CuisinelistComponent implements OnInit, OnDestroy {
-
+export class DietlistComponent implements OnInit, OnDestroy {
+  
   param$!: Subscription
   recipes: Recipe[] = []
-  cuisine: string = '';
+  diet: string = '';
 
   constructor(private activatedRoute: ActivatedRoute, private recipeSvc: RecipeService, 
     private router: Router) {}
 
   ngOnInit(): void {
     this.param$ = this.activatedRoute.params.subscribe(async (params) => {
-      const cuisine = params['cuisine'];
-      this.cuisine = cuisine;
-      const recipes = await this.recipeSvc.getRecipesCuisine(cuisine, true, 32);
+      const diet = params['diet'];
+      this.diet = diet;
+      const recipes = await this.recipeSvc.getRecipesDiet(diet, true, 32);
       this.recipes = recipes;
     });
   }
