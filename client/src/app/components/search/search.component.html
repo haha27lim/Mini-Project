@@ -50,7 +50,14 @@
           <button type="submit" class="btn btn-primary">Search Recipes for Me</button>
         </td>
       </tr>
+      <br>
+      <tr>
+        <td colspan="2">
+          <button type="button" class="btn btn-primary" (click)="resetForm()">Reset Form</button>
+        </td>
+      </tr>
     </table>
   </form>
 </div>
 
+<router-outlet></router-outlet>

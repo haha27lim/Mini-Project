@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
     const diet = this.form?.value['diet']
     const excludeIngredients = this.form?.value['excludeingredients']
     console.log('>>>title: ', title)
-    this.router.navigate(['/advsearchresult', cuisine], {queryParams: {query: title, addRecipeInformation, diet, excludeIngredients }});
+    this.router.navigate(['/search/advsearchresult', cuisine], {queryParams: {query: title, addRecipeInformation, diet, excludeIngredients }});
   }
 
   private createForm(): FormGroup {
@@ -48,4 +48,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  resetForm() {
+    this.form.reset();
+  }
 }

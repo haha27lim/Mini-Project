@@ -4,7 +4,7 @@
     <table class="table table-bordered table-hover">
       <ng-container *ngIf="recipeIngredient.length > 0; else noResults">
         <tr class="cardstitle" *ngFor="let recipe of recipeIngredient">
-          <td><img [src]="recipe.image" alt="{{ recipe.title }}" width="100%"></td>
+          <td><img [src]="recipe.image ? recipe.image : '../../assets/placeholder.jpg'" alt="{{ recipe.title }}" width="100%"></td>
           <td>
             <h5><strong>{{ recipe.title }}</strong></h5>
             <p><strong>Ingredients you have:</strong> {{recipe.usedIngredientCount}}</p>

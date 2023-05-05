@@ -14,7 +14,7 @@ export class RecipelistComponent implements OnInit {
   soupRecipes: Recipe[] = []
   breakfastRecipes: Recipe[] = []
   dessertRecipes: Recipe[] = []
-  vegetarian = 'vegetarian'
+  vegan = 'vegan'
   appetizer = 'appetizer'
   vietnamese = 'vietnamese'
   european = 'european'

@@ -27,8 +27,10 @@ const routes: Routes = [
   { path:'listtype/:type', component: TypelistComponent },
   { path:'listcuisine/:cuisine', component: CuisinelistComponent },
   { path:'listdiet/:diet', component: DietlistComponent },
-  { path:'search', component: SearchComponent },
-  { path:'advsearchresult/:cuisine', component: AdvancedSearchResultsComponent },
+  { path: 'search', component: SearchComponent,
+    children: [
+      { path: 'advsearchresult/:cuisine', component: AdvancedSearchResultsComponent }
+    ]},
   { path:'dishbyingredients', component: IngredientsComponent,
     children: [
       { path:'ingredientssearchresult', component: IngredientsSearchResultComponent }

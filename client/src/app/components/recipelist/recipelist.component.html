@@ -3,8 +3,8 @@
 <div class="container">
     <div class="circles-container">
       <div class="circle">
-        <a [routerLink]="['/listdiet', vegetarian]"><img class="circular-image" src="../../assets/vegetarian.jpg" alt="vegetarian"></a>
-        <p class="caption">Vegetarian</p>
+        <a [routerLink]="['/listdiet', vegan]"><img class="circular-image" src="../../assets/vegetarian.jpg" alt="vegan"></a>
+        <p class="caption">Vegan</p>
       </div>
       <div class="circle">
         <a [routerLink]="['/listtype', appetizer]"><img class="circular-image" src="../../assets/Recipebanner.jpg" alt="pork knuckle"></a>
@@ -30,7 +30,7 @@
       <div *ngFor="let recipe of maincourseRecipes" class="col">
         <div class="pcard h-100">
           <a [routerLink]="['/details', recipe.id]">
-            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+            <img [src]="recipe.image ? recipe.image : '../../assets/placeholder.jpg'" class="card-img-top" alt="{{recipe.title}} image">
           </a>          
           <div class="pcard-body">
             <h5 class="pcard-title">{{recipe.title}}</h5>
@@ -57,7 +57,7 @@
       <div *ngFor="let recipe of soupRecipes" class="col">
         <div class="pcard h-100">
           <a [routerLink]="['/details', recipe.id]">
-            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+            <img [src]="recipe.image ? recipe.image : '../../assets/placeholder.jpg'" class="card-img-top" alt="{{recipe.title}} image">
           </a>          
           <div class="pcard-body">
             <h5 class="pcard-title">{{recipe.title}}</h5>
@@ -84,7 +84,7 @@
       <div *ngFor="let recipe of breakfastRecipes" class="col">
         <div class="pcard h-100">
           <a [routerLink]="['/details', recipe.id]">
-            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+            <img [src]="recipe.image ? recipe.image : '../../assets/placeholder.jpg'" class="card-img-top" alt="{{recipe.title}} image">
           </a>          
           <div class="pcard-body">
             <h5 class="pcard-title">{{recipe.title}}</h5>
@@ -111,7 +111,7 @@
       <div *ngFor="let recipe of dessertRecipes" class="col">
         <div class="pcard h-100">
           <a [routerLink]="['/details', recipe.id]">
-            <img [src]="recipe.image" class="card-img-top" alt="{{recipe.title}} image">
+            <img [src]="recipe.image ? recipe.image : '../../assets/placeholder.jpg'" class="card-img-top" alt="{{recipe.title}} image">
           </a>          
           <div class="pcard-body">
             <h5 class="pcard-title">{{recipe.title}}</h5>
