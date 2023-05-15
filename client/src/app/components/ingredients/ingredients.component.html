@@ -1,6 +1,7 @@
 <div class="overlay">
-<form class="overlay" [formGroup]="form" (ngSubmit)="onSubmit()" >
-    <div class="wrapper">
+  <div class="wrapper">
+    <img src='../../assets/fridge.jpg' alt="image" class="fridge-image">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
       <div class="search">
         <h2 class="title">Make the most of your fridge: meals ideas for your ingredients.</h2>
         <blockquote>Simple ingredients prepared in a simple way – that’s the best way to take your everyday cooking to a higher level<br>
@@ -14,8 +15,9 @@
         <br>
         <button type="submit" class="btn btn-primary">Suggest Recipes for Me</button>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
+
 
 <router-outlet></router-outlet>

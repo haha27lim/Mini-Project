@@ -1,30 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   
   form!: FormGroup;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+  redirectToHome = false;
 
-  constructor(private fb: FormBuilder) {}
+  private subscription: Subscription = new Subscription();
+  
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+    private fb: FormBuilder, private router: Router) {}
 
-  ngOnInit() {
-    this.form = this.createForm();
+  ngOnInit(): void {
+    this.form = this.createForm()
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true
+      this.roles = this.tokenStorage.getUser().roles
+    }
   }
 
   private createForm(): FormGroup {
-    return this.fb.group ({
-      email: this.fb.control<string>('', [Validators.required, Validators.email]),
-      password: this.fb.control<string>('', [Validators.required])
-    })
+    return this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
-  onSubmit() {
+  onSubmit(): void {
+    this.subscription = this.authService.login(this.form.value).subscribe({
+      next: (data) => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data)
+  
+        this.isLoginFailed = false
+        this.isLoggedIn = true
+        this.roles = this.tokenStorage.getUser().roles
+        this.redirectToHome = true;
+        this.reloadPage();
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message
+        this.isLoginFailed = true
+      }
+    });
+  }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }

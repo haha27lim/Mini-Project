@@ -15,6 +15,9 @@
     /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
 }
 
+.error {
+    color: red;
+  }
 
 /* Start form  attributes */
 form {
@@ -99,10 +102,6 @@ header p {letter-spacing: 0.05em;}
     border-radius: 0px 5px 5px 0px;
     transition: 0.2s linear;
     
-}
-
-.error {
-    color: red;
 }
 
 /* buttons  */

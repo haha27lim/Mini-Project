@@ -34,16 +34,42 @@
                 <a style="text-decoration:none" class="dropdown-link" [routerLink]="['/listdiet', diet]">{{ diet | titlecase }}</a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/search']">ADVANCEDSearch</a>
           </li>    
-          <a class="nav-link active" [routerLink]="['/search']">ADVANCEDSearch</a>
-          <a class="nav-link active" [routerLink]="['/dishbyingredients']">INGREDIENTSGenius</a>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/dishbyingredients']">INGREDIENTSGenius</a>
+          </li>
+          <li class="nav-item" *ngIf="showAdminBoard">
+            <a class="nav-link active" [routerLink]="['/admin']">Admin Board</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" *ngIf="isLoggedIn" [routerLink]="['/user']">USERS' Community</a>
+          </li>
         </div>
       </div>
       <form class="d-flex" role="search" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <input class="form-control me-2" type="search" placeholder="Search for recipes" size=40 formControlName="title" (input)="onSearchInput()">
+        <input class="form-control me-2" type="search" placeholder="Search for recipes" size=30 formControlName="title" (input)="onSearchInput()">
         <button class="btn btn-outline-success" type="submit" [disabled]="ButtonDisabled">Search</button>
       </form>
     </div>
-    Login/SignUp:&nbsp;&nbsp;<a [routerLink]="['/login']"><i class="bi bi-person-circle"></i></a>
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/signup']"><i class="bi bi-person-circle"></i>SignUp</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/login']"><i class="bi bi-person-circle"></i>Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/profile']"><i class="bi bi-person-circle"></i> Hi,{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" (click)="logout()"><i class="bi bi-person-circle"></i>Logout</a>
+      </li>
+    </ul>
   </nav>
 </header>

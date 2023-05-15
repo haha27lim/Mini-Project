@@ -15,6 +15,9 @@
     /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
 }
 
+.error {
+    color: red;
+  }
 
 /* Start form  attributes */
 form {
@@ -155,6 +158,22 @@ button:hover {
         transform: translateY(5px);
     }
 }
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .center-image {
+    margin-bottom: 10px; /* Add margin below the image */
+  }
+  
+  .center-text {
+    font-size: 20px;
+  }
+
 
 /* Center and wrap login form on mobile view */
 @media (max-width: 767px) {

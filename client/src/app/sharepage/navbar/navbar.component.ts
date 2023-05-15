@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CUISINES, TYPES } from 'src/app/constants';
 import { Recipe } from 'src/app/models/recipe';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 const DIETS = [
   "vegetarian", "vegan", "gluten free", "ketogenic", "lacto-vegetarian", "ovo-vegetarian", 
@@ -22,12 +23,25 @@ export class NavbarComponent implements OnInit {
   types = TYPES
   cuisines = CUISINES
   diets = DIETS
+  private roles!: string[];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  username!: string;
 
-
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private tokenStorageService: TokenStorageService) {}
 
   ngOnInit() {
     this.form = this.createForm();
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+
+      this.username = user.username;
+    }
   }    
 
   onSearchInput() {
@@ -47,5 +61,8 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
+  }
 }

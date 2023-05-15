@@ -27,27 +27,27 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // cache to local storage because random on homepage
-    const popular = localStorage.getItem('popular')
+    //  I cache to session storage because random on homepage
+    const popular = sessionStorage.getItem('popular')
     if (popular) {
       this.popularRecipes = JSON.parse(popular)
     } else {
       this.recipeSvc.getRandom(6).then((popular) => {
         console.log('Popular recipes:', popular)
-        localStorage.setItem('popular', JSON.stringify(popular))
+        sessionStorage.setItem('popular', JSON.stringify(popular))
         this.popularRecipes = popular
       }).catch((err) => {
         console.log(err);
       });
     }
 
-    const vegetarian = localStorage.getItem('vegetarian')
+    const vegetarian = sessionStorage.getItem('vegetarian')
     if (vegetarian) {
       this.vegRecipes = JSON.parse(vegetarian)
     } else {
       this.recipeSvc.getRandom(9, 'vegetarian').then((vegetarian) => {
         console.log('Vegetarian recipes:', vegetarian)
-        localStorage.setItem('vegetarian', JSON.stringify(vegetarian))
+        sessionStorage.setItem('vegetarian', JSON.stringify(vegetarian))
         this.vegRecipes = vegetarian
       }).catch((err) => {
         console.log(err);

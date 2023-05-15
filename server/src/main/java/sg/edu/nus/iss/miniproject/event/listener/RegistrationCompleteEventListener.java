@@ -27,7 +27,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         // 1. Get the newly registered user
         theUser = event.getUser();
         // 2. Build the verification URL to be sent to the user
-        String url = "http://localhost:8081/home";
+        String url = "http://localhost:4200/#/home";
         // 3. Send the email.
         try {
             sendRegistrationEmail(url);

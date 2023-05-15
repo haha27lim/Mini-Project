@@ -4,11 +4,26 @@
 
 .logo {
     margin-left: 80px;
+    display: flex;
+    justify-content: center;
   }
 
-@media (min-width: 34em) {
+@media (max-width: 767px) {
     .logo {
      position: center;
+    }
+
+    .navbar-toggler {
+      margin-right: 10px;
+    }
+  
+    .navbar-collapse {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar-nav {
+      margin-top: 10px;
     }
   }
 

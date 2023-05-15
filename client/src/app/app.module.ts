@@ -24,7 +24,10 @@ import { DietlistComponent } from './components/dietlist/dietlist.component';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
 import { IngredientsSearchResultComponent } from './components/ingredients-search-result/ingredients-search-result.component';
 import { RecipelistComponent } from './components/recipelist/recipelist.component';
-
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { ProfileComponent } from './components/profile/profile.component';
+import { BoardAdminComponent } from './components/board-admin/board-admin.component';
+import { BoardUserComponent } from './components/board-user/board-user.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import { RecipelistComponent } from './components/recipelist/recipelist.componen
     DietlistComponent,
     IngredientsComponent,
     IngredientsSearchResultComponent,
-    RecipelistComponent
+    RecipelistComponent,
+    ProfileComponent,
+    BoardAdminComponent,
+    BoardUserComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,7 @@ import { RecipelistComponent } from './components/recipelist/recipelist.componen
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

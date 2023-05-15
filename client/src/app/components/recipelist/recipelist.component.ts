@@ -23,18 +23,18 @@ export class RecipelistComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    // cache it to local storage
-    const mainCourse = localStorage.getItem('mainCourse');
-    const soup = localStorage.getItem('soup');
-    const breakfast = localStorage.getItem('breakfast');
-    const dessert = localStorage.getItem('dessert');
+    // cache it to session storage
+    const mainCourse = sessionStorage.getItem('mainCourse');
+    const soup = sessionStorage.getItem('soup');
+    const breakfast = sessionStorage.getItem('breakfast');
+    const dessert = sessionStorage.getItem('dessert');
 
     if (mainCourse) {
       this.maincourseRecipes = JSON.parse(mainCourse);
     } else {
       this.recipeSvc.getRandom(8, 'dinner').then((maincourse) => {
         console.log('Main course recipes:', maincourse);
-        localStorage.setItem('mainCourse', JSON.stringify(maincourse));
+        sessionStorage.setItem('mainCourse', JSON.stringify(maincourse));
         this.maincourseRecipes = maincourse;
       }).catch((err) => {
         console.log(err);
@@ -46,7 +46,7 @@ export class RecipelistComponent implements OnInit {
     } else {
       this.recipeSvc.getRandom(8, 'soup').then((soup) => {
         console.log('Soup recipes:', soup);
-        localStorage.setItem('soup', JSON.stringify(soup));
+        sessionStorage.setItem('soup', JSON.stringify(soup));
         this.soupRecipes = soup;
       }).catch((err) => {
         console.log(err);
@@ -58,7 +58,7 @@ export class RecipelistComponent implements OnInit {
     } else {
       this.recipeSvc.getRandom(8, 'breakfast').then((breakfast) => {
         console.log('Breakfast recipes:', breakfast);
-        localStorage.setItem('breakfast', JSON.stringify(breakfast));
+        sessionStorage.setItem('breakfast', JSON.stringify(breakfast));
         this.breakfastRecipes = breakfast;
       }).catch((err) => {
         console.log(err);
@@ -70,7 +70,7 @@ export class RecipelistComponent implements OnInit {
     } else {
       this.recipeSvc.getRandom(8, 'dessert').then((dessert) => {
         console.log('Dessert recipes:', dessert);
-        localStorage.setItem('dessert', JSON.stringify(dessert));
+        sessionStorage.setItem('dessert', JSON.stringify(dessert));
         this.dessertRecipes = dessert;
       }).catch((err) => {
         console.log(err);
