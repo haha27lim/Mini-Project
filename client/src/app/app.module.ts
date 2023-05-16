@@ -29,6 +29,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -67,6 +69,11 @@ import { CommentComponent } from './components/comment/comment.component';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
+    }),
+    ToastrModule.forRoot({
+      positionClass:"toast-center-center",
+      preventDuplicates:true,
+      timeOut:3000
     })
   ],
   providers: [authInterceptorProviders],

@@ -10,9 +10,24 @@
     background-repeat: no-repeat;
         
     opacity: .95;
-
-    
   }
   
+h3 {
+  color: purple;
+}
+
+p {
+  color: darkblue;
+}
+
+strong {
+  color: darkblue;
+}
+
+li {
+  color: darkgreen;
+  font-weight: bold;
+  font-size: larger;
+}
   
   

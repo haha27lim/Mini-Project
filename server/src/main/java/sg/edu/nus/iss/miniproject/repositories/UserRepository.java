@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,18 +22,16 @@ import sg.edu.nus.iss.miniproject.models.User;
 @Repository
 public class UserRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-    private final RoleRepository roleRepository;
+    @Autowired
+    private JdbcTemplate template;
 
-    public UserRepository(JdbcTemplate jdbcTemplate, RoleRepository roleRepository) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.roleRepository = roleRepository;
-    }
-    
-  
+    @Autowired
+    private RoleRepository roleRepo;
+
+
     public User save(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(connection -> {
+        template.update(connection -> {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getEmail());
@@ -45,9 +44,9 @@ public class UserRepository {
 
         for (Role role : user.getRoles()) {
             if (role.getId() == null) {
-                role = roleRepository.save(role);
+                role = roleRepo.save(role);
             }
-            jdbcTemplate.update(
+            template.update(
                  "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)",
                  userId,
                  role.getId()
@@ -59,9 +58,9 @@ public class UserRepository {
     
     public Optional<User> findByUsername(String username) {
         try {
-            User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE username = ?", BeanPropertyRowMapper.newInstance(User.class), username);
+            User user = template.queryForObject("SELECT * FROM users WHERE username = ?", BeanPropertyRowMapper.newInstance(User.class), username);
             if (user != null) {
-                List<Role> roles = jdbcTemplate.query("SELECT r.* FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?", BeanPropertyRowMapper.newInstance(Role.class), user.getId());
+                List<Role> roles = template.query("SELECT r.* FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?", BeanPropertyRowMapper.newInstance(Role.class), user.getId());
                 user.setRoles(new HashSet<>(roles));
     
                 System.out.println("User: " + user.toString());
@@ -76,9 +75,9 @@ public class UserRepository {
     
     public Optional<User> findByEmail(String email) {
         try {
-            User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE email = ?", BeanPropertyRowMapper.newInstance(User.class), email);
+            User user = template.queryForObject("SELECT * FROM users WHERE email = ?", BeanPropertyRowMapper.newInstance(User.class), email);
             if (user != null) {
-                List<Role> roles = jdbcTemplate.query("SELECT r.* FROM roles r INNER JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?", BeanPropertyRowMapper.newInstance(Role.class), user.getId());
+                List<Role> roles = template.query("SELECT r.* FROM roles r INNER JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?", BeanPropertyRowMapper.newInstance(Role.class), user.getId());
                 user.setRoles(new HashSet<>(roles));
     
                 System.out.println("User: " + user.toString());
@@ -92,19 +91,19 @@ public class UserRepository {
     
     
     public Boolean existsByUsername(String username) {
-        Integer count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users WHERE username = ?", Integer.class, username);
+        Integer count = template.queryForObject("SELECT COUNT(*) FROM users WHERE username = ?", Integer.class, username);
         return count != null && count > 0;
     }
 
     
     public Boolean existsByEmail(String email) {
-        Integer count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users WHERE email = ?", Integer.class, email);
+        Integer count = template.queryForObject("SELECT COUNT(*) FROM users WHERE email = ?", Integer.class, email);
         return count != null && count > 0;
     }
     
     public List<User> findAll() {
         List<User> users = new ArrayList<User>();
-        users = jdbcTemplate.query("SELECT * FROM user", BeanPropertyRowMapper.newInstance(User.class));
+        users = template.query("SELECT * FROM user", BeanPropertyRowMapper.newInstance(User.class));
         return users;
     }
 }

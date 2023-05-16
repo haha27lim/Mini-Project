@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -17,16 +18,12 @@ import sg.edu.nus.iss.miniproject.models.Role;
 @Repository
 public class RoleRepository {
     
-    private final JdbcTemplate jdbcTemplate;
-
-    public RoleRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
+    @Autowired
+    private JdbcTemplate template;
     
     public Role save(Role role) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(connection -> {
+        template.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(
                     "INSERT INTO roles (name) VALUES (?)",
                     Statement.RETURN_GENERATED_KEYS);
@@ -43,7 +40,7 @@ public class RoleRepository {
     
     public Optional<Role> findByName(ERole name) {
         String sql = "SELECT * FROM roles WHERE name = ?";
-        Role role = jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Role.class), name.toString());
+        Role role = template.queryForObject(sql, BeanPropertyRowMapper.newInstance(Role.class), name.toString());
         return Optional.ofNullable(role);
     }
 }

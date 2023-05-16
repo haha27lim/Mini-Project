@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { CommentService } from 'src/app/services/comment.service';
 import { Location } from '@angular/common';
 import { Comment } from 'src/app/models/recipe';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class CommentComponent implements OnInit, OnDestroy {
   title!: string;
 
   constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-    private commentSvc: CommentService, private location: Location) { }
+    private commentSvc: CommentService, private location: Location, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
     this.form = this.createForm()
@@ -48,6 +49,7 @@ export class CommentComponent implements OnInit, OnDestroy {
     this.commentSvc.comment(comment)
     .then((res) => {
       console.log(res)
+      this.toastr.success('Thank you for submitting your comment.', 'Success')
       this.location.back();
     })
   }
