@@ -54,14 +54,10 @@
         <button class="btn btn-outline-success" type="submit" [disabled]="ButtonDisabled">Search</button>
       </form>
     </div>
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a class="nav-link active" [routerLink]="['/signup']"><i class="bi bi-person-circle"></i>SignUp</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" [routerLink]="['/login']"><i class="bi bi-person-circle"></i>Login</a>
-      </li>
-    </ul>
+    <div class="navbar-nav ml-auto align-items-center" *ngIf="!isLoggedIn">
+      <span class="login-signup-text">Login/SignUp:</span>
+      <a [routerLink]="['/login']"><i class="bi bi-person-circle"></i></a>
+    </div>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">

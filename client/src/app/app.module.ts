@@ -28,6 +28,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { BoardUserComponent } from './components/board-user/board-user.component
     RecipelistComponent,
     ProfileComponent,
     BoardAdminComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

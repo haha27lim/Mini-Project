@@ -1,4 +1,4 @@
-package sg.edu.nus.iss.miniproject.security.jwt;
+package sg.edu.nus.iss.miniproject.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import sg.edu.nus.iss.miniproject.security.jwt.AuthEntryPointJwt;
+import sg.edu.nus.iss.miniproject.security.jwt.AuthTokenFilter;
 import sg.edu.nus.iss.miniproject.services.UserDetailsServiceImpl;
 
 

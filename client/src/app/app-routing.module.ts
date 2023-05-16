@@ -18,6 +18,7 @@ import { RecipelistComponent } from './components/recipelist/recipelist.componen
 import { ProfileComponent } from './components/profile/profile.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path:'ingredientssearchresult', component: IngredientsSearchResultComponent }
     ]},
   { path:'details/:id', component: DetailsComponent},
+  { path:'comments/:title', component: CommentComponent},
   { path: '**', component: NotFoundComponent } 
 ];
 

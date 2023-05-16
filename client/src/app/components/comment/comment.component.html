@@ -1,0 +1,66 @@
+<div class="container">
+<h2>Post Comment for {{ title }}</h2>
+
+<div class="row">
+    <div class="col-12">
+      <div class="contact-form-area">
+        <form [formGroup]="form" (ngSubmit)="saveComment()">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><b><label for="name">Name: </label></b></td>
+                <td>
+                    <input type="text" size="50" formControlName="name" placeholder="Enter your name">
+                    <div class="error" *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
+                        Name is required
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td><b><label for="email">Email: </label></b></td>
+                <td>
+                    <input type="email"size="50" formControlName="email" placeholder="Enter your email">
+                    <div class="error" *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+                        Enter a vaild email address
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td><b><label for="subject">Subject: </label></b></td>
+                <td>
+                    <input type="text" size="50" formControlName="subject" placeholder="Enter the subject">
+                    <div class="error" *ngIf="form.get('subject')?.invalid && (form.get('subject')?.dirty || form.get('subject')?.touched)">
+                        Provide the subject of this comment.
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td><b><label>Rating: </label></b></td>
+                <td>
+                  <input type="number" size="30" min="1" max="5" formControlName="rating">
+                  <div *ngIf="form.invalid && (form.dirty || form.touched)" class="error">
+                    Rating from 1 to 5
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><b><label for="message">Message: </label></b></td>
+                <td>
+                    <textarea rows="5" formControlName="comment" placeholder="Enter your message"></textarea>
+                    <div *ngIf="form.invalid && (form.dirty || form.touched)" class="error">
+                        Comment is required.
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td><button type="button" (click)="onBackClick()" class="btn btn-primary">Back</button></td>
+                <td><button type="submit" [disabled] = "form.invalid" class="btn btn-primary">Post Comments</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

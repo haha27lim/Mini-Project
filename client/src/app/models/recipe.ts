@@ -18,3 +18,12 @@ export interface ExtendedIngredients {
     amount: number;
     unit: string;
 }
+
+export interface Comment {
+    title: string;
+    name: string;
+    email: string;
+    subject: string;
+    rating: number;
+    comment: string; 
+}

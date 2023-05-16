@@ -6,7 +6,6 @@ import { Recipe } from 'src/app/models/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -17,7 +16,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   id!: number;
   param$!: Subscription;
   recipe!: Recipe;
-  form!: FormGroup;
+ 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
     private recipeSvc: RecipeService, private fb: FormBuilder) {}
@@ -32,20 +31,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
         console.error(`Error loading recipe: `, error);
       }
     });
-    this.form = this.createForm();
   }
 
-  private createForm(): FormGroup {
-    return this.fb.group ({
-      name: this.fb.control<string>('', [Validators.required]),
-      email: this.fb.control<string>('', [Validators.required, Validators.email]),
-      subject: this.fb.control<string>('', [Validators.required]),
-      message: this.fb.control<string>('', [Validators.required])
-    })
-  }
-
-  onSubmit() {
-
+  onCommentClick(recipe: Recipe) {
+    this.router.navigate(['/comments', recipe.title])
   }
   
   ngOnDestroy(): void {
