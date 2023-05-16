@@ -38,9 +38,9 @@ public class RoleRepository {
     }
 
     
-    public Optional<Role> findByName(ERole name) {
+    public Optional<Role> findByName(ERole eRole) {
         String sql = "SELECT * FROM roles WHERE name = ?";
-        Role role = template.queryForObject(sql, BeanPropertyRowMapper.newInstance(Role.class), name.toString());
+        Role role = template.queryForObject(sql, BeanPropertyRowMapper.newInstance(Role.class), eRole.toString());
         return Optional.ofNullable(role);
     }
 }

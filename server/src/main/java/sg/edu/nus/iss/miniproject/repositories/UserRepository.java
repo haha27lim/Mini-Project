@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -72,12 +74,11 @@ public class UserRepository {
         }
     }
     
-    
     public Optional<User> findByEmail(String email) {
         try {
             User user = template.queryForObject("SELECT * FROM users WHERE email = ?", BeanPropertyRowMapper.newInstance(User.class), email);
             if (user != null) {
-                List<Role> roles = template.query("SELECT r.* FROM roles r INNER JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?", BeanPropertyRowMapper.newInstance(Role.class), user.getId());
+                List<Role> roles = template.query("SELECT r.* FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?", BeanPropertyRowMapper.newInstance(Role.class), user.getId());
                 user.setRoles(new HashSet<>(roles));
     
                 System.out.println("User: " + user.toString());
@@ -88,7 +89,6 @@ public class UserRepository {
             return Optional.empty();
         }
     }
-    
     
     public Boolean existsByUsername(String username) {
         Integer count = template.queryForObject("SELECT COUNT(*) FROM users WHERE username = ?", Integer.class, username);
@@ -102,9 +102,64 @@ public class UserRepository {
     }
     
     public List<User> findAll() {
-        List<User> users = new ArrayList<User>();
-        users = template.query("SELECT * FROM user", BeanPropertyRowMapper.newInstance(User.class));
+        List<User> users = template.query("SELECT * FROM users", BeanPropertyRowMapper.newInstance(User.class));
+        for (User user : users) {
+            List<Role> roles = template.query("SELECT r.* FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?",
+                    BeanPropertyRowMapper.newInstance(Role.class), user.getId());
+            user.setRoles(new HashSet<>(roles));
+        }
         return users;
     }
+    
+    public User findById(Long id) {
+        String query = "SELECT * FROM users WHERE id = ?";
+        User user = template.queryForObject(query, BeanPropertyRowMapper.newInstance(User.class), id);
+        if (user != null) {
+            List<Role> roles = template.query("SELECT r.* FROM roles r JOIN user_roles ur ON r.id = ur.role_id WHERE ur.user_id = ?",
+                    BeanPropertyRowMapper.newInstance(Role.class), id);
+            user.setRoles(new HashSet<>(roles));
+        }
+        return user;
+    }
+    
+
+    public void deleteById(Long id) {
+        // Delete user from user_roles table first
+        String deleteRolesQuery = "DELETE FROM user_roles WHERE user_id = ?";
+        template.update(deleteRolesQuery, id);
+    
+        // Delete user from users table
+        String deleteUserQuery = "DELETE FROM users WHERE id = ?";
+        template.update(deleteUserQuery, id);
+    }
+    
+
+    public User update(User user) {
+        template.update(
+            "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?",
+            user.getUsername(),
+            user.getEmail(),
+            user.getPassword(),
+            user.getId()
+        );
+    
+        template.update("DELETE FROM user_roles WHERE user_id = ?", user.getId());
+        for (Role role : user.getRoles()) {
+            if (role.getId() == null) {
+                role = roleRepo.save(role);
+            }
+            template.update(
+                "INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)",
+                user.getId(),
+                role.getId()
+            );
+        }
+    
+        return user;
+    }
+    
+    
+    
+    
 }
 
