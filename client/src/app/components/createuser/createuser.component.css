@@ -1,0 +1,35 @@
+.container {
+    min-height: 71vh;
+}
+
+h2 {
+    color: purple;
+}
+
+p {
+    color: darkblue;
+    font-size: large;
+}
+
+.btn-primary {
+    background-color: darkorchid;
+    border: none;
+}
+  
+.btn-primary:hover {
+    background-color: #7fffd4;
+}
+
+@media (max-width: 767px) {
+    h2 {
+      font-size: 20px;
+    }
+  
+    p {
+      font-size: 16px;
+    }
+  
+    .btn-primary {
+      font-size: 14px;
+    }
+}

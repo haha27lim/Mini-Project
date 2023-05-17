@@ -42,7 +42,7 @@
             <a class="nav-link active" [routerLink]="['/dishbyingredients']">INGREDIENTSGenius</a>
           </li>
           <li class="nav-item" *ngIf="showAdminBoard">
-            <a class="nav-link active" [routerLink]="['/admin']">Admin Board</a>
+            <a class="nav-link active" [routerLink]="['/admin']">ADMINBoard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" *ngIf="isLoggedIn" [routerLink]="['/user']">USERS' Community</a>
@@ -64,7 +64,7 @@
         <a class="nav-link active" [routerLink]="['/profile']"><i class="bi bi-person-circle"></i> Hi,{{ username }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" (click)="logout()"><i class="bi bi-person-circle"></i>Logout</a>
+        <a class="nav-link active"  href="#" (click)="logout()"><i class="bi bi-person-circle"></i>Logout</a>
       </li>
     </ul>
   </nav>

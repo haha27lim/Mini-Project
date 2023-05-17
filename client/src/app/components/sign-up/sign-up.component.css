@@ -19,7 +19,7 @@
     color: red;
   }
 
-/* Start form  attributes */
+
 form {
     width: 450px;
     min-height: 588px;
@@ -30,7 +30,7 @@ form {
     padding: 2%;
     background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
 }
-/* form Container */
+
 form .con {
     display: -webkit-flex;
     display: flex;
@@ -44,18 +44,18 @@ form .con {
       margin: 0 auto;
 }
 
-/* the header form form */
+
 header {
     margin: 2% auto 10% auto;
     text-align: center;
 }
-/* Login title form form */
+
 header h2 {
     font-size: 250%;
     font-family: 'Playfair Display', serif;
     color: #3e403f;
 }
-/*  A welcome message or an explanation of the login form */
+
 header p {letter-spacing: 0.05em;}
 
 
@@ -66,7 +66,7 @@ header p {letter-spacing: 0.05em;}
     border-radius: 5px 0px 0px 5px;
 }
 
-/* Show/hide password Font Icon */
+
 #eye {
     background: #fff;
     color: #333;
@@ -84,7 +84,7 @@ header p {letter-spacing: 0.05em;}
     
     cursor: pointer;
 }
-/* inputs form  */
+
 .form-input {
     width: 250px;
     height: 50px;
@@ -104,7 +104,7 @@ header p {letter-spacing: 0.05em;}
     
 }
 
-/* buttons  */
+
 button {
     display: inline-block;
     color: #252537;
@@ -126,7 +126,7 @@ button {
     margin: 7% auto;
     letter-spacing: 0.05em;
 }
-/* Submits */
+
 .submits {
     width: 48%;
     display: inline-block;
@@ -134,20 +134,19 @@ button {
     margin-left: 2%;
 }
 
-/*       Forgot Password button FAF3DD  */
+
 .frgt-pass {background: transparent;}
 
-/*     Sign Up button  */
+
 .sign-up {background: #B8F2E6;}
 
 
-/* buttons hover */
 button:hover {
     transform: translatey(3px);
     box-shadow: none;
 }
 
-/* buttons hover Animation */
+
 button:hover {
     animation: ani9 0.4s ease-in-out infinite alternate;
 }
@@ -160,7 +159,7 @@ button:hover {
     }
 }
 
-/* Center and wrap login form on mobile view */
+
 @media (max-width: 767px) {
   form {
     width: 90%;

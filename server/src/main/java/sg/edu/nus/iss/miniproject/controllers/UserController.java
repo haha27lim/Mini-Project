@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import sg.edu.nus.iss.miniproject.models.ERole;
 import sg.edu.nus.iss.miniproject.models.Role;
@@ -47,6 +48,7 @@ public class UserController {
 
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userSvc.getAllUsers();
         return ResponseEntity
@@ -56,6 +58,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
         User user = userSvc.getUserById(id);
         return ResponseEntity
@@ -65,6 +68,7 @@ public class UserController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createUser(@RequestBody SignupRequest signUpRequest) {
         if (userRepo.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
@@ -116,6 +120,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody SignupRequest signUpRequest) {
         User existingUser = userRepo.findById(id);
 
@@ -158,6 +163,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id) {
         try {
             userSvc.deleteUserById(id);

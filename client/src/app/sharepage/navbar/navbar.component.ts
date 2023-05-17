@@ -63,6 +63,9 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    this.isLoggedIn = false;
+    this.roles = [];
+    this.username = '';
+    this.router.navigate(['/home']);
   }
 }

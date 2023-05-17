@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
-    private fb: FormBuilder, private router: Router) {}
+    private fb: FormBuilder, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.form = this.createForm()
@@ -52,8 +53,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.reloadPage();
       },
       error: (err) => {
-        this.errorMessage = err.error.message
+        this.errorMessage = err?.error?.message || 'An error occurred';
         this.isLoginFailed = true
+        this.toastr.error('Login failed! Please use the correct username or password', this.errorMessage);
       }
     });
   }

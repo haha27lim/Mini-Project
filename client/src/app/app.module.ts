@@ -1,6 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +30,10 @@ import { BoardAdminComponent } from './components/board-admin/board-admin.compon
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ListusersComponent } from './components/listusers/listusers.component';
+import { CreateuserComponent } from './components/createuser/createuser.component';
+import { trigger } from '@angular/animations';
+import { EdituserComponent } from './components/edituser/edituser.component';
 
 
 
@@ -56,10 +60,14 @@ import { ToastrModule } from 'ngx-toastr';
     ProfileComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    CommentComponent
+    CommentComponent,
+    ListusersComponent,
+    CreateuserComponent,
+    EdituserComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
@@ -73,7 +81,8 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       positionClass:"toast-center-center",
       preventDuplicates:true,
-      timeOut:3000
+      timeOut:3000,
+      closeButton: true
     })
   ],
   providers: [authInterceptorProviders],

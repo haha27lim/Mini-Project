@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="overlay">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                    <header class="head-form">
+                        <h2>Create New User</h2>
+                        <p>Please fill in this form to create an user account.</p>
+                    </header>
+                    <br>
+                    <table class="table">
+                        <tr>
+                            <td><label for="username">Username:</label></td>
+                            <td>
+                                <input class="form-control" type="text" formControlName="username"
+                                    placeholder="Enter Username *" required minlength="3" maxlength="20">
+                            </td>
+                        </tr>
+                        <tr
+                            *ngIf="form.get('username')?.invalid && (form.get('username')?.dirty || form.get('username')?.touched)">
+                            <td></td>
+                            <td class="text-danger">Username is required. Must be between 3 and 20 characters.</td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">Email:</label></td>
+                            <td>
+                                <input class="form-control" type="email" formControlName="email"
+                                    placeholder="Enter Email *" required>
+                            </td>
+                        </tr>
+                        <tr
+                            *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+                            <td></td>
+                            <td class="text-danger">Email is required. Must be a valid email address.</td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password:</label></td>
+                            <td>
+                                <input class="form-control" type="password" formControlName="password"
+                                    placeholder="Enter Password *" required minlength="6">
+                            </td>
+                        </tr>
+                        <tr
+                            *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
+                            <td></td>
+                            <td class="text-danger">Password is required and must be at least 6 characters.</td>
+                        </tr>
+                    </table>
+                    <div class="other">
+                        <button class="btn btn-secondary" type="button" routerLink="/users">Cancel</button>
+                        &nbsp;
+                        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Create User
+                            <i class="bi bi-person-fill-add" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <div class="alert alert-warning mt-3" *ngIf="isSignUpFailed">
+                        Signup failed!<br>{{ errorMessage }}
+                    </div>
+                    <div class="alert alert-success mt-3" *ngIf="isSuccessful">
+                        Registration successful! Registration confirmation email sent to the user's email. Redirecting
+                        to login...
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

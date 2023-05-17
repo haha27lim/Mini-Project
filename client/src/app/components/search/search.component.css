@@ -68,7 +68,7 @@ span {
 }
 
 /* CSS for mobile devices */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .search-form {
     padding: 10px;
     background-color: #f9f9f9;

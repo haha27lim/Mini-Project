@@ -11,9 +11,6 @@ h2 {
     -webkit-background-clip: text;
   }
 
-
-/*  Search Result cards */
-
 .pcard {
   border: none;
   border-radius: 2rem;
@@ -55,3 +52,25 @@ h2 {
   padding-left: 10px;
 }
 
+@media (max-width: 767px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  .pcard-title {
+    font-size: 0.875rem;
+    padding-left: 5px;
+  }
+
+  .pcard-text {
+    font-size: 0.75rem;
+  }
+
+  .btn-primary {
+    font-size: 0.875rem;
+  }
+
+  .pcard {
+    padding: 20px;
+  }
+}

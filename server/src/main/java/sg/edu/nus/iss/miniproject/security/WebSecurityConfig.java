@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.http.HttpMethod;
 
 import sg.edu.nus.iss.miniproject.security.jwt.AuthEntryPointJwt;
 import sg.edu.nus.iss.miniproject.security.jwt.AuthTokenFilter;
@@ -62,6 +63,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests().requestMatchers("/api/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/users/**").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/api/users/**").permitAll()
                 .requestMatchers("/api/test/**").permitAll()
                 .and().formLogin().loginPage("/login")
                 .permitAll();

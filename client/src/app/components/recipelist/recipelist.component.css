@@ -20,13 +20,13 @@ h2 {
     -webkit-background-clip: text;
   }
 
-  .circle {
+.circle {
     display: inline-block;
     position: relative;
     margin-right: 20px;
-  }
+}
   
-  .caption {
+.caption {
     position: absolute;
     bottom: -20px;
     left: 0;
@@ -36,31 +36,29 @@ h2 {
     font-weight: bold;
     margin: 0;
     color:darkblue;
-  }
+}
 
-  .container {
+.container {
     
     justify-content: center;
-  }
+}
   
   
-  .circles-container {
+.circles-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     max-width: 900px;
-  }
+}
   
-  .circular-image {
+.circular-image {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
     margin: 0 20px;
-  }
-
-/*  Search Result cards */
+}
 
 .pcard {
   border: none;
@@ -103,3 +101,37 @@ h2 {
   padding-left: 10px;
 }
 
+@media (max-width: 767px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .circle {
+    margin-right: 5px;
+  }
+
+  .caption {
+    font-size: 12px;
+  }
+
+  .circular-image {
+    width: 65px;
+    height: 65px;
+  }
+
+  .pcard-title {
+    font-size: 16px;
+  }
+
+  .pcard-text {
+    font-size: 12px;
+  }
+
+  .pcard {
+    padding: 20px;
+  }
+}

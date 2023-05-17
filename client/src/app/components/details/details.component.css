@@ -33,18 +33,6 @@ img {
     1px 1px 0 black;
 }
 
-@media only screen and (max-width: 767px) {
-    .banner .banner-text h2 {
-        font-size: 24px;
-    }
-}
-
-@media only screen and (max-width: 767px) {
-    .banner-area {
-        height: 120px;
-    }
-}
-
 .recipe-header{
     font-size: 40px;
     font-weight: 600;
@@ -101,4 +89,60 @@ h3 {
   
 .btn-primary:hover {
     background-color: #7fffd4;
+}
+
+@media (max-width: 767px) {
+    .banner {
+      height: 120px;
+    }
+  
+    h3 {
+      font-size: 18px;
+    }
+
+    .card-img-top {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .single-preparation-step {
+        max-width: 100%;
+      height: auto;
+    }
+
+    .banner-text h2 {
+        font-size: 18px;
+      }
+    
+      .recipe-header {
+        font-size: 18px;
+      }
+    
+      .recipe-content-area h2 {
+        font-size: 18px;
+      }
+    
+      .recipe-content-area table {
+        font-size: 14px;
+      }
+    
+      .recipe-content-area ul {
+        padding-left: 5px;
+      }
+    
+      .ingredients h4 {
+        font-size: 18px;
+      }
+    
+      .ingredients table {
+        font-size: 14px;
+      }
+    
+      .section-heading h3 {
+        font-size: 18px;
+      }
+    
+      .btn-primary {
+        font-size: 14px;
+      }
 }

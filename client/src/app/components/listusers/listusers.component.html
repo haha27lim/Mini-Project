@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <h2>Our Users List</h2>
+    <div class="row">
+        <div class="col-lg-9">
+          <a [routerLink]="['/createuser']" class="btn btn-primary btn-sm mb-3">Add User</a>
+        </div>
+        <div class="col-lg-3">
+          <form [formGroup]="form" (ngSubmit)="search()">
+            <div class="input-group">
+              <input type="text" formControlName="search" placeholder="Search User" class="form-control">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Roles</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td><b>{{ user.id }}</b></td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <ul>
+                        <li *ngFor="let role of user.roles">{{ role.name }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <a [routerLink]="['/edituser', user.id]" class = "btn btn-primary">Update</a>
+                     &nbsp;
+                    <a (click)="deleteUser(user.id)" class = "btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

@@ -13,14 +13,14 @@ export class BoardUserComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUserBoard().subscribe(
-      data => {
+    this.userService.getUserBoard().subscribe({
+      next: data => {
         this.content = data;
       },
-      err => {
+      error: err => {
         this.content = JSON.parse(err.error).message;
       }
-    );
+    });
   }
 
 }

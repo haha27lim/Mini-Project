@@ -12,8 +12,6 @@ h2 {
   }
 
 
-/*  Search Result cards */
-
 .pcard {
   border: none;
   border-radius: 2rem;
@@ -53,4 +51,23 @@ h2 {
 
 .pcard-text {
   padding-left: 10px;
+}
+
+@media (max-width: 767px) {
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .card-img-top {
+    height: 10rem;
+  }
+
+  .pcard-title {
+    font-size: 1rem;
+  }
+
+  .pcard-text {
+    font-size: 0.8rem;
+  }
 }

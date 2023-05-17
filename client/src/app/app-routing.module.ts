@@ -19,6 +19,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { ListusersComponent } from './components/listusers/listusers.component';
+import { CreateuserComponent } from './components/createuser/createuser.component';
+import { EdituserComponent } from './components/edituser/edituser.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -30,6 +33,9 @@ const routes: Routes = [
   { path:'profile', component: ProfileComponent },
   { path:'user', component: BoardUserComponent },
   { path:'admin', component: BoardAdminComponent },
+  { path:'users', component: ListusersComponent },
+  { path:'createuser', component: CreateuserComponent },
+  { path:'edituser/:id', component: EdituserComponent },
   { path:'recipelist', component: RecipelistComponent },
   { path:'listtype/:type', component: TypelistComponent },
   { path:'listcuisine/:cuisine', component: CuisinelistComponent },

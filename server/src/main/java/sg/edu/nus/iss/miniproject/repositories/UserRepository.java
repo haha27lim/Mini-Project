@@ -2,12 +2,9 @@ package sg.edu.nus.iss.miniproject.repositories;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -124,13 +121,11 @@ public class UserRepository {
     
 
     public void deleteById(Long id) {
-        // Delete user from user_roles table first
-        String deleteRolesQuery = "DELETE FROM user_roles WHERE user_id = ?";
-        template.update(deleteRolesQuery, id);
+        String deleteRoles = "DELETE FROM user_roles WHERE user_id = ?";
+        template.update(deleteRoles, id);
     
-        // Delete user from users table
-        String deleteUserQuery = "DELETE FROM users WHERE id = ?";
-        template.update(deleteUserQuery, id);
+        String deleteUser = "DELETE FROM users WHERE id = ?";
+        template.update(deleteUser, id);
     }
     
 

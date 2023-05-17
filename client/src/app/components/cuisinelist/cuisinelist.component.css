@@ -55,3 +55,20 @@ h2 {
   padding-left: 10px;
 }
 
+@media (max-width: 767px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  .pcard-title {
+    font-size: 0.9rem;
+  }
+
+  .pcard-text {
+    font-size: 0.8rem;
+  }
+
+  .btn-primary {
+    font-size: 0.8rem;
+  }
+}

@@ -74,4 +74,31 @@ button.btn-primary:disabled {
 button.btn-primary:hover {
     background-color: #7fffd4;
 }
+
+@media (max-width: 767px) {
+    h2 {
+      font-size: 20px;
+    }
   
+    .table td {
+      padding: 5px;
+    }
+  
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      padding: 5px;
+      font-size: 12px;
+    }
+  
+    input[type="number"],
+    textarea {
+      padding: 5px;
+      font-size: 12px;
+    }
+  
+    button.btn-primary {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+}
