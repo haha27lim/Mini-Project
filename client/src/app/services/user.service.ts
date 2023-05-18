@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
 import { User } from '../models/user';
 
-const API_BASE_URL = '/api/test';
+const API_BASE_URL = '/api/control';
 const USERS_URI = '/api/users';
 
 @Injectable({

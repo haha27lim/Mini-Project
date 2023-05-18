@@ -67,7 +67,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/users/**").permitAll()
-                .requestMatchers("/api/test/**").permitAll()
+                .requestMatchers("/api/control/**").permitAll()
                 .and().formLogin().loginPage("/login")
                 .permitAll();
 
