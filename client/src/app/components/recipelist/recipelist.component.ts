@@ -19,8 +19,7 @@ export class RecipelistComponent implements OnInit {
   vietnamese = 'vietnamese'
   european = 'european'
 
-  constructor(private router: Router, private recipeSvc: RecipeService,
-    private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private recipeSvc: RecipeService) { }
 
   ngOnInit() {
     // cache it to session storage

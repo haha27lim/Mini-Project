@@ -22,6 +22,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { ListusersComponent } from './components/listusers/listusers.component';
 import { CreateuserComponent } from './components/createuser/createuser.component';
 import { EdituserComponent } from './components/edituser/edituser.component';
+import { RandomRouletteComponent } from './components/random-roulette/random-roulette.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -48,6 +49,7 @@ const routes: Routes = [
     children: [
       { path:'ingredientssearchresult', component: IngredientsSearchResultComponent }
     ]},
+  { path:'roulette', component: RandomRouletteComponent },
   { path:'details/:id', component: DetailsComponent},
   { path:'comments/:title', component: CommentComponent},
   { path: '**', component: NotFoundComponent } 

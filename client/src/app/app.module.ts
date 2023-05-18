@@ -34,6 +34,7 @@ import { ListusersComponent } from './components/listusers/listusers.component';
 import { CreateuserComponent } from './components/createuser/createuser.component';
 import { trigger } from '@angular/animations';
 import { EdituserComponent } from './components/edituser/edituser.component';
+import { RandomRouletteComponent } from './components/random-roulette/random-roulette.component';
 
 
 
@@ -63,7 +64,8 @@ import { EdituserComponent } from './components/edituser/edituser.component';
     CommentComponent,
     ListusersComponent,
     CreateuserComponent,
-    EdituserComponent
+    EdituserComponent,
+    RandomRouletteComponent
   ],
   imports: [
     BrowserModule,
