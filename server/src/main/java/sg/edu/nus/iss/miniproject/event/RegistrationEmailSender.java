@@ -1,8 +1,7 @@
-package sg.edu.nus.iss.miniproject.event.listener;
+package sg.edu.nus.iss.miniproject.event;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import sg.edu.nus.iss.miniproject.event.RegistrationCompleteEvent;
 import sg.edu.nus.iss.miniproject.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.UnsupportedEncodingException;
 
 @Component
-public class RegistrationCompleteEventListener implements ApplicationListener<RegistrationCompleteEvent> {
+public class RegistrationEmailSender implements ApplicationListener<RegistrationCompleteEvent> {
 
  @Autowired   
  private JavaMailSender mailSender;
@@ -26,9 +25,9 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
     public void onApplicationEvent(RegistrationCompleteEvent event) {
         // 1. Get the newly registered user
         theUser = event.getUser();
-        // 2. Build the verification URL to be sent to the user
+        // 2. Build the home URL to be sent to the user
         String url = "http://localhost:4200/#/home";
-        // 3. Send the email.
+        // 3. Send the welcome email.
         try {
             sendRegistrationEmail(url);
         } catch (MessagingException | UnsupportedEncodingException e) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CUISINES, TYPES } from 'src/app/constants';
@@ -28,7 +28,8 @@ export class NavbarComponent implements OnInit {
   showAdminBoard = false;
   username!: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private tokenStorageService: TokenStorageService) {}
+  constructor(private fb: FormBuilder, private router: Router, private tokenStorageService: TokenStorageService,
+    private ngZone: NgZone) {}
 
   ngOnInit() {
     this.form = this.createForm();
@@ -63,9 +64,11 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    this.isLoggedIn = false;
-    this.roles = [];
-    this.username = '';
-    this.router.navigate(['/home']);
+    this.isLoggedIn = false
+    this.roles = []
+    this.username = ''
+    this.ngZone.run(() => {
+      this.router.navigate(['/home']).then(() => window.location.reload());
+    })
   }
 }

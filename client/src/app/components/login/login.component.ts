@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
-    private fb: FormBuilder, private router: Router, private toastr: ToastrService) {}
+    private fb: FormBuilder, private router: Router, private toastr: ToastrService, private ngZone: NgZone) {}
 
   ngOnInit(): void {
     this.form = this.createForm()
@@ -65,6 +65,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   reloadPage(): void {
-    window.location.reload();
+    this.ngZone.run(() => {
+      this.router.navigate(['/home']).then(() => window.location.reload());
+    })
   }
 }
