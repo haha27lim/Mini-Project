@@ -24,6 +24,7 @@ import { CreateuserComponent } from './components/createuser/createuser.componen
 import { EdituserComponent } from './components/edituser/edituser.component';
 import { RandomRouletteComponent } from './components/random-roulette/random-roulette.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { AuthGuard } from './services/auth.guards';
 
 
 const routes: Routes = [
@@ -33,12 +34,12 @@ const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'forgotpassword', component: ForgotPasswordComponent },
   { path:'signup', component: SignUpComponent },
-  { path:'profile', component: ProfileComponent },
-  { path:'user', component: BoardUserComponent },
-  { path:'admin', component: BoardAdminComponent },
-  { path:'users', component: ListusersComponent },
-  { path:'createuser', component: CreateuserComponent },
-  { path:'edituser/:id', component: EdituserComponent },
+  { path:'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path:'user', component: BoardUserComponent, canActivate: [AuthGuard] },
+  { path:'admin', component: BoardAdminComponent, canActivate: [AuthGuard] },
+  { path:'listusers', component: ListusersComponent, canActivate: [AuthGuard] },
+  { path:'createuser', component: CreateuserComponent, canActivate: [AuthGuard] },
+  { path:'edituser/:id', component: EdituserComponent, canActivate: [AuthGuard] },
   { path:'recipelist', component: RecipelistComponent },
   { path:'listtype/:type', component: TypelistComponent },
   { path:'listcuisine/:cuisine', component: CuisinelistComponent },
@@ -54,12 +55,13 @@ const routes: Routes = [
   { path:'roulette', component: RandomRouletteComponent },
   { path:'details/:id', component: DetailsComponent},
   { path:'comments/:title', component: CommentComponent},
-  { path:'chat', component: ChatComponent },
+  { path:'chat', component: ChatComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent } 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
