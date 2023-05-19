@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
@@ -7,16 +6,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, AfterViewInit {
-  
+
   @ViewChild('scroll', { static: false }) public scroll!: ElementRef
   ngAfterViewInit() {}
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   scrollToBottom(): void {
     this.scroll.nativeElement.scrollTop += this.scroll.nativeElement.scrollHeight;
   }
 
-  username = 'admin'
+  username = ''
   search = ''
   to = ''
   message = ''
@@ -35,13 +34,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
     console.log(this.username)
     this.ws = new WebSocket(`ws://localhost:8080/websocket/${this.username}`)
     this.ws.onopen = (msg: any) => {
-      console.log('WebSocket connection established', msg)
+      console.log('Chat connect', msg)
       this.isLoginPage = false
       this.isUsersPage = true
       this.isChatPage = false
     }
     this.ws.onclose = (msg: any) => {
-      console.log('WebSocket connection closed', msg)
+      console.log('Chat connection close', msg)
       this.ws = null
       this.isLoginPage = true
       this.isUsersPage = false
@@ -53,7 +52,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
     this.ws.onmessage = (msg: any) => {
       const data = JSON.parse(msg.data)
-      console.log('New Message received:', data)
+      console.log('New message received:', data)
       const type = data.type
       const content = data.content
 
@@ -104,7 +103,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   openMessageBox(user: string): void {
-    console.log('Opening message box for: ' + user)
+    console.log('Opening textarea for: ' + user)
     this.isLoginPage = false
     this.isUsersPage = false
     this.isChatPage = true
@@ -118,7 +117,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   openUsersPage(): void {
-    console.log('Opening users page')
     this.isLoginPage = false
     this.isUsersPage = true
     this.isChatPage = false
@@ -126,7 +124,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   sendMessage(): void {
     if (this.message === "") {
-      console.log("Message should not be empty")
+      console.log("Msg should not be empty")
       return
     }
     const data = "{\"to\":\"" + this.to + "\",\"content\":\"" + this.message + "\", \"from\":\"" + this.username + "\"}"
@@ -142,7 +140,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
   
   logout(): void {
-    console.log('Logging out')
     this.ws.close()
   }
 }

@@ -6,9 +6,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.container {
-    justify-content: center;
-
+.overlay {
+    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+    font-family: 'Vibur', cursive;
+    /*   the main font */
+    font-family: 'Abel', sans-serif;
+    opacity: .95;
+    /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
 }
 
 .wrapper {
@@ -416,4 +424,88 @@ input {
   
 .btn-primary:hover {
     background-color: #7fffd4;
+}
+
+@media (max-width: 767px) {
+    .wrapper {
+      height: 100vh;
+      border-radius: 0;
+    }
+  
+    .overlay {
+      background-attachment: scroll;
+    }
+  
+    .form,
+    .users,
+    .chat-area {
+      padding: 20px;
+    }
+  
+    .form header,
+    .users header,
+    .chat-area header {
+      padding: 10px 20px;
+    }
+  
+    .form header {
+      font-size: 20px;
+    }
+  
+    .form .button input {
+      height: 40px;
+      font-size: 15px;
+    }
+  
+    .users header img {
+      height: 40px;
+      width: 40px;
+    }
+  
+    .users header .logout {
+      padding: 5px 10px;
+      font-size: 15px;
+    }
+  
+    .users .search input {
+      height: 35px;
+      font-size: 14px;
+    }
+  
+    .users-list a img {
+      height: 30px;
+      width: 30px;
+    }
+  
+    .users-list a .details p {
+      font-size: 14px;
+    }
+  
+    .chat-area header img {
+      height: 40px;
+      width: 40px;
+    }
+  
+    .chat-area header .details span {
+      font-size: 15px;
+    }
+  
+    .chat-box .chat p {
+      padding: 6px 12px;
+    }
+  
+    .chat-box .outgoing .details p,
+    .chat-box .incoming .details p {
+      font-size: 14px;
+    }
+  
+    .typing-area input {
+      height: 40px;
+      font-size: 14px;
+    }
+  
+    .typing-area .button {
+      width: 50px;
+      font-size: 16px;
+    }
 }

@@ -1,0 +1,57 @@
+.container {
+    min-height: 71vh;
+}
+
+li {
+    font-size: x-large;
+}
+
+h2 {
+    color: purple;
+}
+
+h3 {
+    color: darkorchid;
+}
+
+.overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 72vh;
+
+    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+        
+    opacity: .95;
+}
+
+li {
+    color: darkblue;
+}
+
+.btn-primary {
+    background-color: darkorchid;
+    border: none;
+}
+  
+.btn-primary:hover {
+    background-color: #7fffd4;
+}
+
+@media (max-width: 767px) {
+
+    h2 {
+      font-size: 24px;
+    }
+  
+    h3 {
+      font-size: 20px;
+    }
+  
+    li {
+      font-size: 16px;
+    }
+}
