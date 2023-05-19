@@ -35,6 +35,7 @@ import { CreateuserComponent } from './components/createuser/createuser.componen
 import { trigger } from '@angular/animations';
 import { EdituserComponent } from './components/edituser/edituser.component';
 import { RandomRouletteComponent } from './components/random-roulette/random-roulette.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 
@@ -65,7 +66,8 @@ import { RandomRouletteComponent } from './components/random-roulette/random-rou
     ListusersComponent,
     CreateuserComponent,
     EdituserComponent,
-    RandomRouletteComponent
+    RandomRouletteComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
