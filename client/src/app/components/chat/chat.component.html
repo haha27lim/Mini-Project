@@ -7,6 +7,7 @@
             <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="login()">
                 <div class="error-text"></div>
                 <div class="field input">
+                    <label>Username: </label>
                     <input type="text" name="username" placeholder="Enter your username" required [(ngModel)]="username"
                         #usernameInput="ngModel">
                     <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)"
