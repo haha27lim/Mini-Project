@@ -25,6 +25,7 @@ import { EdituserComponent } from './components/edituser/edituser.component';
 import { RandomRouletteComponent } from './components/random-roulette/random-roulette.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { AuthGuard } from './services/auth.guards';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 
 const routes: Routes = [
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path:'details/:id', component: DetailsComponent},
   { path:'comments/:title', component: CommentComponent},
   { path:'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path:'contactus', component: ContactFormComponent },
   { path: '**', component: NotFoundComponent } 
 ];
 

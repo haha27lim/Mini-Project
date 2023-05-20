@@ -16,3 +16,4 @@ export const TYPES = [
     "marinade", "fingerfood", "snack", "appetizer", "salad", "sauce", "beverage",
     "drink"
 ]
+  

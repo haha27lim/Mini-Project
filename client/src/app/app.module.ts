@@ -36,6 +36,7 @@ import { trigger } from '@angular/animations';
 import { EdituserComponent } from './components/edituser/edituser.component';
 import { RandomRouletteComponent } from './components/random-roulette/random-roulette.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 
 
@@ -67,7 +68,8 @@ import { ChatComponent } from './components/chat/chat.component';
     CreateuserComponent,
     EdituserComponent,
     RandomRouletteComponent,
-    ChatComponent
+    ChatComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
