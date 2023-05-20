@@ -1,36 +1,51 @@
-<div class="container">
-    <h2>Contact Us</h2>
-    <form [formGroup]="form" (ngSubmit)="submitForm()">
-      <table>
-        <tr>
-          <td><label for="name">Name: </label></td>
-          <td>
-            <input type="text" formControlName="name" required>
-            <div *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)" class="text-danger">
-              Name is required and should be at least 3 characters long.
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="email">Email: </label></td>
-          <td>
-            <input type="email" formControlName="email" required>
-            <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)" class="text-danger">
-              Email is required
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="message">Message: </label></td>
-          <td>
-            <textarea id="message" formControlName="message" required></textarea>
-            <div *ngIf="form.get('message')?.invalid && (form.get('message')?.dirty || form.get('message')?.touched)" class="text-danger">
-              Message is required
-            </div>
-          </td>
-        </tr>
-      </table>
-      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-  
+<div class="overlay">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form [formGroup]="form" (ngSubmit)="submitForm()">
+            <table>
+                <tr>
+                    <td><label for="name">Name: </label></td>
+                    <td>
+                        <input type="text" formControlName="name" placeholder="Enter your name" required>
+                        <div *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)"
+                            class="text-danger">
+                            Name is required and should be at least 3 characters long.
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email: </label></td>
+                    <td>
+                        <input type="email" formControlName="email" placeholder="Enter your email" required>
+                        <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)"
+                            class="text-danger">
+                            Email is required
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="subject">Subject: </label></td>
+                    <td>
+                        <input type="subject" formControlName="subject" placeholder="Enter the subject" required>
+                        <div *ngIf="form.get('subject')?.invalid && (form.get('subject')?.dirty || form.get('subject')?.touched)"
+                            class="text-danger">
+                            Subject is required
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="message">Message: </label></td>
+                    <td>
+                        <textarea id="message" formControlName="message" placeholder="Leave us the message"
+                            required></textarea>
+                        <div *ngIf="form.get('message')?.invalid && (form.get('message')?.dirty || form.get('message')?.touched)"
+                            class="text-danger">
+                            Message is required
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

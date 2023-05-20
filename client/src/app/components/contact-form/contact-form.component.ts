@@ -22,6 +22,7 @@ export class ContactFormComponent implements OnInit {
     return this.fb.group({
       name: ['', Validators.required, Validators.minLength(3)],
       email: ['', [Validators.required, Validators.email]],
+      subject: ['', [Validators.required]],
       message: ['', Validators.required]
     });
   }
@@ -31,13 +32,16 @@ export class ContactFormComponent implements OnInit {
       return;
     }
 
-    this.http.post('/contact', this.form.value).subscribe(() => {
-      alert('Form submitted successfully!');
-      this.resetForm();
-    }, (error) => {
-      console.error('Error submitting form:', error);
-      alert('Error submitting form. Please try again later.');
-    });
+    this.http.post('/contact', this.form.value).subscribe
+      ({
+        next: data => {
+          alert('Contact Us Form submitted successfully! We will get back');
+          this.resetForm();
+        }, error: error => {
+          console.error('Error submitting form:', error);
+          alert('Error submitting form. Try again later.');
+        }
+      });
   }
 
   resetForm(): void {
