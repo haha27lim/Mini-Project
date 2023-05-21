@@ -128,7 +128,7 @@ public class UserRepository {
         template.update(deleteUser, id);
     }
     
-
+    
     public User update(User user) {
         template.update(
             "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?",

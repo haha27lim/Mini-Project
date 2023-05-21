@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.nus.iss.miniproject.exception.NotFoundException;
 import sg.edu.nus.iss.miniproject.models.User;
@@ -19,6 +20,7 @@ public class UserService {
 		return userRepo.findAll();
 	}
 
+	@Transactional
 	public User saveUser(User user) {
 		return userRepo.save(user);
 	}
@@ -27,10 +29,12 @@ public class UserService {
 		return userRepo.findById(id);
 	}
 
+	@Transactional
 	public User updateUser(User user) {
 		return userRepo.update(user);
 	}
 
+	@Transactional
 	public void deleteUserById(Long id) {
 		User user = userRepo.findById(id);
 		if (user == null) {
