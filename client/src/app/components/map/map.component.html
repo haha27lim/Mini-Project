@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Nearby Restaurants By Dish</h2>
+    <div id="map"></div>
+    <br>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="search()">
+            <div class="input-group">
+                <input type="text" formControlName="searchTerm" class="form-control" placeholder="Search for a dish">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+    &nbsp;
+    <div class="results-container" *ngIf="results.length > 0">
+        <h2>Restaurants around me</h2>
+        <ul>
+            <li *ngFor="let result of results" class="mb-3">
+                <h3>{{ result.name }}</h3>
+                <p>{{ result.vicinity }}</p>
+                <p>{{ result.rating }} stars</p>
+                <img [src]="getPhoto(result)" alt="Restaurant Image">
+            </li>
+        </ul>
+    </div>
+    <ng-template #noResults>
+        <p>Your search produces no results around you within 5km</p>
+    </ng-template>
+</div>
+
+
+  
+  

@@ -37,6 +37,8 @@ import { EdituserComponent } from './components/edituser/edituser.component';
 import { RandomRouletteComponent } from './components/random-roulette/random-roulette.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { MapComponent } from './components/map/map.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -69,7 +71,8 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
     EdituserComponent,
     RandomRouletteComponent,
     ChatComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +82,7 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    GoogleMapsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

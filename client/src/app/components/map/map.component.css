@@ -1,0 +1,34 @@
+#map {
+    width: 100%;
+    height: 400px;
+  }
+
+
+.container {
+  margin-top: 20px;
+  min-height: 63vh;
+}
+
+h2 {
+  color: purple;
+}
+
+.btn-primary {
+  background-color: darkorchid;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #7fffd4;
+}
+
+.results-container {
+  color: darkblue;
+}
+
+img {
+  height: 200px; /* Adjust the height as needed */
+  width: 300px;
+  object-fit: cover;
+  border-radius: 2rem;
+}
