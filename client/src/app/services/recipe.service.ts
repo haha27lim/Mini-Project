@@ -125,17 +125,35 @@ export class RecipeService {
     const params = new HttpParams()
       .set('ingredients', ingredients)
       .set('ranking', ranking.toString())
-      .set('number', number.toString());
+      .set('number', number.toString())
 
     return lastValueFrom(this.httpClient.get<RecipeIngredient[]>(this.LIST_INGREDIENTS_URI, { params: params })).then(
       (recipes) => {
-        console.log('Found recipes:', recipes);
-        return recipes;
+        console.log('Found recipes:', recipes)
+        return recipes
       },
       (error) => {
-        console.error(`Error loading recipes: `, error);
-        throw error;
+        console.error(`Error loading recipes: `, error)
+        throw error
       }
     );
   }
+  
+  shareRecipe(recipe: Recipe) {
+    const shareUrl = 'https://example.com/recipes/' + recipe.id; // Replace with the actual URL of your recipe details page
+
+    if (navigator.share) {
+      navigator.share({
+        title: recipe.title,
+        text: 'Check out on this nice and delicious recipe: ' + recipe.title,
+        url: shareUrl
+      })
+      .then(() => console.log('Recipe was shared successful'))
+      .catch((error) => console.log('Error on sharing:', error));
+    } else {
+      console.log('Sharing was not able')
+      console.log(shareUrl)
+    }
+  }
+
 }

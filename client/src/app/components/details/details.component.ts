@@ -36,8 +36,13 @@ export class DetailsComponent implements OnInit, OnDestroy {
   onCommentClick(recipe: Recipe) {
     this.router.navigate(['/comments', recipe.title])
   }
+
+  shareRecipe(recipe: Recipe) {
+    this.recipeSvc.shareRecipe(recipe);
+  }
   
   ngOnDestroy(): void {
     this.param$.unsubscribe();
   }
+  
 }

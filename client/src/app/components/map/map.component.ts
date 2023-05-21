@@ -32,8 +32,8 @@ export class MapComponent implements OnInit {
       zoom: 12
     };
 
-    this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    this.placesService = new google.maps.places.PlacesService(this.map);
+    this.map = new google.maps.Map(document.getElementById('map'), mapOptions)
+    this.placesService = new google.maps.places.PlacesService(this.map)
   }
 
   setupSearch() {
@@ -68,11 +68,11 @@ export class MapComponent implements OnInit {
           this.addUserMarker(userLocation);
         },
         (error) => {
-          console.log('Error getting user location:', error);
+          console.log('Error on getting user location:', error);
         }
       );
     } else {
-      console.log('Geolocation is not supported by this browser.');
+      console.log('Geolocation cannot.');
     }
   }
 
@@ -89,7 +89,7 @@ export class MapComponent implements OnInit {
       return;
     }
 
-    const searchTerm = this.form.value.searchTerm;
+    const searchTerm = this.form.value.searchTerm
 
     const request = {
       location: this.map.getCenter(),
