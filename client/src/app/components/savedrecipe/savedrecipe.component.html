@@ -4,13 +4,15 @@
       <thead>
         <tr>
           <th>Recipe Title</th>
-          <th></th>
+          <th>View Recipe</th>
+          <th>Delete Saved Recipe</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let savedRecipe of savedRecipes">
-          <td>{{ savedRecipe.recipeTitle }}</td>
-          <td><button class="btn btn-danger" (click)="deleteRecipe(savedRecipe)">Delete</button></td>
+        <tr *ngFor="let recipe of savedRecipes">
+          <td>{{ recipe.recipeTitle }}</td>
+          <td><a class="btn btn-primary" [routerLink]="['/details', recipe.recipeId]" (click)="showRecipeDetails(recipe.recipeId!)">View Recipe</a></td>
+          <td><button class="btn btn-danger" (click)="deleteRecipe(recipe)">Delete</button></td>
         </tr>
       </tbody>
     </table>

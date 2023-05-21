@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
 import sg.edu.nus.iss.miniproject.models.SavedRecipe;
 
 @Repository
-public class SavedRecipeRepository {
+public class SaveRecipeRepository {
     
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate template;
 
     public SavedRecipe save(SavedRecipe savedRecipe) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(con -> {
+        template.update(con -> {
             PreparedStatement ps = con.prepareStatement(
                 "INSERT INTO saved_recipes (user_id, recipe_id, recipe_title) VALUES (?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS
@@ -35,11 +35,11 @@ public class SavedRecipeRepository {
     }
 
     public void deleteById(Long id) {
-        jdbcTemplate.update("DELETE FROM saved_recipes WHERE id = ?", id);
+        template.update("DELETE FROM saved_recipes WHERE id = ?", id);
     }
 
     public List<SavedRecipe> findByUserId(Long userId) {
-        return jdbcTemplate.query(
+        return template.query(
             "SELECT id, user_id, recipe_id, recipe_title FROM saved_recipes WHERE user_id = ?",
             (rs, rowNum) -> {
                 SavedRecipe savedRecipe = new SavedRecipe();
@@ -53,7 +53,7 @@ public class SavedRecipeRepository {
     }
 
     public List<SavedRecipe> findAll() {
-        return jdbcTemplate.query(
+        return template.query(
             "SELECT id, user_id, recipe_id, recipe_title FROM saved_recipes",
             (rs, rowNum) -> {
                 SavedRecipe savedRecipe = new SavedRecipe();

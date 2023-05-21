@@ -27,8 +27,36 @@ h2 {
 }
 
 img {
-  height: 200px; /* Adjust the height as needed */
+  height: 200px; 
   width: 300px;
   object-fit: cover;
   border-radius: 2rem;
+}
+
+@media (max-width: 767px) {
+  #map {
+    height: 300px;
+  }
+
+  .container {
+    margin-top: 10px;
+    min-height: auto;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn-primary {
+    font-size: 0.8rem;
+  }
+
+  .results-container {
+    font-size: 0.9rem;
+  }
+
+  img {
+    height: 150px;
+    width: 250px;
+  }
 }

@@ -13,34 +13,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import sg.edu.nus.iss.miniproject.models.SavedRecipe;
-import sg.edu.nus.iss.miniproject.services.SavedRecipeService;
+import sg.edu.nus.iss.miniproject.services.SaveRecipeService;
 
 @RestController
-@RequestMapping("/api/saved-recipes")
+@RequestMapping("/api/saverecipes")
 public class SavedRecipeController {
 
     @Autowired
-    private SavedRecipeService savedRecipeService;
+    private SaveRecipeService saveRecipeSvc;
 
     @PostMapping
     public SavedRecipe save(@RequestBody SavedRecipe savedRecipe) {
-        return savedRecipeService.save(savedRecipe);
+        return saveRecipeSvc.save(savedRecipe);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
-        savedRecipeService.deleteById(id);
+        saveRecipeSvc.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{userId}")
     public List<SavedRecipe> findByUserId(@PathVariable Long userId) {
-        return savedRecipeService.findByUserId(userId);
+        return saveRecipeSvc.findByUserId(userId);
     }
 
     @GetMapping
     public List<SavedRecipe> findAll() {
-        return savedRecipeService.findAll();
+        return saveRecipeSvc.findAll();
     }
 }
 

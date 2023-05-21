@@ -22,7 +22,9 @@
     </div>
     <div class="col-md-7 recipe-content-area">
       <h2>{{ recipe.title }}</h2>
-      <button class="btn btn-primary" (click)="shareRecipe(recipe)">Share Recipe</button>
+      <button class="btn btn-primary" (click)="shareRecipe(recipe)"><i class="bi bi-share-fill"></i> Share Recipe</button>
+      &nbsp;
+      <button *ngIf="isLoggedIn" class="btn btn-primary" (click)="saveRecipe(recipe.id)" ><i class="bi bi-save"></i> Save Recipe</button>
       <table class="table table-bordered">
         <tbody>
           <tr>

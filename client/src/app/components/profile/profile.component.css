@@ -29,6 +29,15 @@ li {
   font-weight: bold;
   font-size: larger;
 }
+
+.btn-primary {
+  background-color: darkorchid;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #7fffd4;
+}
   
 @media (max-width: 767px) {
   h3 {

@@ -66,7 +66,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/users/**").permitAll()
                 .requestMatchers("/api/control/**").permitAll()
-                .requestMatchers("/api/saved-recipes/**").permitAll()
+                .requestMatchers("/api/saverecipes/**").permitAll()
                 .requestMatchers("/websocket/**").permitAll()
                 .requestMatchers("/contact/**").permitAll()
                 .and().formLogin().loginPage("/login")

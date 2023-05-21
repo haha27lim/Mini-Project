@@ -16,7 +16,7 @@ export class RecipeService {
   private LIST_CUISINE_URI: string = "/api/list/cuisine";
   private LIST_DIET_URI: string = "/api/list/diet";
   private LIST_INGREDIENTS_URI: string = "/api/list/ingredients";
-  private SAVE_RECIPE_URI: string = "/api/saved-recipes";
+  private SAVE_RECIPE_URI: string = "/api/saverecipes";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -171,5 +171,5 @@ export class RecipeService {
   getAllSavedRecipes(): Promise<SavedRecipe[]> {
     return lastValueFrom(this.httpClient.get<SavedRecipe[]>(this.SAVE_RECIPE_URI));
   }
-  
+
 }
