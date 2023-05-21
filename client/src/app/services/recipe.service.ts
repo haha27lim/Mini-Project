@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Recipe } from '../models/recipe';
+import { Recipe, SavedRecipe } from '../models/recipe';
 import { RecipeIngredient } from '../models/recipeIngredient';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class RecipeService {
   private LIST_CUISINE_URI: string = "/api/list/cuisine";
   private LIST_DIET_URI: string = "/api/list/diet";
   private LIST_INGREDIENTS_URI: string = "/api/list/ingredients";
-
+  private SAVE_RECIPE_URI: string = "/api/saved-recipes";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -156,4 +156,20 @@ export class RecipeService {
     }
   }
 
+  saveRecipe(savedRecipe: SavedRecipe): Promise<SavedRecipe> {
+    return lastValueFrom(this.httpClient.post<SavedRecipe>(this.SAVE_RECIPE_URI, savedRecipe));
+  }
+
+  deleteRecipe(savedRecipeId: number): Promise<void> {
+    return lastValueFrom(this.httpClient.delete<void>(`${this.SAVE_RECIPE_URI}/${savedRecipeId}`));
+  }
+
+  getSavedRecipes(userId: number): Promise<SavedRecipe[]> {
+    return lastValueFrom(this.httpClient.get<SavedRecipe[]>(`${this.SAVE_RECIPE_URI}/${userId}`));
+  }
+
+  getAllSavedRecipes(): Promise<SavedRecipe[]> {
+    return lastValueFrom(this.httpClient.get<SavedRecipe[]>(this.SAVE_RECIPE_URI));
+  }
+  
 }

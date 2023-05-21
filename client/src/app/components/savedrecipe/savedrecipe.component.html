@@ -1,0 +1,18 @@
+<div class="container">
+    <h2>List of Saved Recipes</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Recipe Title</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let savedRecipe of savedRecipes">
+          <td>{{ savedRecipe.recipeTitle }}</td>
+          <td><button class="btn btn-danger" (click)="deleteRecipe(savedRecipe)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

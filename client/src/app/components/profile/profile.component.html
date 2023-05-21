@@ -21,8 +21,15 @@
         {{ role }}
       </li>
     </ul>
+
+    <div>
+      <strong>Saved Recipes: </strong>
+      <ul>
+        <li>List of my saved recipes.  <a class="btn btn-primary" [routerLink]="['/savedrecipe']">View Saved Recipes </a>
+      </ul>
     </div>
-  </div>
+    </div>
+</div>
   
   <ng-template #loggedOut>
     Please login.

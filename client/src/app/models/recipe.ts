@@ -27,3 +27,11 @@ export interface Comment {
     rating: number;
     comment: string; 
 }
+
+export interface SavedRecipe {
+    id?: number;
+    userId: number;
+    recipeId: number;
+    recipeTitle: string;
+  }
+  

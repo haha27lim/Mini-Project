@@ -26,3 +26,12 @@ CREATE TABLE IF NOT EXISTS user_roles (
 
 INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+
+
+CREATE TABLE saved_recipes (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id BIGINT,
+  recipe_id BIGINT,
+  recipe_title VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+);

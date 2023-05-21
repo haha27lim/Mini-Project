@@ -39,6 +39,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { MapComponent } from './components/map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
 
 
 
@@ -72,7 +73,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     RandomRouletteComponent,
     ChatComponent,
     ContactFormComponent,
-    MapComponent
+    MapComponent,
+    SavedrecipeComponent
   ],
   imports: [
     BrowserModule,

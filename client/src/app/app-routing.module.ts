@@ -27,6 +27,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { AuthGuard } from './services/auth.guards';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { MapComponent } from './components/map/map.component';
+import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,8 @@ const routes: Routes = [
   { path:'listusers', component: ListusersComponent, canActivate: [AuthGuard] },
   { path:'createuser', component: CreateuserComponent, canActivate: [AuthGuard] },
   { path:'edituser/:id', component: EdituserComponent, canActivate: [AuthGuard] },
+  { path:'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path:'savedrecipe', component: SavedrecipeComponent, canActivate: [AuthGuard] },
   { path:'recipelist', component: RecipelistComponent },
   { path:'listtype/:type', component: TypelistComponent },
   { path:'listcuisine/:cuisine', component: CuisinelistComponent },
@@ -57,7 +60,6 @@ const routes: Routes = [
   { path:'roulette', component: RandomRouletteComponent },
   { path:'details/:id', component: DetailsComponent},
   { path:'comments/:title', component: CommentComponent},
-  { path:'chat', component: ChatComponent, canActivate: [AuthGuard] },
   { path:'contactus', component: ContactFormComponent },
   { path:'map', component: MapComponent },
   { path: '**', component: NotFoundComponent } 

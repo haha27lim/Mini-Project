@@ -31,4 +31,10 @@ export class TokenStorageService {
   public getUser(): any {
     return JSON.parse(sessionStorage.getItem(USER_KEY) as string) ;
   }
+
+  public getUserId(): number | null {
+    const user = this.getUser();
+    return user ? user.id : null;
+  }
+  
 }
