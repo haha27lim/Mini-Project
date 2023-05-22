@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -59,25 +58,33 @@ export class DetailsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const isRecipeSaved = this.savedRecipes.some(savedRecipe => savedRecipe.recipeId === recipeId);
+    const isRecipeSaved = this.savedRecipes.some(
+      (savedRecipe) => savedRecipe.recipeId === recipeId
+    );
     if (isRecipeSaved) {
       this.toastr.info('Recipe is already saved.', 'Info');
       return;
     }
-  
+
     const savedRecipe: SavedRecipe = {
       userId: this.userId,
       recipeId,
-      recipeTitle: this.recipe.title
+      recipeTitle: this.recipe.title,
+      recipeDetails: {
+        savedRecipeId: recipeId,
+        servings: this.recipe.servings,
+        readyInMinutes: this.recipe.readyInMinutes,
+      },
     };
-  
-    this.recipeSvc.saveRecipe(savedRecipe)
+
+    this.recipeSvc
+      .saveRecipe(savedRecipe)
       .then(() => {
         console.log('Recipe saved successfully');
-        this.toastr.success('Recipe saved successfully.', 'Success')
+        this.toastr.success('Recipe saved successfully.', 'Success');
         this.getSavedRecipes(this.userId!);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error saving recipe', error);
       });
   }

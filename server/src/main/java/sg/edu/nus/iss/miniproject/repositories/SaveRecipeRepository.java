@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import sg.edu.nus.iss.miniproject.models.RecipeDetails;
 import sg.edu.nus.iss.miniproject.models.SavedRecipe;
 
 @Repository
@@ -17,6 +18,9 @@ public class SaveRecipeRepository {
     
     @Autowired
     private JdbcTemplate template;
+
+    @Autowired
+    private RecipeDetailsRepository recipeDetailsRepo;
 
     public SavedRecipe save(SavedRecipe savedRecipe) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -31,39 +35,51 @@ public class SaveRecipeRepository {
             return ps;
         }, keyHolder);
         savedRecipe.setId(keyHolder.getKey().intValue());
+
         return savedRecipe;
     }
 
-    public void deleteById(Long id) {
-        template.update("DELETE FROM saved_recipes WHERE id = ?", id);
-    }
-
     public List<SavedRecipe> findByUserId(Long userId) {
-        return template.query(
-            "SELECT id, user_id, recipe_id, recipe_title FROM saved_recipes WHERE user_id = ?",
-            (rs, rowNum) -> {
-                SavedRecipe savedRecipe = new SavedRecipe();
-                savedRecipe.setId(rs.getInt("id"));
-                savedRecipe.setUserId(rs.getLong("user_id"));
-                savedRecipe.setRecipeId(rs.getLong("recipe_id"));
-                savedRecipe.setRecipeTitle(rs.getString("recipe_title"));
-                return savedRecipe;
-            }, userId
-        );
+        String query = "SELECT sr.id, sr.user_id, sr.recipe_id, sr.recipe_title, rd.servings, rd.ready_in_minutes " +
+                       "FROM saved_recipes sr " +
+                       "INNER JOIN recipe_details rd ON sr.id = rd.saved_recipe_id " +
+                       "WHERE sr.user_id = ?";
+        
+        return template.query(query, (rs, rowNum) -> {
+            SavedRecipe savedRecipe = new SavedRecipe();
+            savedRecipe.setId(rs.getInt("id"));
+            savedRecipe.setUserId(rs.getLong("user_id"));
+            savedRecipe.setRecipeId(rs.getLong("recipe_id"));
+            savedRecipe.setRecipeTitle(rs.getString("recipe_title"));
+            
+            RecipeDetails recipeDetails = new RecipeDetails();
+            recipeDetails.setSavedRecipeId(rs.getInt("id"));
+            recipeDetails.setServings(rs.getInt("servings"));
+            recipeDetails.setReadyInMinutes(rs.getInt("ready_in_minutes"));
+            
+            savedRecipe.setRecipeDetails(recipeDetails);
+            
+            return savedRecipe;
+        }, userId);
     }
+    
 
     public List<SavedRecipe> findAll() {
-        return template.query(
-            "SELECT id, user_id, recipe_id, recipe_title FROM saved_recipes",
-            (rs, rowNum) -> {
-                SavedRecipe savedRecipe = new SavedRecipe();
-                savedRecipe.setId(rs.getInt("id"));
-                savedRecipe.setUserId(rs.getLong("user_id"));
-                savedRecipe.setRecipeId(rs.getLong("recipe_id"));
-                savedRecipe.setRecipeTitle(rs.getString("recipe_title"));
-                return savedRecipe;
-            }
-        );
+        String query = "SELECT * FROM saved_recipes";
+        return template.query(query, (rs, rowNum) -> {
+            SavedRecipe savedRecipe = new SavedRecipe();
+            savedRecipe.setId(rs.getInt("id"));
+            savedRecipe.setUserId(rs.getLong("user_id"));
+            savedRecipe.setRecipeId(rs.getLong("recipe_id"));
+            savedRecipe.setRecipeTitle(rs.getString("recipe_title"));
+            savedRecipe.setRecipeDetails(recipeDetailsRepo.findBySavedRecipeId(savedRecipe.getId()));
+            return savedRecipe;
+        });
+    }
+
+    public void deleteById(int id) {
+        template.update("DELETE FROM saved_recipes WHERE id = ?", id);
+        recipeDetailsRepo.deleteById(id);
     }
     
 }

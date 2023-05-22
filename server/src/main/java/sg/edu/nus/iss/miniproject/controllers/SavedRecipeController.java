@@ -41,7 +41,7 @@ public class SavedRecipeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable int id) {
         saveRecipeSvc.deleteById(id);
         return ResponseEntity.noContent().build();
     }

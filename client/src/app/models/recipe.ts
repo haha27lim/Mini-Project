@@ -1,4 +1,5 @@
 export interface Recipe {
+    recipeDetails: RecipeDetails;
     id: number;
     title: string;
     readyInMinutes: number;
@@ -33,5 +34,11 @@ export interface SavedRecipe {
     userId: number;
     recipeId: number;
     recipeTitle: string;
-  }
+    recipeDetails: RecipeDetails;
+}
   
+export interface RecipeDetails {
+    savedRecipeId: number;
+    servings: number;
+    readyInMinutes: number;
+}

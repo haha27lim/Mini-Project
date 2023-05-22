@@ -7,13 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SavedRecipe {
+public class RecipeDetails {
     
-    private Integer id;
-    private Long userId;
-    private Long recipeId;
-    private String recipeTitle;
-    private RecipeDetails recipeDetails;
-
+    private int savedRecipeId;
+    private int servings;
+    private int readyInMinutes;
 }
-

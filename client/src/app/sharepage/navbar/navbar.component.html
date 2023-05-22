@@ -10,7 +10,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/home']">HOME</a>
           <li ngbDropdown class="nav-item">
             <a class="nav-link active" [routerLink]="['/recipelist']" ngbDropdownToggle>RECIPES</a>
             <ul ngbDropdownMenu class="dropdown-menu">
@@ -36,7 +35,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link active single-line-link" [routerLink]="['/search']">ADVANCED Search</a>
+            <a class="nav-link active single-line-link" [routerLink]="['/search']">ADV Search</a>
           </li>    
           <li class="nav-item">
             <a class="nav-link active single-line-link" [routerLink]="['/dishbyingredients']">INGREDIENTS Genius</a>
@@ -48,7 +47,7 @@
             <a class="nav-link active single-line-link" [routerLink]="['/map']">MapNearby</a>
           </li>
           <li class="nav-item" *ngIf="showAdminBoard">
-            <a class="nav-link active" [routerLink]="['/admin']"><b>ADMINBoard</b></a>
+            <a class="nav-link active single-line-link" [routerLink]="['/admin']"><b>ADMINBoard</b></a>
           </li>
           <li class="nav-item">
             <a class="nav-link active single-line-link" *ngIf="isLoggedIn" [routerLink]="['/user']"><b>USERS' Community</b></a>
@@ -66,12 +65,8 @@
     </div>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
         <a class="nav-link active" [routerLink]="['/profile']"><i class="bi bi-person-circle"></i> {{ username }}.profile</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link active"  href="#" (click)="logout()"><i class="bi bi-person-circle"></i>Logout</a>
-      </li>
     </ul>
   </nav>
 </header>
