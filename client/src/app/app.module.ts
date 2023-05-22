@@ -40,6 +40,7 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { MapComponent } from './components/map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
+import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
 
 
 
@@ -74,7 +75,8 @@ import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.compo
     ChatComponent,
     ContactFormComponent,
     MapComponent,
-    SavedrecipeComponent
+    SavedrecipeComponent,
+    AdminsavedrecipeComponent
   ],
   imports: [
     BrowserModule,

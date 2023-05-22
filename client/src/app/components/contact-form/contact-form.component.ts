@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class ContactFormComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private recipeSvc: RecipeService) { }
 
   ngOnInit(): void {
     this.form = this.createForm()
@@ -32,15 +33,14 @@ export class ContactFormComponent implements OnInit {
       return;
     }
 
-    this.http.post('/contact', this.form.value).subscribe
-      ({
-        next: data => {
-          alert('Contact Us Form submitted successfully! We will get back');
-          this.resetForm();
-        }, error: error => {
-          console.error('Error submitting form:', error);
-          alert('Error submitting form. Try again later.');
-        }
+    this.recipeSvc.sendContactEmail(this.form.value)
+      .then(() => {
+        alert('Contact Us Form submitted successfully! We will get back.');
+        this.resetForm();
+      })
+      .catch(error => {
+        console.error('Error submitting form:', error);
+        alert('Error submitting form. Try again later.');
       });
   }
 

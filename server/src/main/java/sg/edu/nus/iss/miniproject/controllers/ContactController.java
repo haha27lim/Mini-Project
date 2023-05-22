@@ -2,6 +2,7 @@ package sg.edu.nus.iss.miniproject.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
@@ -25,8 +26,8 @@ public class ContactController {
         this.emailSender = emailSender;
     }
 
-    @PostMapping("/contact")
-    public void sendContactEmail(@RequestBody ContactForm contactForm) throws MessagingException {
+    @PostMapping("/api/contact")
+    public ResponseEntity<Void> sendContactEmail(@RequestBody ContactForm contactForm) throws MessagingException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
@@ -42,6 +43,8 @@ public class ContactController {
         helper.setText(content, true);
 
         emailSender.send(mimeMessage);
+
+        return ResponseEntity.ok().build();
     }
 
 }

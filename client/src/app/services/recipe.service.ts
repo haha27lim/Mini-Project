@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { Recipe, SavedRecipe } from '../models/recipe';
 import { RecipeIngredient } from '../models/recipeIngredient';
+import { ContactForm } from '../models/contact-form';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class RecipeService {
   private LIST_CUISINE_URI: string = "/api/list/cuisine";
   private LIST_DIET_URI: string = "/api/list/diet";
   private LIST_INGREDIENTS_URI: string = "/api/list/ingredients";
+  private CONTACT_EMAIL_URI: string = "/api/contact";
   private SAVE_RECIPE_URI: string = "/api/saverecipes";
 
   constructor(private httpClient: HttpClient) { }
@@ -156,20 +158,25 @@ export class RecipeService {
     }
   }
 
-  saveRecipe(savedRecipe: SavedRecipe): Promise<SavedRecipe> {
-    return lastValueFrom(this.httpClient.post<SavedRecipe>(this.SAVE_RECIPE_URI, savedRecipe));
+  sendContactEmail(contactForm: ContactForm): Promise<void> {
+    return lastValueFrom(this.httpClient.post<void>(this.CONTACT_EMAIL_URI, contactForm));
   }
 
-  deleteRecipe(savedRecipeId: number): Promise<void> {
-    return lastValueFrom(this.httpClient.delete<void>(`${this.SAVE_RECIPE_URI}/${savedRecipeId}`));
+  getAllSavedRecipes(): Promise<SavedRecipe[]> {
+    return lastValueFrom(this.httpClient.get<SavedRecipe[]>(this.SAVE_RECIPE_URI));
   }
 
   getSavedRecipes(userId: number): Promise<SavedRecipe[]> {
     return lastValueFrom(this.httpClient.get<SavedRecipe[]>(`${this.SAVE_RECIPE_URI}/${userId}`));
   }
 
-  getAllSavedRecipes(): Promise<SavedRecipe[]> {
-    return lastValueFrom(this.httpClient.get<SavedRecipe[]>(this.SAVE_RECIPE_URI));
+  saveRecipe(savedRecipe: SavedRecipe): Promise<SavedRecipe> {
+    return lastValueFrom(this.httpClient.post<SavedRecipe>(this.SAVE_RECIPE_URI, savedRecipe));
   }
+
+  deleteRecipe(id: number): Promise<void> {
+    return lastValueFrom(this.httpClient.delete<void>(`${this.SAVE_RECIPE_URI}/${id}`));
+  }
+
 
 }

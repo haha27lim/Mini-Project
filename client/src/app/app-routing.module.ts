@@ -28,6 +28,7 @@ import { AuthGuard } from './services/auth.guards';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { MapComponent } from './components/map/map.component';
 import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
+import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path:'listusers', component: ListusersComponent, canActivate: [AuthGuard] },
   { path:'createuser', component: CreateuserComponent, canActivate: [AuthGuard] },
   { path:'edituser/:id', component: EdituserComponent, canActivate: [AuthGuard] },
+  { path:'adminsavedrecipe', component: AdminsavedrecipeComponent, canActivate: [AuthGuard] },
   { path:'chat', component: ChatComponent, canActivate: [AuthGuard] },
   { path:'savedrecipe', component: SavedrecipeComponent, canActivate: [AuthGuard] },
   { path:'recipelist', component: RecipelistComponent },

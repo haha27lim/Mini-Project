@@ -22,9 +22,22 @@ public class SavedRecipeController {
     @Autowired
     private SaveRecipeService saveRecipeSvc;
 
+    @GetMapping
+    public ResponseEntity<List<SavedRecipe>> findAll() {
+        List<SavedRecipe> savedRecipes = saveRecipeSvc.findAll();
+        return ResponseEntity.ok(savedRecipes);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<SavedRecipe>> findByUserId(@PathVariable Long userId) {
+        List<SavedRecipe> savedRecipes = saveRecipeSvc.findByUserId(userId);
+        return ResponseEntity.ok(savedRecipes);
+    }
+
     @PostMapping
-    public SavedRecipe save(@RequestBody SavedRecipe savedRecipe) {
-        return saveRecipeSvc.save(savedRecipe);
+    public ResponseEntity<SavedRecipe> save(@RequestBody SavedRecipe savedRecipe) {
+        SavedRecipe saved = saveRecipeSvc.save(savedRecipe);
+        return ResponseEntity.ok(saved);
     }
 
     @DeleteMapping("/{id}")
@@ -32,15 +45,6 @@ public class SavedRecipeController {
         saveRecipeSvc.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-    @GetMapping("/{userId}")
-    public List<SavedRecipe> findByUserId(@PathVariable Long userId) {
-        return saveRecipeSvc.findByUserId(userId);
-    }
-
-    @GetMapping
-    public List<SavedRecipe> findAll() {
-        return saveRecipeSvc.findAll();
-    }
+    
 }
 
