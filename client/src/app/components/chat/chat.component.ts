@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-chat',
@@ -9,14 +8,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ChatComponent implements OnInit, AfterViewInit {
 
+  constructor(private tokenStorageService: TokenStorageService) { }
+
   @ViewChild('scroll', { static: false }) public scroll!: ElementRef
   ngAfterViewInit(): void {}
   ngOnInit(): void {
     const user = this.tokenStorageService.getUser();
     this.username = user.username;
   }
-
-  constructor(private tokenStorageService: TokenStorageService) { }
 
   scrollToBottom(): void {
     this.scroll.nativeElement.scrollTop += this.scroll.nativeElement.scrollHeight;
@@ -108,6 +107,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
       console.log('WebSocket error:', msg)
     }
   }
+
 
   openMessageBox(user: string): void {
     console.log('Opening textarea for: ' + user)

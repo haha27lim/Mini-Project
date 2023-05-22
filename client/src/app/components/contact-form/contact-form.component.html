@@ -36,8 +36,7 @@
                 <tr>
                     <td><label for="message">Message: </label></td>
                     <td>
-                        <textarea id="message" formControlName="message" placeholder="Leave us the message"
-                            required></textarea>
+                        <textarea id="message" formControlName="message" placeholder="Leave us the message" required></textarea>
                         <div *ngIf="form.get('message')?.invalid && (form.get('message')?.dirty || form.get('message')?.touched)"
                             class="text-danger">
                             Message is required

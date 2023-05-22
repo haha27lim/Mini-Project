@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
-import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { UserService } from 'src/app/services/user.service';
 import { SavedRecipe, UserRecipeCount } from 'src/app/models/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -23,7 +20,7 @@ export class AdminsavedrecipeComponent implements OnInit {
   constructor(private RecipeSvc: RecipeService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getAllSavedRecipesGroupByUser();
+    this.getAllRecipesGroupByUser();
     this.form = this.createForm();
     
   }
@@ -34,7 +31,7 @@ export class AdminsavedrecipeComponent implements OnInit {
     })
   }
 
-  getAllSavedRecipesGroupByUser(): void {
+  getAllRecipesGroupByUser(): void {
     this.RecipeSvc.getAllSavedRecipesGroupByUser()
       .then(RecipeSvc => {
         this.groupedSavedRecipes = RecipeSvc;

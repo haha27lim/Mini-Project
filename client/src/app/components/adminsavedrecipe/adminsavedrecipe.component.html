@@ -23,8 +23,11 @@
 
     <form [formGroup]="form" (ngSubmit)="searchUser()">
       <div class="input-group">
-        <input type="number" formControlName="userId" class="form-control" placeholder="Enter User ID" />
+        <input type="number" formControlName="userId" class="form-control" placeholder="Enter User ID" required/>
         <button type="submit" class="btn btn-primary">Search</button>
+        <div *ngIf="form.get('userId')?.invalid && (form.get('userId')?.dirty || form.get('userId')?.touched)" class="text-danger">
+          Enter user id is required
+        </div>
       </div>
     </form>
       
