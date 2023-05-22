@@ -28,8 +28,13 @@ h3 {
     opacity: .95;
 }
 
-li {
+th {
+    color: darkgreen;
+}
+
+td {
     color: darkblue;
+    font-size: x-large;
 }
 
 .btn-primary {

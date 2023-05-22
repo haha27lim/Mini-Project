@@ -42,3 +42,9 @@ export interface RecipeDetails {
     servings: number;
     readyInMinutes: number;
 }
+
+export interface UserRecipeCount {
+    userId: number;
+    username: string;
+    recipeCount: number;
+  }

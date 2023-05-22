@@ -1,14 +1,35 @@
 <div class="container">
     <h2>Admin: Saved Recipes by Users</h2>
-  
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Saved Recipes Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let group of groupedSavedRecipes">
+            <tr>
+              <td>{{ group.userId }}</td>
+              <td>{{ group.username }}</td>
+              <td>{{ group.recipeCount }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      
+    <br>
+
     <form [formGroup]="form" (ngSubmit)="searchUser()">
       <div class="input-group">
         <input type="number" formControlName="userId" class="form-control" placeholder="Enter User ID" />
         <button type="submit" class="btn btn-primary">Search</button>
       </div>
     </form>
-
+      
     <br>
+
     <h2>List of Saved Recipes: {{this.form.get('userId')?.value}}</h2>
     <table class="table">
         <thead>

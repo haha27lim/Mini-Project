@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Recipe, SavedRecipe } from '../models/recipe';
+import { Recipe, SavedRecipe, UserRecipeCount } from '../models/recipe';
 import { RecipeIngredient } from '../models/recipeIngredient';
 import { ContactForm } from '../models/contact-form';
 
@@ -178,5 +178,8 @@ export class RecipeService {
     return lastValueFrom(this.httpClient.delete<void>(`${this.SAVE_RECIPE_URI}/${id}`));
   }
 
+  getAllSavedRecipesGroupByUser(): Promise<UserRecipeCount[]> {
+    return lastValueFrom(this.httpClient.get<UserRecipeCount[]>(`${this.SAVE_RECIPE_URI}/group`));
+  }
 
 }

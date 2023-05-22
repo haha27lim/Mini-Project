@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.nus.iss.miniproject.models.RecipeDetails;
 import sg.edu.nus.iss.miniproject.models.SavedRecipe;
+import sg.edu.nus.iss.miniproject.models.UserRecipeCount;
 import sg.edu.nus.iss.miniproject.repositories.RecipeDetailsRepository;
 import sg.edu.nus.iss.miniproject.repositories.SaveRecipeRepository;
 
@@ -52,6 +53,10 @@ public class SaveRecipeService {
     public void deleteById(int id) {
         recipeDetailsRepository.deleteById(id);
         saveRecipeRepository.deleteById(id);
+    }
+
+    public List<UserRecipeCount> getAllSavedRecipesGroupByUser() {
+        return saveRecipeRepository.getAllSavedRecipesGroupByUser();
     }
     
 }

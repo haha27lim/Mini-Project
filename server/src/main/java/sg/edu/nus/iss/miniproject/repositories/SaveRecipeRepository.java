@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import sg.edu.nus.iss.miniproject.models.RecipeDetails;
 import sg.edu.nus.iss.miniproject.models.SavedRecipe;
+import sg.edu.nus.iss.miniproject.models.UserRecipeCount;
 
 @Repository
 public class SaveRecipeRepository {
@@ -80,6 +81,22 @@ public class SaveRecipeRepository {
     public void deleteById(int id) {
         template.update("DELETE FROM saved_recipes WHERE id = ?", id);
         recipeDetailsRepo.deleteById(id);
+    }
+
+    public List<UserRecipeCount> getAllSavedRecipesGroupByUser() {
+        String query = "SELECT u.id AS userId, u.username, COUNT(sr.id) AS recipeCount " +
+                       "FROM users u " +
+                       "LEFT JOIN saved_recipes sr ON u.id = sr.user_id " +
+                       "GROUP BY userId, u.username " + 
+                       "ORDER BY userId";
+
+        return template.query(query, (rs, rowNum) -> {
+            UserRecipeCount userRecipeCount = new UserRecipeCount();
+            userRecipeCount.setUserId(rs.getLong("userId"));
+            userRecipeCount.setUsername(rs.getString("username"));
+            userRecipeCount.setRecipeCount(rs.getInt("recipeCount"));
+            return userRecipeCount;
+        });
     }
     
 }
