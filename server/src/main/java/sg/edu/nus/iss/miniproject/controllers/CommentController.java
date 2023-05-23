@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sg.edu.nus.iss.miniproject.models.Comment;
 import sg.edu.nus.iss.miniproject.services.FoodService;
+import sg.edu.nus.iss.miniproject.services.MongoCommentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import org.springframework.http.ResponseEntity;
 public class CommentController {
     
     @Autowired
-    private FoodService foodSvc;
+    private MongoCommentService commentSvc;
 
     @PostMapping(path = "/comment", consumes= MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ResponseEntity<String> saveComment(@RequestParam String title, @RequestParam String name, @RequestParam String email,
@@ -32,7 +33,7 @@ public class CommentController {
         c.setSubject(subject);
 		c.setRating(rating);
 		c.setComment(comment);
-		Comment r = foodSvc.insertComment(c);
+		Comment r = commentSvc.insertComment(c);
 		return ResponseEntity
             .status(HttpStatus.OK)
             .contentType(MediaType.APPLICATION_JSON)

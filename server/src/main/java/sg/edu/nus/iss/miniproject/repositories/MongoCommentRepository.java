@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import sg.edu.nus.iss.miniproject.models.Comment;
 
 @Repository
-public class CommentRepository {
+public class MongoCommentRepository {
     
     @Autowired
     private MongoTemplate template;

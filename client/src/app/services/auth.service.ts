@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 
-const API_BASE_URL = '/api/auth';
+const BASE_URL = 'https://typical-deer-production.up.railway.app';
+const API_BASE_URL = `${BASE_URL}/api/auth`;
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

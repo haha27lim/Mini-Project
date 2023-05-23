@@ -3,22 +3,22 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { Recipe, RecipeNutrients, SavedRecipe, UserRecipeCount } from '../models/recipe';
 import { RecipeIngredient } from '../models/recipeIngredient';
-import { ContactForm } from '../models/contact-form';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
 
-  private SEARCH_URI: string = "/api/search";
-  private RANDOM_URI: string = "/api/random";
-  private DETAILS_URI: string = "/api/recipes";
-  private LIST_TYPE_URI: string = "/api/list/type";
-  private LIST_CUISINE_URI: string = "/api/list/cuisine";
-  private LIST_DIET_URI: string = "/api/list/diet";
-  private LIST_INGREDIENTS_URI: string = "/api/list/ingredients";
-  private LIST_NUTRIENTS_URI: string = "/api/list/nutrients";
-  private SAVE_RECIPE_URI: string = "/api/saverecipes";
+  private BASE_URL: string = "https://typical-deer-production.up.railway.app";
+  private SEARCH_URI: string = `${this.BASE_URL}/api/search`;
+  private RANDOM_URI: string = `${this.BASE_URL}/api/random`;
+  private DETAILS_URI: string = `${this.BASE_URL}/api/recipes`;
+  private LIST_TYPE_URI: string = `${this.BASE_URL}/api/list/type`;
+  private LIST_CUISINE_URI: string = `${this.BASE_URL}/api/list/cuisine`;
+  private LIST_DIET_URI: string = `${this.BASE_URL}/api/list/diet`;
+  private LIST_INGREDIENTS_URI: string = `${this.BASE_URL}/api/list/ingredients`;
+  private LIST_NUTRIENTS_URI: string = `${this.BASE_URL}/api/list/nutrients`;
+  private SAVE_RECIPE_URI: string = `${this.BASE_URL}/api/saverecipes`;
 
   constructor(private httpClient: HttpClient) { }
 

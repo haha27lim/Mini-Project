@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-center">
     <div class="container-fluid">
       <a class="navbar-brand" [routerLink]="['/home']">
-        <img src="../../assets/FoodAlchemy1.png" alt="FoodAlchemy" width="200" height="100" class="logo">
+        <img src="../../assets/FoodAlchemy1.png" alt="FoodAlchemy" width="180" height="100" class="logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link active single-line-link" [routerLink]="['/search']">ADV Search</a>
+            <a class="nav-link active single-line-link" [routerLink]="['/search']">ADVSearch</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active single-line-link" [routerLink]="['/healthylist']">HealthMunch</a>
@@ -69,7 +69,7 @@
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
         <a class="nav-link active" [routerLink]="['/profile']"><i class="bi bi-person-circle"></i> {{ username }}.profile</a>
-        <a class="nav-link active"  href="#" (click)="logout()"><i class="bi bi-person-circle"></i>Logout</a>
+        <a class="nav-link active" [routerLink]="['/home']" (click)="logout()"><i class="bi bi-person-circle"></i>Logout</a>
     </ul>
   </nav>
 </header>

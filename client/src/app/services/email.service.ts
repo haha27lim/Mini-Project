@@ -8,7 +8,8 @@ import { ContactForm } from '../models/contact-form';
 })
 export class EmailService {
 
-  private CONTACT_EMAIL_URI: string = "/api/contact";
+  private BASE_URL: string = "https://typical-deer-production.up.railway.app";
+  private CONTACT_EMAIL_URI: string = `${this.BASE_URL}/api/contact`;
 
   constructor(private httpClient: HttpClient) { }
 

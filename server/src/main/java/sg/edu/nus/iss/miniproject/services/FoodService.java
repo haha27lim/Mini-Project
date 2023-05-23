@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -20,17 +19,13 @@ import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
-import sg.edu.nus.iss.miniproject.models.Comment;
 import sg.edu.nus.iss.miniproject.models.Recipe;
 import sg.edu.nus.iss.miniproject.models.RecipeIngredient;
 import sg.edu.nus.iss.miniproject.models.RecipeNutrients;
-import sg.edu.nus.iss.miniproject.repositories.CommentRepository;
+
 
 @Service
 public class FoodService {
-    
-    @Autowired
-    private CommentRepository commentRepo;
     
     private static final String BASE_URL = "https://api.spoonacular.com/recipes/";
     private static final String COMPLEX_SEARCH = "complexSearch";
@@ -436,9 +431,4 @@ public class FoodService {
                 .toList();
     }
 
-
-
-    public Comment insertComment(Comment r){
-        return commentRepo.insertComment(r);
-    }
 }

@@ -16,4 +16,6 @@ export const TYPES = [
     "marinade", "fingerfood", "snack", "appetizer", "salad", "sauce", "beverage",
     "drink"
 ]
-  
+
+
+export const RECIPE_API = "https://typical-deer-production.up.railway.app/"

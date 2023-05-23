@@ -8,7 +8,8 @@ import { Comment } from '../models/recipe';
 })
 export class CommentService {
 
-  private COMMENTS_URI: string = "api/comment";
+  private BASE_URL: string = "https://typical-deer-production.up.railway.app";
+  private COMMENTS_URI: string = `${this.BASE_URL}/api/comment`;
 
   constructor(private httpClient: HttpClient) { }
 

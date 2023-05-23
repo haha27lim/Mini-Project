@@ -53,9 +53,9 @@ i {
   text-decoration: none;
 }
 
-.single-line-link {
+/* .single-line-link {
   white-space: nowrap;
-}
+} */
 
 .navbar-nav .nav-link.active {
   color: darkblue;

@@ -3,8 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
 import { User } from '../models/user';
 
-const API_BASE_URL = '/api/control';
-const USERS_URI = '/api/users';
+const BASE_URL = 'https://typical-deer-production.up.railway.app';
+
+const CONTROL_URL = `${BASE_URL}/api/control`;
+const USERS_URI = `${BASE_URL}/api/users`;
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +17,15 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   getPublicContent(): Observable<any> {
-    return this.httpClient.get(`${API_BASE_URL}/all`, { responseType: 'text' });
+    return this.httpClient.get(`${CONTROL_URL}/all`, { responseType: 'text' });
   }
 
   getUserBoard(): Observable<any> {
-    return this.httpClient.get(`${API_BASE_URL}/user`, { responseType: 'text' });
+    return this.httpClient.get(`${CONTROL_URL}/user`, { responseType: 'text' });
   }
 
   getAdminBoard(): Observable<any> {
-    return this.httpClient.get(`${API_BASE_URL}/admin`, { responseType: 'text' });
+    return this.httpClient.get(`${CONTROL_URL}/admin`, { responseType: 'text' });
   }
 
   getAllUsers(): Observable<User[]> {
