@@ -29,6 +29,7 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { MapComponent } from './components/map/map.component';
 import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
 import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
+import { NutrientlistComponent } from './components/nutrientlist/nutrientlist.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path:'listtype/:type', component: TypelistComponent },
   { path:'listcuisine/:cuisine', component: CuisinelistComponent },
   { path:'listdiet/:diet', component: DietlistComponent },
+  { path:'healthylist', component: NutrientlistComponent },
   { path: 'search', component: SearchComponent,
     children: [
       { path: 'advsearchresult/:cuisine', component: AdvancedSearchResultsComponent }

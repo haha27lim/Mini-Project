@@ -12,6 +12,7 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import sg.edu.nus.iss.miniproject.models.Recipe;
 import sg.edu.nus.iss.miniproject.models.RecipeIngredient;
+import sg.edu.nus.iss.miniproject.models.RecipeNutrients;
 import sg.edu.nus.iss.miniproject.services.FoodService;
 
 import java.io.IOException;
@@ -186,13 +187,35 @@ public class RecipeController {
 	public ResponseEntity<String> getIngredientsSearch(@RequestParam String ingredients,
 			@RequestParam int ranking, @RequestParam int number) throws IOException {
 		List<RecipeIngredient> recipeIngredients = foodSvc.searchRecipesIngredients(ingredients, ranking, number);
-		String result = foodSvc.toJsonArray(recipeIngredients);
+
+		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        for (RecipeIngredient recipe : recipeIngredients) {
+            arrayBuilder.add(recipe.toJSON());
+        }
 
 		return ResponseEntity
 			.status(HttpStatus.OK)
 			.contentType(MediaType.APPLICATION_JSON)
-			.body(result);
+			.body(arrayBuilder.build().toString());
 	}
 
+
+	@GetMapping(path = "/list/nutrients")
+	public ResponseEntity<String> getIngredientsSearch(@RequestParam(defaultValue="100") int maxCarbs,
+			@RequestParam(defaultValue="200") int maxCalories, @RequestParam(defaultValue="40") int maxFat
+			, @RequestParam int number) throws IOException {
+		List<RecipeNutrients> recipeNutrients = foodSvc.searchRecipesNutrients(maxCarbs, maxCalories, maxFat, number);
+		
+
+		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        for (RecipeNutrients recipe : recipeNutrients) {
+            arrayBuilder.add(recipe.toJSON());
+        }
+
+		return ResponseEntity
+			.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(arrayBuilder.build().toString());
+	}
 
 }

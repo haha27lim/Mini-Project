@@ -18,12 +18,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
-import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import sg.edu.nus.iss.miniproject.models.Comment;
 import sg.edu.nus.iss.miniproject.models.Recipe;
 import sg.edu.nus.iss.miniproject.models.RecipeIngredient;
+import sg.edu.nus.iss.miniproject.models.RecipeNutrients;
 import sg.edu.nus.iss.miniproject.repositories.CommentRepository;
 
 @Service
@@ -36,6 +36,7 @@ public class FoodService {
     private static final String COMPLEX_SEARCH = "complexSearch";
     private static final String RANDOM = "random";
     private static final String FINDINGREDIENTS = "findByIngredients";
+    private static final String FINDNUTRIENTS = "findByNutrients";
 
 	@Value("${apikey}")
     private String API_KEY;
@@ -396,13 +397,46 @@ public class FoodService {
                 .toList();
     }
 
-    public String toJsonArray(List<RecipeIngredient> recipeIngredients) {
-        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-        for (RecipeIngredient recipe : recipeIngredients) {
-            arrayBuilder.add(recipe.toJSON());
+
+    public List<RecipeNutrients> searchRecipesNutrients(int maxCarbs, int maxCalories, int maxFat, int number)
+            throws IOException {
+
+        String url = UriComponentsBuilder
+                .fromUriString(BASE_URL + FINDNUTRIENTS)
+                .queryParam("maxCarbs", maxCarbs)
+                .queryParam("maxCalories", maxCalories)
+                .queryParam("maxFat", maxFat)
+                .queryParam("number", number)
+                .queryParam("apiKey", API_KEY)
+                .toUriString();
+
+        RequestEntity<Void> req = RequestEntity.get(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .build();
+
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<String> resp = null;
+
+        try {
+            resp = template.exchange(req, String.class);
+        } catch (RestClientException ex) {
+            ex.printStackTrace();
+            return Collections.emptyList();
         }
-        return arrayBuilder.build().toString();
+
+        String payload = resp.getBody();
+        System.out.println("Payload: " + payload);
+
+        JsonReader reader = Json.createReader(new StringReader(payload));
+        JsonArray jsonArr = reader.readArray();
+
+        return jsonArr.stream()
+                .map(v -> v.asJsonObject())
+                .map(RecipeNutrients::toRecipeNutrients)
+                .toList();
     }
+
+
 
     public Comment insertComment(Comment r){
         return commentRepo.insertComment(r);

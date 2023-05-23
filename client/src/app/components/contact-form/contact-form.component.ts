@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { RecipeService } from 'src/app/services/recipe.service';
+import { EmailService } from 'src/app/services/email.service';
 
 
 @Component({
@@ -13,7 +12,7 @@ export class ContactFormComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private recipeSvc: RecipeService) { }
+  constructor(private fb: FormBuilder, private emailSvc: EmailService) { }
 
   ngOnInit(): void {
     this.form = this.createForm()
@@ -33,7 +32,7 @@ export class ContactFormComponent implements OnInit {
       return;
     }
 
-    this.recipeSvc.sendContactEmail(this.form.value)
+    this.emailSvc.sendContactEmail(this.form.value)
       .then(() => {
         alert('Contact Us Form submitted successfully! We will get back.');
         this.resetForm();

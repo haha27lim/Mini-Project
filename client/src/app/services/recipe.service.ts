@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Recipe, SavedRecipe, UserRecipeCount } from '../models/recipe';
+import { Recipe, RecipeNutrients, SavedRecipe, UserRecipeCount } from '../models/recipe';
 import { RecipeIngredient } from '../models/recipeIngredient';
 import { ContactForm } from '../models/contact-form';
 
@@ -17,7 +17,7 @@ export class RecipeService {
   private LIST_CUISINE_URI: string = "/api/list/cuisine";
   private LIST_DIET_URI: string = "/api/list/diet";
   private LIST_INGREDIENTS_URI: string = "/api/list/ingredients";
-  private CONTACT_EMAIL_URI: string = "/api/contact";
+  private LIST_NUTRIENTS_URI: string = "/api/list/nutrients";
   private SAVE_RECIPE_URI: string = "/api/saverecipes";
 
   constructor(private httpClient: HttpClient) { }
@@ -141,6 +141,16 @@ export class RecipeService {
     );
   }
   
+  getRecipesNutrients(maxCarbs: number, maxCalories: number, maxFat: number, number: number): Promise<RecipeNutrients[]> {
+    const params = new HttpParams()
+      .set('maxCarbs', maxCarbs.toString())
+      .set('maxCalories', maxCalories.toString())
+      .set('maxFat', maxFat.toString())
+      .set('number', number.toString())
+
+    return lastValueFrom(this.httpClient.get<RecipeNutrients[]>(this.LIST_NUTRIENTS_URI, { params: params }))
+  }
+
   shareRecipe(recipe: Recipe) {
     const shareUrl = 'https://example.com/recipes/' + recipe.id; // Replace with the actual URL of your recipe details page
 
@@ -156,10 +166,6 @@ export class RecipeService {
       console.log('Sharing was not able')
       console.log(shareUrl)
     }
-  }
-
-  sendContactEmail(contactForm: ContactForm): Promise<void> {
-    return lastValueFrom(this.httpClient.post<void>(this.CONTACT_EMAIL_URI, contactForm));
   }
 
   getAllSavedRecipes(): Promise<SavedRecipe[]> {

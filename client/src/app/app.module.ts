@@ -41,6 +41,7 @@ import { MapComponent } from './components/map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
 import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
+import { NutrientlistComponent } from './components/nutrientlist/nutrientlist.component';
 
 
 
@@ -76,7 +77,8 @@ import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsa
     ContactFormComponent,
     MapComponent,
     SavedrecipeComponent,
-    AdminsavedrecipeComponent
+    AdminsavedrecipeComponent,
+    NutrientlistComponent
   ],
   imports: [
     BrowserModule,

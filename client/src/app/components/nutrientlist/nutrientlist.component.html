@@ -1,0 +1,31 @@
+<div class="container">
+<h2 class="text-center mb-5">HealthMunch Recipes</h2>
+<p class="text-center mb-5">Delicious recipes have low in calories, fat and carbohydrates<br>
+</p>
+
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div *ngFor="let recipe of recipeNutrients" class="col">
+        <div class="pcard h-100">
+          <a [routerLink]="['/details', recipe.id]">
+            <img [src]="recipe.image ? recipe.image : '../../assets/placeholder.jpg'" class="card-img-top" alt="{{recipe.title}} image">
+          </a>          
+          <div class="pcard-body">
+            <h5 class="pcard-title">{{recipe.title}}</h5>
+            <ul class="pcard-text">
+                <li>Calories: {{recipe.calories}}</li>
+                <li>Carbs: {{recipe.carbs}}</li>
+                <li>Fat: {{recipe.fat}}</li>
+                <li>Protein: {{recipe.protein}}</li>
+            </ul>
+            <div class="pcard-button">
+              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+

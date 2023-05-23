@@ -48,3 +48,13 @@ export interface UserRecipeCount {
     username: string;
     recipeCount: number;
   }
+
+export interface RecipeNutrients {
+    id: number;
+    title: string;
+    image: string;
+    calories: number;
+    carbs: number;
+    fat: number;
+    protein: number;
+}
