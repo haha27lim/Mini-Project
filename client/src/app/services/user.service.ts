@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
 import { User } from '../models/user';
+import { BASE_URL } from '../constants';
 
-const BASE_URL = 'https://typical-deer-production.up.railway.app';
 
 const CONTROL_URL = `${BASE_URL}/api/control`;
 const USERS_URI = `${BASE_URL}/api/users`;

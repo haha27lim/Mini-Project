@@ -2,14 +2,14 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { Comment } from '../models/recipe';
+import { BASE_URL } from '../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
 
-  private BASE_URL: string = "https://typical-deer-production.up.railway.app";
-  private COMMENTS_URI: string = `${this.BASE_URL}/api/comment`;
+  private COMMENTS_URI: string = `${BASE_URL}/api/comment`;
 
   constructor(private httpClient: HttpClient) { }
 
