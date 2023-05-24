@@ -32,7 +32,6 @@ import { CommentComponent } from './components/comment/comment.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ListusersComponent } from './components/listusers/listusers.component';
 import { CreateuserComponent } from './components/createuser/createuser.component';
-import { trigger } from '@angular/animations';
 import { EdituserComponent } from './components/edituser/edituser.component';
 import { RandomRouletteComponent } from './components/random-roulette/random-roulette.component';
 import { ChatComponent } from './components/chat/chat.component';
@@ -42,6 +41,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
 import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
 import { NutrientlistComponent } from './components/nutrientlist/nutrientlist.component';
+import { MaterialModule } from './material/material.module';
 
 
 
@@ -84,6 +84,7 @@ import { NutrientlistComponent } from './components/nutrientlist/nutrientlist.co
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    MaterialModule,
     NgbModule,
     ReactiveFormsModule,
     FormsModule,

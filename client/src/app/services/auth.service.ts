@@ -5,7 +5,7 @@ import { TokenStorageService } from './token-storage.service';
 import { BASE_URL } from '../constants';
 
 
-const RECIPE_URL = `${BASE_URL}/api/auth`;
+const AUTH_URL = `${BASE_URL}/api/auth`;
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,14 +19,14 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   login(credentials:any): Observable<any> {
-    return this.httpClient.post(`${RECIPE_URL}/signin`, {
+    return this.httpClient.post(`${AUTH_URL}/signin`, {
       username: credentials.username,
       password: credentials.password
     }, httpOptions);
   }
 
   register(user: any): Observable<any> {
-    return this.httpClient.post(`${RECIPE_URL}/signup`, {
+    return this.httpClient.post(`${AUTH_URL}/signup`, {
       username: user.username,
       email: user.email,
       password: user.password

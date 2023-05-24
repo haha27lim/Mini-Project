@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import sg.edu.nus.iss.miniproject.models.Comment;
-import sg.edu.nus.iss.miniproject.services.FoodService;
 import sg.edu.nus.iss.miniproject.services.MongoCommentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
