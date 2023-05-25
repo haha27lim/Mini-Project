@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    //  I cache to session storage because random on homepage
+    //  Cache to session storage because random on homepage
     const popular = sessionStorage.getItem('popular')
     if (popular) {
       this.popularRecipes = JSON.parse(popular)

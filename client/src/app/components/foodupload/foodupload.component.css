@@ -1,0 +1,68 @@
+#app {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  #imageChooser {
+    margin-bottom: 20px;
+  }
+  
+  #demoImg {
+    cursor: pointer;
+  }
+  
+  .nutritionBar {
+    margin-bottom: 10px;
+  }
+  
+  .nutritionBar div {
+    width: 0;
+    height: 20px;
+    background-color: #2196F3;
+    transition: width 0.5s;
+  }
+  
+  .nutritionBar span {
+    margin-left: 10px;
+  }
+  
+  .recipe {
+    margin-bottom: 20px;
+  }
+  
+  .recipe h4 {
+    font-size: 18px;
+  }
+  
+  #spoonacular {
+    margin-top: 20px;
+  }
+  
+  #spoonacular img {
+    height: 40px;
+    margin-bottom: 10px;
+  }
+  
+  #hungry {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .nutritionBar {
+    margin-bottom: 10px;
+    height: 20px;
+    overflow: hidden;
+    background-color: #f2f2f2;
+  }
+  
+  .nutritionBar div {
+    background-color: #007bff;
+    height: 100%;
+  }
+  
+  

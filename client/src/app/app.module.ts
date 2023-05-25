@@ -42,6 +42,7 @@ import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.compo
 import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
 import { NutrientlistComponent } from './components/nutrientlist/nutrientlist.component';
 import { MaterialModule } from './material/material.module';
+import { FooduploadComponent } from './components/foodupload/foodupload.component';
 
 
 
@@ -78,7 +79,8 @@ import { MaterialModule } from './material/material.module';
     MapComponent,
     SavedrecipeComponent,
     AdminsavedrecipeComponent,
-    NutrientlistComponent
+    NutrientlistComponent,
+    FooduploadComponent
   ],
   imports: [
     BrowserModule,

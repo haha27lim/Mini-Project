@@ -1,0 +1,74 @@
+<div id="app">
+  <h1>Upload a food picture and see what happens...</h1>
+  <div id="imageChooser">
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="uploadFiles()" [disabled]="!selectedFile">Upload</button>
+    <button (click)="analyzeWithDemo()">Analyze with Demo Image</button>
+  </div>
+  <div *ngIf="analyzed; else notAnalyzed">
+    <p>
+      I think this is <span class="category">{{ analyzedImage.category.name.replace('_', ' ') }}</span> -
+      {{ probabilityText }}
+      I only know 50 different dishes right now, here's the <a href="https://spoonacular.com/food-api/docs#Image-Classification-Categories">full list</a>.
+    </p>
+  </div>
+  <ng-template #notAnalyzed>
+    <p>
+      &lt;- upload an image here, or see it with a <a href="#" (click)="analyzeWithDemo()">demo picture</a><span
+        style="position:relative;top:16px;left:5px;"></span>
+      <img align="center" [src]="demoImageUrl" id="demoImg" (click)="analyzeWithDemo()" />
+    </p>
+  </ng-template>
+  <div style="clear:both;"></div>
+  <div *ngIf="analyzed">
+    <h1>Nutrition profile of the average <span>{{ analyzedImage.category.name.replace('_', ' ') }}</span></h1>
+    <div id="calories" class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated"
+           role="progressbar"
+           [ngStyle]="{ width: analyzedImage.nutrition.calories.value + '%' }"
+           attr.aria-valuenow="({{ analyzedImage.nutrition.calories.value }} / {{ analyzedImage.nutrition.calories.value }}100) * 100"
+           aria-valuemin="0"
+           aria-valuemax="100">
+      </div>
+      <span>{{ analyzedImage.nutrition.calories.value }} {{ analyzedImage.nutrition.calories.unit }} calories</span>
+    </div>
+        
+    <div id="fat" class="progress">
+      <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
+           role="progressbar"
+           [ngStyle]="{ width: analyzedImage.nutrition.fat.value + '%' }"
+           attr.aria-valuenow="({{ analyzedImage.nutrition.fat.value}} / {{ analyzedImage.nutrition.fat.value }}100) * 100"
+           aria-valuemin="0"
+           aria-valuemax="100">
+      </div>
+      <span>{{ analyzedImage.nutrition.fat.value }} {{ analyzedImage.nutrition.fat.unit }} fat</span>
+    </div>
+    <div id="protein" class="progress">
+      <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+           role="progressbar"
+           [ngStyle]="{ width: analyzedImage.nutrition.protein.value + '%' }"
+           attr.aria-valuenow="({{ analyzedImage.nutrition.protein.value }} / {{ analyzedImage.nutrition.protein.value }}100) * 100"
+           aria-valuemin="0"
+           aria-valuemax="100">
+      </div>
+      <span>{{ analyzedImage.nutrition.protein.value }} {{ analyzedImage.nutrition.protein.unit }} protein</span>
+    </div>
+    <div id="carbs" class="progress">
+      <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated"
+           role="progressbar"
+           [ngStyle]="{ width: analyzedImage.nutrition.carbs.value + '%' }"
+           attr.aria-valuenow="({{ analyzedImage.nutrition.carbs.value }} / {{ analyzedImage.nutrition.carbs.value }}100) * 100"
+           aria-valuemin="0"
+           aria-valuemax="100">
+      </div>
+      <span>{{ analyzedImage.nutrition.carbs.value }} {{ analyzedImage.nutrition.carbs.unit }} carbs</span>
+    </div>
+    <h1 id="hungry">Craving something delicious? Check out these suggestions!</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let r of analyzedImage.recipes; let i = index" class="recipe">
+        <h4>{{ r.title }}</h4>
+        <a [href]="r.url"><img [src]="'https://spoonacular.com/recipeImages/' + r.id + '-240x150.' + r.imageType" /></a>
+      </div>
+    </div>
+  </div>
+</div>

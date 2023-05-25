@@ -55,12 +55,9 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Order(1)
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests().requestMatchers("/").permitAll()
                 .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
@@ -68,39 +65,22 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/control/**").permitAll()
                 .requestMatchers("/api/saverecipes/**").permitAll()
                 .requestMatchers("/api/contact/**").permitAll()
+                .requestMatchers("/api/upload/**").permitAll()
                 .requestMatchers("/websocket/**").permitAll()
                 .requestMatchers("typical-deer-production.up.railway.app/**").permitAll()
                 .requestMatchers("/static/**", "/css/**").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().authenticated().and()
+                .oauth2Login().and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
+                
+                
 
         http.authenticationProvider(authenticationProvider());
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-    }
-   
-    @Order(2)
-    @Bean
-    public SecurityFilterChain googleSecurityFilterChain(HttpSecurity http) throws Exception {
-
-        return http
-        .authorizeHttpRequests( authorizeConfig -> {
-            authorizeConfig.requestMatchers("/").permitAll();
-            authorizeConfig.requestMatchers("/login/**").permitAll();
-            authorizeConfig.requestMatchers("/error").permitAll();
-            authorizeConfig.requestMatchers("/favicon.ico").permitAll();
-            authorizeConfig.anyRequest().authenticated();
-        })
-        .oauth2Login(oauth -> {
-            oauth.loginPage("/login").permitAll();
-            oauth.defaultSuccessUrl("/private");
-            oauth.failureUrl("/login?error=true").permitAll();
-        })
-        .formLogin().loginPage("/login").and()
-        .csrf()
-        .disable()
-        .build();
     }
 
 }

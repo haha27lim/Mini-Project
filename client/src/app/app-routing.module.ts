@@ -30,6 +30,7 @@ import { MapComponent } from './components/map/map.component';
 import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
 import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
 import { NutrientlistComponent } from './components/nutrientlist/nutrientlist.component';
+import { FooduploadComponent } from './components/foodupload/foodupload.component';
 
 
 const routes: Routes = [
@@ -62,6 +63,7 @@ const routes: Routes = [
       { path:'ingredientssearchresult', component: IngredientsSearchResultComponent }
     ]},
   { path:'roulette', component: RandomRouletteComponent },
+  { path:'foodupload', component: FooduploadComponent },
   { path:'details/:id', component: DetailsComponent},
   { path:'comments/:title', component: CommentComponent},
   { path:'contactus', component: ContactFormComponent },
