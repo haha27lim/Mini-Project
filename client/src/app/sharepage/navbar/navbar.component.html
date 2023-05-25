@@ -41,7 +41,7 @@
             <a class="nav-link active single-line-link" [routerLink]="['/healthylist']">HealthMunch</a>
           </li> 
           <li class="nav-item">
-            <a class="nav-link active single-line-link" [routerLink]="['/dishbyingredients']">INGREDIENTS Genius</a>
+            <a class="nav-link active" [routerLink]="['/dishbyingredients']">INGREDIENTS Genius</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active single-line-link" [routerLink]="['/roulette']">RecipeROULETTE</a>
@@ -49,11 +49,14 @@
           <li class="nav-item">
             <a class="nav-link active single-line-link" [routerLink]="['/map']">MapNearby</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active single-line-link" [routerLink]="['/foodupload']">NutritionVision</a>
+          </li>
           <li class="nav-item" *ngIf="showAdminBoard">
             <a class="nav-link active single-line-link" [routerLink]="['/admin']"><b>ADMINBoard</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active single-line-link" *ngIf="isLoggedIn" [routerLink]="['/user']"><b>USERS' Community</b></a>
+            <a class="nav-link active" *ngIf="isLoggedIn" [routerLink]="['/user']"><b>USERS' Community</b></a>
           </li>
         </div>
       </div>
