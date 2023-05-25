@@ -1,9 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-
-
-
 @Component({
   selector: 'app-foodupload',
   templateUrl: './foodupload.component.html',
@@ -11,54 +8,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooduploadComponent implements OnInit {
 
-  demoImageUrl = 'https://spoonacular.com/recipeImages/635350-240x150.jpg';
-  uploadUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/images/analyze';
-  uploadHeaders = new HttpHeaders({
+  selectedFile!: File
+  analyzed = false
+  analyzedImage: any = {}
+  nutrition: any = {}
+
+  demoImage = 'https://spoonacular.com/recipeImages/635350-240x150.jpg'
+  url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/images/analyze'
+  headers = new HttpHeaders({
     'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
     'x-rapidapi-key': 'a3a062dbf2msh2a4ce26f4b370f9p1a0c59jsnebf262f45e9d'
   });
-  selectedFile!: File;
-  analyzed = false;
-  analyzedImage: any = {};
-  nutrition: any = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpclient: HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+      
+  }
 
   successCallback(data: any): void {
-    this.analyzedImage = data;
-    this.analyzed = true;
+    this.analyzedImage = data
+    this.analyzed = true
   }
 
   onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
+    this.selectedFile = event.target.files[0]
   }
 
 
   uploadFiles(): void {
-    const formData = new FormData();
-    formData.append('file', this.selectedFile);
+    const formData = new FormData()
+    formData.append('file', this.selectedFile)
 
-    this.http.post<any>(this.uploadUrl, formData, { headers: this.uploadHeaders })
-      .subscribe((data) => {
-        this.successCallback(data);
-      }, (error) => {
-        console.error(error);
-      });
+    this.httpclient.post<any>(this.url, formData, { headers: this.headers }).subscribe({
+      next: (data) => {
+        this.successCallback(data)
+      }, 
+      error: error => {
+        console.error(error)
+      }
+    });
   }
 
   analyzeWithDemo(): void {
-    const url = `${this.uploadUrl}?imageUrl=${encodeURIComponent(this.demoImageUrl)}`;
-    this.http.get<any>(url, { headers: this.uploadHeaders })
-      .subscribe(
-        (data) => {
-          this.successCallback(data);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    const url = `${this.url}?imageUrl=${encodeURIComponent(this.demoImage)}`
+    this.httpclient.get<any>(url, { headers: this.headers }).subscribe({
+      next: (data) => {
+        this.successCallback(data)
+      }, 
+      error: error => {
+        console.error(error)
+      }
+    });
   }
 
   get probabilityText(): string {
@@ -76,6 +77,6 @@ export class FooduploadComponent implements OnInit {
         return 'I\'m almost certain!';
       }
     }
-    return '';
+    return ''
   }
 }

@@ -120,3 +120,31 @@
     background-color: #7fffd4;
 }
   
+@media (max-width: 767px) {
+  h1 {
+    font-size: 32px;
+  }
+  
+  .progress {
+    height: 20px;
+  }
+  
+  .recipe h4 {
+    font-size: 16px;
+  }
+  
+  .recipe img {
+    max-width: 180px;
+  }
+  
+  #hungry {
+    font-size: 20px;
+  }
+  
+  .calories-value,
+  .fat-value,
+  .protein-value,
+  .carbs-value {
+    font-size: 16px;
+  }
+}
