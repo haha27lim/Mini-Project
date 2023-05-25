@@ -7,15 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -24,7 +19,6 @@ import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
-import sg.edu.nus.iss.miniproject.models.Classify;
 import sg.edu.nus.iss.miniproject.models.Recipe;
 import sg.edu.nus.iss.miniproject.models.RecipeIngredient;
 import sg.edu.nus.iss.miniproject.models.RecipeNutrients;
@@ -436,55 +430,5 @@ public class FoodService {
                 .map(RecipeNutrients::toRecipeNutrients)
                 .toList();
     }
-
-
-    public Classify postImageClassify(byte[] file, String filename) throws IOException {
-        String url = UriComponentsBuilder
-                .fromUriString("https://api.spoonacular.com/food/images/classify")
-                .queryParam("file", file)
-                .queryParam("apiKey", API_KEY)
-                .toUriString();
-        System.out.println("url > " + url);
-    
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-    
-        ByteArrayResource resource = new ByteArrayResource(file) {
-            @Override
-            public String getFilename() {
-                return filename;
-            }
-        };
-    
-        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        body.add("file", resource);
-    
-        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-    
-        RestTemplate template = new RestTemplate();
-        ResponseEntity<String> resp = null;
-
-        try {
-            resp = template.postForEntity(url, requestEntity, String.class);
-        } catch (RestClientException ex) {
-            ex.printStackTrace();
-            System.out.println("Error message: " + ex.getMessage());
-        }
-
-        if (resp != null && resp.getBody() != null) {
-            String payload = resp.getBody();
-            System.out.println("Payload: " + payload);
-
-            JsonReader reader = Json.createReader(new StringReader(payload));
-            JsonObject recResp = reader.readObject();
-            Classify classify = Classify.toClassify(recResp);
-
-            return classify;
-        } else {
-            // Handle the case where the response entity or its body is null
-            throw new RuntimeException("Failed to get a valid response");
-        }
-    }
-    
 
 }

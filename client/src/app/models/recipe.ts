@@ -58,9 +58,4 @@ export interface RecipeNutrients {
     fat: number;
     protein: number;
 }
-
-export interface Classify {
-    category: string;
-    probability: number;
-}
   
