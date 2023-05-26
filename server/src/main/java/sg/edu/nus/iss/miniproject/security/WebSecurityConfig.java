@@ -3,7 +3,6 @@ package sg.edu.nus.iss.miniproject.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -70,12 +69,9 @@ public class WebSecurityConfig {
                 .requestMatchers("typical-deer-production.up.railway.app/**").permitAll()
                 .requestMatchers("/static/**", "/css/**").permitAll()
                 .anyRequest().authenticated().and()
-                .oauth2Login().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
                 
-                
-
         http.authenticationProvider(authenticationProvider());
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
