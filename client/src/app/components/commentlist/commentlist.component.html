@@ -1,0 +1,32 @@
+<div class="container">
+    <div>
+        <h2>Comments</h2>
+        <div *ngIf="comments.length > 0; else noComments">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Dish</th>
+                        <th>Naame</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let comment of comments">
+                        <td>{{ comment.title }}</td>
+                        <td>{{ comment.name }}</td>
+                        <td>{{ comment.email }}</td>
+                        <td>{{ comment.subject }}</td>
+                        <td>{{ comment.rating }}</td>
+                        <td>{{ comment.comment }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #noComments>
+            <p>No comments found.</p>
+        </ng-template>
+    </div>
+</div>

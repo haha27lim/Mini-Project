@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.miniproject.controllers;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sg.edu.nus.iss.miniproject.models.Comment;
 import sg.edu.nus.iss.miniproject.services.MongoCommentService;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,4 +41,15 @@ public class CommentController {
             .contentType(MediaType.APPLICATION_JSON)
             .body(r.toJson().toString());
 	}
+
+    @GetMapping("/comment")
+    public ResponseEntity<List<Comment>> getAllComments() {
+        List<Comment> comments = commentSvc.getAllComments();
+        if (comments.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(comments);
+        }
+    }
+
 }

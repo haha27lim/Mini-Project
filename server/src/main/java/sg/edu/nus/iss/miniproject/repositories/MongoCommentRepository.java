@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.miniproject.repositories;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,4 +28,9 @@ public class MongoCommentRepository {
     public Comment insertComment (Comment r) {
         return template.insert(r, COMMENTS_COL);
     }
+
+    public List<Comment> getAllComments() {
+        return template.findAll(Comment.class, COMMENTS_COL);
+    }
+
 }

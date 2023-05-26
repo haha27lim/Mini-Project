@@ -27,4 +27,8 @@ export class CommentService {
       .post<Comment>(this.COMMENTS_URI, comment.toString(), {headers: headers}))      
   }
 
+  getAllComments(): Promise<any> {
+    return lastValueFrom(this.httpClient.get(this.COMMENTS_URI));
+  }
+  
 }

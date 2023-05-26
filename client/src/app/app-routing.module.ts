@@ -31,6 +31,7 @@ import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.compo
 import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
 import { NutrientlistComponent } from './components/nutrientlist/nutrientlist.component';
 import { FooduploadComponent } from './components/foodupload/foodupload.component';
+import { CommentlistComponent } from './components/commentlist/commentlist.component';
 
 
 const routes: Routes = [
@@ -66,6 +67,7 @@ const routes: Routes = [
   { path:'foodupload', component: FooduploadComponent },
   { path:'details/:id', component: DetailsComponent},
   { path:'comments/:title', component: CommentComponent},
+  { path:'commentslist', component: CommentlistComponent, canActivate: [AuthGuard]},
   { path:'contactus', component: ContactFormComponent },
   { path:'map', component: MapComponent },
   { path: '**', component: NotFoundComponent } 

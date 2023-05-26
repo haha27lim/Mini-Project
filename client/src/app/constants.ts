@@ -19,3 +19,6 @@ export const TYPES = [
 
 export const BASE_URL = "http://localhost:8080"
 // export const BASE_URL = "https://typical-deer-production.up.railway.app"
+
+export const WS_BASE_URL = "localhost:8080"
+// export const WS_BASE_URL = "typical-deer-production.up.railway.app"

@@ -1,0 +1,42 @@
+h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color:purple;
+}
+
+.container {
+    min-height: 66vh;
+}
+
+.btn-primary {
+    background-color: darkorchid;
+    border: none;
+}
+  
+.btn-primary:hover {
+    background-color: #7fffd4;
+}
+
+td {
+    color: darkblue;
+}
+
+@media (max-width: 767px) {
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .container {
+      min-height: 50vh;
+    }
+    
+    .btn-primary {
+      font-size: 14px;
+    }
+    
+    td {
+      font-size: 12px;
+    }
+  }
+  

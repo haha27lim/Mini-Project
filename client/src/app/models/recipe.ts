@@ -21,6 +21,7 @@ export interface ExtendedIngredients {
 }
 
 export interface Comment {
+    
     title: string;
     name: string;
     email: string;

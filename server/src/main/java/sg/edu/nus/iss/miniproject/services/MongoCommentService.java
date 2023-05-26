@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.miniproject.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +17,9 @@ public class MongoCommentService {
     public Comment insertComment(Comment r){
         return commentRepo.insertComment(r);
     }
+
+    public List<Comment> getAllComments() {
+        return commentRepo.getAllComments();
+    }
+
 }
