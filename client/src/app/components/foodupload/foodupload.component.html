@@ -3,7 +3,8 @@
     <div id="app">
       <h1>Upload a food picture and see what happens...</h1>
       <div id="imageChooser">
-        <input type="file" (change)="onFileSelected($event)">
+        <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        <p class="error-message" *ngIf="selectedFile && selectedFile.size > 10485760">File should not exceed 10MB in size</p>
         <button class="btn btn-primary" (click)="uploadFiles()" [disabled]="!selectedFile">Upload</button>
       </div>
       <div *ngIf="analyzed; else notAnalyzed">
