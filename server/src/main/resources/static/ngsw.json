@@ -1,0 +1,127 @@
+{
+  "configVersion": 1,
+  "timestamp": 1685111601508,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/FoodAlchemy1.png",
+        "/assets/banner.png",
+        "/favicon.ico",
+        "/index.html",
+        "/main.1797c37a9a603751.js",
+        "/manifest.webmanifest",
+        "/polyfills.4709fd955acb2242.js",
+        "/runtime.7ae29a296d479790.js",
+        "/styles.c676392fb113f02d.css"
+      ],
+      "patterns": [
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/bootstrap@5\\.3\\.0-alpha3\\/dist\\/css\\/bootstrap\\.min\\.css",
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/bootstrap-icons@1\\.10\\.4\\/font\\/bootstrap-icons\\.css"
+      ]
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/Dining.jpg",
+        "/assets/FoodAlchemy.jpg",
+        "/assets/Recipebanner.jpg",
+        "/assets/bannerimg.jpg",
+        "/assets/dimsum.jpg",
+        "/assets/fridge.jpg",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/japan bento.jpg",
+        "/assets/pasta.jpg",
+        "/assets/placeholder.jpg",
+        "/assets/pork knuckle.jpg",
+        "/assets/vegetarian.jpg",
+        "/bannerimg.a9767aba5b41da9c.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-perform",
+      "patterns": [
+        "\\/api\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 5,
+      "maxAge": 21600000,
+      "timeoutMs": 10000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/assets/Dining.jpg": "489bebf3f86ebb1a8d6f42c67d6e2f8e65432ae4",
+    "/assets/FoodAlchemy.jpg": "410922baf8f4a00535fb25edbfcd7142a1cb936d",
+    "/assets/FoodAlchemy1.png": "d21bde6586921024ef8b1810132dbeb77dcd7edd",
+    "/assets/Recipebanner.jpg": "e0f373c71e9064d703547f6a3687f5e8115b46cc",
+    "/assets/banner.png": "64acca2224616d2bf50da5460a003f8a18fc1cf9",
+    "/assets/bannerimg.jpg": "ab03034ee8b48f7080dc629f39645df75e57b648",
+    "/assets/dimsum.jpg": "7a7a74b3e21dd291c473a14f154f216fe6ce3f46",
+    "/assets/fridge.jpg": "1ef79bb09b83eb98835797ffd3dfd13d59622a0d",
+    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/assets/japan bento.jpg": "0c7a86b278c1721c0a95463947072955d162f682",
+    "/assets/pasta.jpg": "bc041ee6ef7f5345ced2a8150cef400ddca77eb3",
+    "/assets/placeholder.jpg": "cfa7ac6811953a21456cd4a4e9f5eb87e9b3ece4",
+    "/assets/pork knuckle.jpg": "f61fba4fc0b277161637a77a4fe57022514b7120",
+    "/assets/vegetarian.jpg": "6ca3f96ee0d33b8d17c17c1d4882248c4bcef730",
+    "/bannerimg.a9767aba5b41da9c.jpg": "ab03034ee8b48f7080dc629f39645df75e57b648",
+    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/index.html": "44f795649316bbf2a41132e2f7a687f48314d41f",
+    "/main.1797c37a9a603751.js": "7e42af5145ec20f9ce325a43469c9f79fbe9c0d0",
+    "/manifest.webmanifest": "6bd446cf481e91dc7da6926e0d9b5fb2029c63fa",
+    "/polyfills.4709fd955acb2242.js": "e84ccb31e4635abe840faa80b63e4b3d65ce4212",
+    "/runtime.7ae29a296d479790.js": "12cfdfd450f222fe2f70ddee2f8c81d4e8b4d5e7",
+    "/styles.c676392fb113f02d.css": "3774c8d9636d034d80110837e6f5b7212f15bc45"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

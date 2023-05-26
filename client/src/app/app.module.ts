@@ -41,7 +41,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { SavedrecipeComponent } from './components/savedrecipe/savedrecipe.component';
 import { AdminsavedrecipeComponent } from './components/adminsavedrecipe/adminsavedrecipe.component';
 import { NutrientlistComponent } from './components/nutrientlist/nutrientlist.component';
-import { MaterialModule } from './material/material.module';
 import { FooduploadComponent } from './components/foodupload/foodupload.component';
 
 
@@ -86,7 +85,6 @@ import { FooduploadComponent } from './components/foodupload/foodupload.componen
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule,
     NgbModule,
     ReactiveFormsModule,
     FormsModule,

@@ -64,7 +64,6 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/control/**").permitAll()
                 .requestMatchers("/api/saverecipes/**").permitAll()
                 .requestMatchers("/api/contact/**").permitAll()
-                .requestMatchers("/api/upload/**").permitAll()
                 .requestMatchers("/websocket/**").permitAll()
                 .requestMatchers("typical-deer-production.up.railway.app/**").permitAll()
                 .requestMatchers("/static/**", "/css/**").permitAll()
