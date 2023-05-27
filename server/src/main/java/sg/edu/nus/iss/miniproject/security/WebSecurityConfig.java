@@ -57,7 +57,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests().requestMatchers("/").permitAll()
+                .requestMatchers("/**").permitAll()
                 .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/users/**").permitAll()
@@ -66,12 +69,9 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/contact/**").permitAll()
                 .requestMatchers("/api/comment/**").permitAll()
                 .requestMatchers("/websocket/**").permitAll()
-                .requestMatchers("https://typical-deer-production.up.railway.app/**").permitAll()
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("https://foodalchemy.up.railway.app/**").permitAll()
                 .requestMatchers("/static/**", "/css/**").permitAll()
-                .anyRequest().authenticated().and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
+                .anyRequest().authenticated();
                 
         http.authenticationProvider(authenticationProvider());
 

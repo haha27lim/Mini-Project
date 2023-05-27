@@ -1,31 +1,34 @@
 <h2 class="text-center mb-5">Search Result</h2>
 
 <div class="container" *ngIf="recipes.length > 0; else noResults">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div *ngFor="let recipe of recipes" class="col">
-        <div class="pcard h-100">
-          <a [routerLink]="['/details', recipe.id]">
-            <img [src]="recipe.image ? recipe.image : '../../assets/placeholder.jpg'" class="card-img-top" alt="{{recipe.title}} image">
-          </a>
-          <div class="pcard-body">
-            <h5 class="pcard-title">{{recipe.title}}</h5>
-            <p class="pcard-text">
-              Ready in {{recipe.readyInMinutes}}{{' '}}
-              minutes - {{recipe.servings}}{{' '}}
-              Servings
-            </p>
-            <div class="pcard-button">
-              <a class="btn btn-primary" [routerLink]="['/details', recipe.id]" (click)="showRecipeDetails(recipe.id)">View Recipe</a>
-            </div>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div *ngFor="let recipe of recipes" class="col">
+      <div class="pcard h-100">
+        <a [routerLink]="['/details', recipe.id]">
+          <img [src]="recipe.image ? recipe.image : '../../assets/placeholder.jpg'" class="card-img-top"
+            alt="{{recipe.title}} image">
+        </a>
+        <div class="pcard-body">
+          <h5 class="pcard-title">{{recipe.title}}</h5>
+          <p class="pcard-text">
+            Ready in {{recipe.readyInMinutes}}{{' '}}
+            minutes - {{recipe.servings}}{{' '}}
+            Servings
+          </p>
+          <div class="pcard-button">
+            <a class="btn btn-primary" [routerLink]="['/details', recipe.id]"
+              (click)="showRecipeDetails(recipe.id)">View Recipe</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <ng-template #noResults>
+</div>
+<ng-template #noResults>
+  <div class="container">
     <tr>
       <td colspan="2" class="text-center">Your search produces no result.</td>
     </tr>
-  </ng-template>
-  <br>
-
+  </div>
+</ng-template>
+<br>

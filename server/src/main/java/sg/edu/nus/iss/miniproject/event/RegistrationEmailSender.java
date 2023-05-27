@@ -26,7 +26,7 @@ public class RegistrationEmailSender implements ApplicationListener<Registration
         // 1. Get the newly registered user
         theUser = event.getUser();
         // 2. Build the home URL to be sent to the user
-        String url = "http://localhost:4200/#/home";
+        String url = "https://foodalchemy.up.railway.app/#/home";
         // 3. Send the welcome email.
         try {
             sendRegistrationEmail(url);

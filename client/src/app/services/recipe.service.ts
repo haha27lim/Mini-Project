@@ -152,7 +152,7 @@ export class RecipeService {
   }
 
   shareRecipe(recipe: Recipe) {
-    const shareUrl = 'https://example.com/recipes/' + recipe.id; // Replace with the actual URL of your recipe details page
+    const shareUrl = 'https://foodalchemy.up.railway.app/#/details/' + recipe.id; 
 
     if (navigator.share) {
       navigator.share({

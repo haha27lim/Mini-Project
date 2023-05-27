@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/app/environments/environment';
 
 @Component({
   selector: 'app-foodupload',
@@ -14,11 +15,8 @@ export class FooduploadComponent implements OnInit {
   nutrition: any = {}
 
   demoImage = 'https://spoonacular.com/recipeImages/635350-240x150.jpg'
-  url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/images/analyze'
-  headers = new HttpHeaders({
-    'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-    'x-rapidapi-key': 'a3a062dbf2msh2a4ce26f4b370f9p1a0c59jsnebf262f45e9d'
-  });
+  url = environment.url;
+  headers = environment.headers;
 
   constructor(private httpclient: HttpClient) {}
 
