@@ -49,7 +49,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   shareRecipe(recipe: Recipe) {
-    this.recipeSvc.shareRecipe(recipe);
+    this.recipeSvc.shareRecipe(recipe)
   }
 
   saveRecipe(recipeId: number): void {

@@ -157,13 +157,13 @@ export class RecipeService {
     if (navigator.share) {
       navigator.share({
         title: recipe.title,
-        text: 'Check out on this nice and delicious recipe: ' + recipe.title,
+        text: 'Check out this nice and delicious recipe: ' + recipe.title,
         url: shareUrl
       })
-      .then(() => console.log('Recipe was shared successful'))
-      .catch((error) => console.log('Error on sharing:', error));
+      .then(() => {alert('Recipe was shared successful')})
+      .catch((error) => {alert('Error on sharing: ' + JSON.stringify(error))});
     } else {
-      console.log('Sharing was not able')
+      console.log('Sharing was not available')
       console.log(shareUrl)
     }
   }
