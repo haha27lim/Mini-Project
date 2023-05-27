@@ -10,20 +10,6 @@
     max-width: 100%;
   }
   
-  .banner-content {
-    position: absolute;
-    top: 40%;
-    left: 65%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .banner-content h1 {
-    font-size: 40px;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-  }
-  
 h2 {
     font-size: 40px;
     font-weight: 600;
@@ -52,7 +38,6 @@ h2 {
   }
 
   .container {
-    
     justify-content: center;
   }
   
@@ -256,12 +241,6 @@ a {
 }
 
 @media screen and (max-width: 767px) {
-
-  .banner-content {
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
   
   h2 {
     font-size: 32px;
