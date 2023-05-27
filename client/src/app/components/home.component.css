@@ -10,14 +10,17 @@
     max-width: 100%;
   }
   
-.banner h1 {
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
+  .banner-content {
     position: absolute;
     top: 40%;
     left: 65%;
     transform: translate(-50%, -50%);
+  }
+  
+  .banner-content h1 {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
     text-align: center;
   }
   
@@ -38,7 +41,7 @@ h2 {
   
   .caption {
     position: absolute;
-    bottom: -20px;
+    bottom: -25px;
     left: 0;
     right: 0;
     text-align: center;
@@ -203,39 +206,6 @@ html {
   z-index: -1;
 }
 
-@media screen and (max-width: 767px) {
-  .card-container {
-    width: 100%;
-    margin: 25px auto 0;
-    max-width: 350px;
-  }
-
-  .card {
-    padding: 10px 20px;
-  }
-
-  .card-title {
-    font-size: 36px;
-    line-height: 42px;
-  }
-
-  .card-description {
-    font-size: 14px;
-    line-height: 18px;
-  }
-
-  .card-media {
-    position: static;
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-  }
-
-  .card-shadow {
-    display: none;
-  }
-}
-
 /*  Popular Picks cards */
 
 .pcard {
@@ -286,28 +256,68 @@ a {
 }
 
 @media screen and (max-width: 767px) {
-  .pcard {
-    padding: 20px;
+
+  .banner-content {
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  h2 {
+    font-size: 32px;
   }
 
-  .pcard-title {
+  .circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .caption {
+    font-size: 16px;
+    bottom: -25px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .circular-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 10px;
+  }
+
+
+  .card-container {
+    width: 100%;
+    margin: 25px auto 0;
+    max-width: 350px;
+  }
+
+  .card {
+    padding: 10px 20px;
+  }
+
+  .card-title {
     font-size: 36px;
     line-height: 42px;
   }
 
-  .pcard-description {
+  .card-description {
     font-size: 14px;
     line-height: 18px;
   }
 
-  .pcard-media {
+  .card-media {
     position: static;
     width: 100%;
     height: auto;
     margin-top: 20px;
   }
 
-  .pcard-shadow {
+  .card-shadow {
     display: none;
   }
 }
