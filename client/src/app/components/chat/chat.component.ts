@@ -39,7 +39,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   login(): void {
     console.log(this.username)
-    this.ws = new WebSocket(`ws://${WS_BASE_URL}/websocket/${this.username}`)
+    this.ws = new WebSocket(`wss://${WS_BASE_URL}/websocket/${this.username}`)
     this.ws.onopen = (msg: any) => {
       console.log('Chat connect', msg)
       this.isLoginPage = false
