@@ -55,8 +55,8 @@ public class RecipeController {
 			.body(result.toString());
 	}
 
-	@GetMapping(path = "/search/{cuisine}")
-	public ResponseEntity<String> getSearch(@PathVariable String cuisine, @RequestParam(name="query", required = true) String title,
+	@GetMapping(path = "/advsearch")
+	public ResponseEntity<String> getSearch(@RequestParam(name="query", required = true) String title, @RequestParam (name = "cuisine", required = false) String cuisine, 
 		@RequestParam(name = "diet", required = false) String diet, @RequestParam(name = "excludeIngredients", required = false) 
 		String excludeIngredients, @RequestParam boolean recipeinfo, @RequestParam int number) {
 

@@ -7,7 +7,7 @@ export const CUISINES = [
 
 
 export const DIETS = [
-    "none", "vegetarian", "vegan", "gluten free", "ketogenic", "lacto-vegetarian", "ovo-vegetarian", 
+    "vegetarian", "vegan", "gluten free", "ketogenic", "lacto-vegetarian", "ovo-vegetarian", 
     "pescetarian", "paleo", "primal", "low FODMAP", "whole30"
 ]
 

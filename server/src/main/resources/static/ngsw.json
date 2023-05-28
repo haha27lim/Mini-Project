@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1685272638983,
+  "timestamp": 1685305455403,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "/assets/banner.png",
         "/favicon.ico",
         "/index.html",
-        "/main.10c56c2adad2cdf3.js",
+        "/main.d8bb825631e594df.js",
         "/manifest.webmanifest",
         "/polyfills.4709fd955acb2242.js",
         "/runtime.7ae29a296d479790.js",
@@ -98,8 +98,8 @@
     "/assets/vegetarian.jpg": "40de3c7532aa8ace5723d0083f6816e657f856e8",
     "/bannerimg.8d7d908cc69f9e86.jpg": "ae261c395fe99227a199b341526d04edf4a08f2b",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "0fa41f11a69dc6925fa02723b6ccdfcbd7edaa41",
-    "/main.10c56c2adad2cdf3.js": "238657751c90866f6b93b67bcfe00fc0c06e0bb5",
+    "/index.html": "2b259b73da78794d9432c78095bd9c147a955214",
+    "/main.d8bb825631e594df.js": "15ca39cd8e1b39f732a555077f3ba958917edbb8",
     "/manifest.webmanifest": "816bdb314564c124e9858fb62182fed7ac869b0a",
     "/polyfills.4709fd955acb2242.js": "e84ccb31e4635abe840faa80b63e4b3d65ce4212",
     "/runtime.7ae29a296d479790.js": "12cfdfd450f222fe2f70ddee2f8c81d4e8b4d5e7",

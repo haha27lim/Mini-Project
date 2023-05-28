@@ -1,14 +1,9 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CUISINES, TYPES } from 'src/app/constants';
+import { CUISINES, DIETS, TYPES } from 'src/app/constants';
 import { Recipe } from 'src/app/models/recipe';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-
-const DIETS = [
-  "vegetarian", "vegan", "gluten free", "ketogenic", "lacto-vegetarian", "ovo-vegetarian", 
-  "pescetarian", "paleo", "primal", "low FODMAP", "whole30"
-]
 
 @Component({
   selector: 'app-navbar',

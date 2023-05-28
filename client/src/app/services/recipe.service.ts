@@ -11,6 +11,7 @@ import { BASE_URL } from '../constants';
 export class RecipeService {
 
   private SEARCH_URI: string = `${BASE_URL}/api/search`;
+  private ADVSEARCH_URI: string = `${BASE_URL}/api/advsearch`;
   private RANDOM_URI: string = `${BASE_URL}/api/random`;
   private DETAILS_URI: string = `${BASE_URL}/api/recipes`;
   private LIST_TYPE_URI: string = `${BASE_URL}/api/list/type`;
@@ -41,7 +42,7 @@ export class RecipeService {
       );
   }
   
-  getSearch(cuisine: string, title: string, addRecipeInformation: boolean, number: number, diet?: string,
+  getSearch(title: string, addRecipeInformation: boolean, number: number, cuisine?: string, diet?: string,
      excludeIngredients?: string): Promise<Recipe[]> {
     let params = new HttpParams()
       .set('query', title)
@@ -58,7 +59,7 @@ export class RecipeService {
       params = params.set('excludeIngredients', excludeIngredients);
     }
 
-    return lastValueFrom(this.httpClient.get<Recipe[]>(`${this.SEARCH_URI}/${cuisine}`, { params: params })).then(
+    return lastValueFrom(this.httpClient.get<Recipe[]>(this.ADVSEARCH_URI, { params: params })).then(
         (recipes) => {
           console.log('Found recipes:', recipes);
           return recipes;

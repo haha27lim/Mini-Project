@@ -17,8 +17,7 @@ export class SearchComponent implements OnInit {
   diets = DIETS
   title!: string
 
-  constructor(private fb: FormBuilder, private router: Router, private recipeSvc: RecipeService,
-    private activatedRoute: ActivatedRoute ) {}
+  constructor(private fb: FormBuilder, private router: Router ) {}
 
   ngOnInit() {
     this.form = this.createForm();
@@ -36,7 +35,7 @@ export class SearchComponent implements OnInit {
     const diet = this.form?.value['diet']
     const excludeIngredients = this.form?.value['excludeingredients']
     console.log('>>>title: ', title)
-    this.router.navigate(['/search/advsearchresult', cuisine], {queryParams: {query: title, addRecipeInformation, diet, excludeIngredients }});
+    this.router.navigate(['/search/advsearchresult'], {queryParams: {query: title, cuisine, addRecipeInformation, diet, excludeIngredients }});
   }
 
   private createForm(): FormGroup {

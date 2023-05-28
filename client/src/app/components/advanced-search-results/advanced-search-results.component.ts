@@ -34,7 +34,7 @@ export class AdvancedSearchResultsComponent implements OnInit, OnDestroy {
       this.number = params['number'];
       this.diet = params['diet'];
       this.excludeIngredients = params['excludeIngredients'];
-      this.recipeSvc.getSearch(this.cuisine, this.title, this.addRecipeInformation, 32,
+      this.recipeSvc.getSearch(this.title, this.addRecipeInformation, 32, this.cuisine, 
         this.diet, this.excludeIngredients)
        .then(recipes => this.recipes = recipes);
     });

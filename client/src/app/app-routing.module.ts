@@ -57,7 +57,7 @@ const routes: Routes = [
   { path:'healthylist', component: NutrientlistComponent },
   { path: 'search', component: SearchComponent,
     children: [
-      { path: 'advsearchresult/:cuisine', component: AdvancedSearchResultsComponent }
+      { path: 'advsearchresult', component: AdvancedSearchResultsComponent }
     ]},
   { path:'dishbyingredients', component: IngredientsComponent,
     children: [
