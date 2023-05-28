@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private fb: FormBuilder,
-    private router: Router, private toastr: ToastrService, private ngZone: NgZone) {}
+    private router: Router, private ngZone: NgZone) {}
 
   ngOnInit(): void {
     this.form = this.createForm()
@@ -54,9 +54,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.reloadPage();
       },
       error: (err) => {
-        this.errorMessage = err?.error?.message || 'An error occurred';
+        this.errorMessage = err?.error?.message || 'Please use the correct username or password.'
         this.isLoginFailed = true
-        this.toastr.error('Login failed! Please use the correct username or password', this.errorMessage);
       }
     });
   }
