@@ -40,7 +40,7 @@ export class EdituserComponent implements OnInit {
       const user = this.form.value;
       this.userService.updateUser(this.userId, user).subscribe(() => {
         this.toastr.success('User updated successfully.', 'Success');
-        this.router.navigate(['/users']);
+        this.router.navigate(['/listusers']);
       });
     }
   }

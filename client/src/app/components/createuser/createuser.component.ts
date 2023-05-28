@@ -40,7 +40,7 @@ export class CreateuserComponent {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.toastr.success('Successfully created user.', 'Success')
-        this.router.navigate(['/users']);
+        this.router.navigate(['/listusers']);
       },
       error: err => {
         this.errorMessage = err.error.message;
