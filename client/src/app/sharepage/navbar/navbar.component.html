@@ -35,14 +35,14 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link active single-line-link" [routerLink]="['/search']">ADVSearch</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link active single-line-link" [routerLink]="['/healthylist']">HealthMunch</a>
           </li> 
           <li ngbDropdown class="nav-item">
             <a class="nav-link active" ngbDropdownToggle>Features</a>
             <ul ngbDropdownMenu class="dropdown-menu">
+              <li ngbDropdownItem>
+                <a class="dropdown-link" [routerLink]="['/search']">ADVSearch</a>
+              </li>
               <li ngbDropdownItem>
                 <a class="dropdown-link" [routerLink]="['/dishbyingredients']">INGREDIENTS Genius</a>
               </li>
