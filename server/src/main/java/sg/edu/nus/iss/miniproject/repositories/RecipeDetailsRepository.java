@@ -12,9 +12,16 @@ public class RecipeDetailsRepository {
     @Autowired
     private JdbcTemplate template;
 
+    private final String insertSQL = "INSERT INTO recipe_details (saved_recipe_id, servings, ready_in_minutes) VALUES (?, ?, ?)";
+
+    private final String findByIdSQL = "SELECT * FROM recipe_details WHERE saved_recipe_id = ?";
+
+    private final String deleteByIdSQL = "DELETE FROM recipe_details WHERE saved_recipe_id = ?";
+
+
     public void save(RecipeDetails recipeDetails) {
         template.update(
-            "INSERT INTO recipe_details (saved_recipe_id, servings, ready_in_minutes) VALUES (?, ?, ?)",
+            insertSQL,
             recipeDetails.getSavedRecipeId(),
             recipeDetails.getServings(),
             recipeDetails.getReadyInMinutes()
@@ -22,8 +29,7 @@ public class RecipeDetailsRepository {
     }
 
     public RecipeDetails findBySavedRecipeId(int savedRecipeId) {
-        String query = "SELECT * FROM recipe_details WHERE saved_recipe_id = ?";
-        return template.queryForObject(query, (rs, rowNum) -> {
+        return template.queryForObject(findByIdSQL, (rs, rowNum) -> {
             RecipeDetails recipeDetails = new RecipeDetails();
             recipeDetails.setSavedRecipeId(rs.getInt("saved_recipe_id"));
             recipeDetails.setServings(rs.getInt("servings"));
@@ -33,8 +39,7 @@ public class RecipeDetailsRepository {
     }
     
     public void deleteById(int savedRecipeId) {
-        template.update("DELETE FROM recipe_details WHERE saved_recipe_id = ?", savedRecipeId);
+        template.update(deleteByIdSQL, savedRecipeId);
     }
 
-    
 }

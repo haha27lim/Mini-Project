@@ -21,11 +21,15 @@ public class RoleRepository {
     @Autowired
     private JdbcTemplate template;
     
+    private final String insertSQL = "INSERT INTO roles (name) VALUES (?)";
+
+    private final String findByNameSQL = "SELECT * FROM roles WHERE name = ?";
+    
     public Role save(Role role) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         template.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(
-                    "INSERT INTO roles (name) VALUES (?)",
+                    insertSQL,
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, role.getName().toString());
             return ps;
@@ -39,8 +43,7 @@ public class RoleRepository {
 
     
     public Optional<Role> findByName(ERole eRole) {
-        String sql = "SELECT * FROM roles WHERE name = ?";
-        Role role = template.queryForObject(sql, BeanPropertyRowMapper.newInstance(Role.class), eRole.toString());
+        Role role = template.queryForObject(findByNameSQL, BeanPropertyRowMapper.newInstance(Role.class), eRole.toString());
         return Optional.ofNullable(role);
     }
 }

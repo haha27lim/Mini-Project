@@ -23,11 +23,18 @@ public class SaveRecipeRepository {
     @Autowired
     private RecipeDetailsRepository recipeDetailsRepo;
 
+    private final String insertSQL = "INSERT INTO saved_recipes (user_id, recipe_id, recipe_title) VALUES (?, ?, ?)";
+
+    private final String findAllSQL = "SELECT * FROM saved_recipes";
+
+    private final String deleteByIdSQL = "DELETE FROM saved_recipes WHERE id = ?";
+
+
     public SavedRecipe save(SavedRecipe savedRecipe) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         template.update(con -> {
             PreparedStatement ps = con.prepareStatement(
-                "INSERT INTO saved_recipes (user_id, recipe_id, recipe_title) VALUES (?, ?, ?)",
+                insertSQL,
                 Statement.RETURN_GENERATED_KEYS
             );
             ps.setLong(1, savedRecipe.getUserId());
@@ -66,8 +73,7 @@ public class SaveRecipeRepository {
     
 
     public List<SavedRecipe> findAll() {
-        String query = "SELECT * FROM saved_recipes";
-        return template.query(query, (rs, rowNum) -> {
+        return template.query(findAllSQL, (rs, rowNum) -> {
             SavedRecipe savedRecipe = new SavedRecipe();
             savedRecipe.setId(rs.getInt("id"));
             savedRecipe.setUserId(rs.getLong("user_id"));
@@ -79,7 +85,7 @@ public class SaveRecipeRepository {
     }
 
     public void deleteById(int id) {
-        template.update("DELETE FROM saved_recipes WHERE id = ?", id);
+        template.update(deleteByIdSQL, id);
         recipeDetailsRepo.deleteById(id);
     }
 
