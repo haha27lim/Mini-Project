@@ -69,7 +69,6 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/contact/**").permitAll()
                 .requestMatchers("/api/comment/**").permitAll()
                 .requestMatchers("/websocket/**").permitAll()
-                .requestMatchers("https://foodalchemy.up.railway.app/**").permitAll()
                 .requestMatchers("/static/**", "/css/**").permitAll()
                 .anyRequest().authenticated();
                 

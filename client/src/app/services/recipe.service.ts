@@ -153,7 +153,7 @@ export class RecipeService {
   }
 
   shareRecipe(recipe: Recipe) {
-    const shareUrl = 'https://foodalchemy.up.railway.app/#/details/' + recipe.id; 
+    const shareUrl = 'https://project-iota-three.vercel.app//#/details/' + recipe.id; 
 
     if (navigator.share) {
       navigator.share({

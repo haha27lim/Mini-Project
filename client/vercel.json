@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/client/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://foodalchemy.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
