@@ -8,10 +8,6 @@
   ],
   "routes": [
     {
-      "src": "/api/:path*",
-      "destination": "https://foodalchemy.onrender.com/api/:path*"
-    },
-    {
       "src": "/(.*)",
       "destination": "/index.html"
     }
