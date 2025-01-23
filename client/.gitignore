@@ -45,6 +45,3 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
-
-# Environment files
-/src/app/environments/*.ts
